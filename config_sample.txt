@@ -1,0 +1,1 @@
+Array ( [host] => 127.0.0.1 [db_user] => user_iptvpro [db_pass] => WVaD8pWlZ8wGc1vGPxb [db_name] => xtream_iptvpro [server_id] => 1 [db_port] => 7999 [pconnect] => 0 ) 
