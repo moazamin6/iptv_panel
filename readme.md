@@ -10,7 +10,7 @@
 | 4. Add `host` `db_port` `db_name` `db_user` `db_pass`|
 | 5. Create new database in mysql or phpmyadmin |
 | 6. Import `iptv_dump.sql` |
-| 7. Go to `http://server_root/iptv` |
+| 7. Go to `http://<SERVER_ROOT>/<PROJECT_DIRECTORY_NAME>/admin` |
 | 8. Enter `username: admin, password: admin` |
 
 # Enjoy Smart UI...
