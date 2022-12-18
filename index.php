@@ -1,13 +1,3 @@
 <?php
-include "admin/functions.php";
 
-if (isset($_SESSION['hash'])) {
-    if (!$rPermissions["is_admin"]) {
-        header("Location: ./reseller.php");
-    } else {
-        header("Location: ./dashboard.php");
-    }
-} else {
-    header("Location: ./login.php");
-}
-?>
+header("Location: ./admin/index.php");
