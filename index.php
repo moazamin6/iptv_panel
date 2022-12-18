@@ -1,3 +1,13 @@
 <?php
+include "admin/functions.php";
 
-header('Location: http://163.172.35.156/iptv/admin.v1/');
+if (isset($_SESSION['hash'])) {
+    if (!$rPermissions["is_admin"]) {
+        header("Location: ./reseller.php");
+    } else {
+        header("Location: ./dashboard.php");
+    }
+} else {
+    header("Location: ./login.php");
+}
+?>
