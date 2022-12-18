@@ -1,8 +1,6 @@
 <?php
 include "session.php"; include "functions.php";
 
-$nabillangues = Array("" => "Default - EN", "fr" => "French", "es" => "Spanish", "it" => "Italian", "pt" => "Portuguese");
-
 if (isset($_POST["submit_profile"])) {
 	if ((strlen($_POST["password"]) < intval($rAdminSettings["pass_length"])) && (intval($rAdminSettings["pass_length"]) > 0)) {
 		$_STATUS = 1;
@@ -39,39 +37,19 @@ if (isset($_POST["submit_profile"])) {
         } else {
             $rEmail = $rUserInfo["email"];
         }
-		if (($rAdminSettings["change_own_dns"]) OR ($rPermissions["is_admin"])) {
+        if (($rAdminSettings["change_own_dns"]) OR ($rPermissions["is_admin"])) {
             $rDNS = $_POST["reseller_dns"];
         } else {
             $rDNS = $rUserInfo["reseller_dns"];
         }
-        if (($rAdminSettings["change_own_lang"]) OR ($rPermissions["is_admin"])) {
-
-            $bob = $_POST["default_lang"];
-		} else {
-			$bob = $rUserInfo["default_lang"];
-		}
-       if(isset($_POST['port_admin']) && $rPermissions["is_admin"] && $_POST['port_admin']!= $rSettings["port_admin"])  {
-        $portadmin = $_POST["port_admin"];
-		     exec("sed -i 's/listen ".$rSettings["port_admin"]."/listen ".intval($_POST["port_admin"])."/g' /home/xtreamcodes/iptv_xtream_codes/nginx/conf/nginx.conf");
-        if ($rSettings["is_ufw"] == 1) {
-             exec("sudo ufw allow ".intval($_POST["port_admin"])." && sudo ufw delete allow ".$rSettings["port_admin"]."");
-        }
-	     	 exec("sudo /home/xtreamcodes/iptv_xtream_codes/nginx/sbin/nginx -s reload");
-             sleep(1);
-        }
-       else {
-                   $portadmin = $rSettings["port_admin"];
-       }
- 		$db->query("UPDATE `settings` SET `port_admin` = '".ESC($portadmin)."';");
-		$db->query("UPDATE `reg_users` SET `password` = '".ESC($rPassword)."', `email` = '".ESC($rEmail)."', `reseller_dns` = '".ESC($rDNS)."', `default_lang` = '".ESC($bob)."', `dark_mode` = ".intval($rDarkMode).", `sidebar` = ".intval($rSidebar).", `expanded_sidebar` = ".intval($rExpanded)." WHERE `id` = ".intval($rUserInfo["id"]).";");
-        $rUserInfo = getRegisteredUser($rUserInfo["id"]);
+		$db->query("UPDATE `reg_users` SET `password` = '".ESC($rPassword)."', `email` = '".ESC($rEmail)."', `reseller_dns` = '".ESC($rDNS)."', `dark_mode` = ".intval($rDarkMode).", `sidebar` = ".intval($rSidebar).", `expanded_sidebar` = ".intval($rExpanded)." WHERE `id` = ".intval($rUserInfo["id"]).";");
+		$rUserInfo = getRegisteredUser($rUserInfo["id"]);
 		$rAdminSettings["dark_mode"] = $rUserInfo["dark_mode"];
 		$rAdminSettings["expanded_sidebar"] = $rUserInfo["expanded_sidebar"];
 		$rSettings["sidebar"] = $rUserInfo["sidebar"];
 		$_STATUS = 0;
     }
 }
-
 
 if ($rSettings["sidebar"]) {
     include "header_sidebar.php";
@@ -168,18 +146,6 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="text" class="form-control" id="reseller_dns" name="reseller_dns" value="<?=htmlspecialchars($rUserInfo["reseller_dns"])?>">
                                                             </div>
                                                         </div>
-														<?php }
-                                                        if (($rPermissions["is_admin"]) OR ($rAdminSettings["change_own_lang"])) { ?>
-                                                    <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="default_lang">UI Language</label>
-                                                            <div class="col-md-8">
-                                                                 <select type="default_lang" name="default_lang" id="default_lang" class="form-control" data-toggle="select2">
-                                                                    <?php foreach ($nabillangues as $rKey => $rLanguage) { ?>
-                                                                    <option<?php if ($rUserInfo["default_lang"] == $rKey) { echo " selected"; } ?> value="<?=$rKey?>"><?=$rLanguage?></option>
-                                                                 <?php } ?>    
-                                                            </select>
-                                                            </div>
-                                                        </div>
 														<?php } ?>
 														<div class="form-group row mb-4">
 															<label class="col-md-4 col-form-label" for="sidebar"><?=$_["sidebar_nav"]?></label>
@@ -221,7 +187,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

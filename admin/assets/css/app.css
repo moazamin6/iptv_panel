@@ -13,7 +13,7 @@ body{
     }
 }
 .wrapper{
-    padding:110px 12px 0 12px
+    padding:130px 12px 0 12px
 }
 #topnav{
     background:#3d454e;
@@ -126,12 +126,12 @@ body{
 .navigation-menu>li>a{
     display:block;
     color:rgba(255,255,255,.7);
-    font-size:13px;
+    font-size:15px;
     font-family:"Work Sans",sans-serif;
     -webkit-transition:all .5s ease;
     transition:all .5s ease;
     line-height:20px;
-    padding:10px;
+    padding:20px;
     position:relative
 }
 .navigation-menu>li>a i{
@@ -194,7 +194,7 @@ body{
     }
     .navigation-menu>li .submenu li a{
         display:block;
-        padding:3px 10px 0px 10px;
+        padding:9px 25px;
         clear:both;
         white-space:nowrap;
         color:#414d5f
@@ -666,7 +666,7 @@ body{
     font-size:1.25rem;
     margin:0;
     line-height:75px;
-    color:#CDCDCD
+    color:#323a46
 }
 .page-title-box .page-title-right{
     float:right;
@@ -686,7 +686,7 @@ body{
 }
 .footer{
     bottom:0;
-    padding: 10px 5px 5px;
+    padding:19px 15px 20px;
     position:absolute;
     right:0;
     color:#fff;
@@ -2625,15 +2625,9 @@ div.dt-button-info h2{
     height:32px;
     line-height:30px
 }
-.selectepg-container .select2-selection--single{
-    border:1px solid #ced4da;
-    height:33px;
-    outline:0;
-
-}
 .select2-container .select2-selection--single{
     border:1px solid #ced4da;
-    height:32px;
+    height:38px;
     outline:0
 }
 .select2-container .select2-selection--single .select2-selection__rendered{
@@ -2735,7 +2729,7 @@ div.dt-button-info h2{
 }
 .parsley-errors-list>li{
     list-style:none;
-    color:#ff0000;
+    color:#f0643b;
     margin-top:5px;
     padding-left:20px;
     position:relative
@@ -2748,10 +2742,10 @@ div.dt-button-info h2{
     top:-1px
 }
 .parsley-error{
-    border-color:#ff0000
+    border-color:#f0643b
 }
 .parsley-success{
-    border-color:#23b323
+    border-color:#23b397
 }
 .datepicker{
     padding:10px!important
@@ -3063,8 +3057,8 @@ div.dt-button-info h2{
     font-weight:500!important
 }
 [data-plugin=knob]{
-    font-family:Segoe UI,sans-serif!important;
-    font-weight:500!important
+    font-family:Poppins,sans-serif!important;
+    font-weight:600!important
 }
 .apex-charts{
     min-height:10px!important
@@ -3165,28 +3159,17 @@ body.authentication-bg{
     background-position:center
 }
 .auth-title{
-    #background-color:#2577b13b;							 
-    padding:8px 2.25rem;				   
+    background-color:#f7fafb;
+    border-top:1px solid #ecf2f4;
+    border-bottom:1px solid #ecf2f4;
+    padding:12px 2.25rem;
+    margin:0 -2.25rem 30px;
     text-transform:uppercase;
-    font-weight:400;
-    text-align:center;
-	color: #fff;
-	border-radius: 15px;
-	
+    font-weight:700;
+    text-align:center
 }
-.auth-titlelogin{ 
-    #background-color:#2577b13b;							 
-    padding:8px 2.25rem;				   
-    text-transform:uppercase;
-    font-weight:400;
-    text-align:center;
-	color: #fff;
-	border-radius: 15px;
-	
-}
-	
 body.authentication-bg-pattern{
-    background-image:url(../images/bg1.png)
+    background-image:url(../images/bg.png)
 }
 .logout-icon{
     width:140px

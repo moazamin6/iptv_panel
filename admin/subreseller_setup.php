@@ -66,10 +66,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./subresellers.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_subresellers"]?></li></a>
+                                    <a href="./subresellers.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Subresellers</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["subreseller_setup"]?></h4>
+                            <h4 class="page-title">Subreseller Setup</h4>
                         </div>
                     </div>
                 </div>     
@@ -81,7 +81,7 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["there_was_an_error"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -95,7 +95,7 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#setup" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"> <?=$_["setup"]?></span>
+                                                    <span class="d-none d-sm-inline">Setup</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -104,10 +104,10 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                             <?=$_["select_a_master_reseller"]?>
+                                                            Select a master reseller group from the list, then the subreseller group they will be able to create. Be sure to use only one group per master reseller.
                                                         </p>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="reseller"> <?=$_["master_group"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="reseller">Master Group</label>
                                                             <div class="col-md-8">
                                                                 <select name="reseller" id="reseller" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach (getMemberGroups() as $rGroup) {
@@ -119,7 +119,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="subreseller">  <?=$_["subreseller"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="subreseller">Subreseller</label>
                                                             <div class="col-md-8">
                                                                 <select name="subreseller" id="subreseller" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach (getMemberGroups() as $rGroup) {
@@ -134,7 +134,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_subreseller" type="submit" class="btn btn-primary" value=" <?=$_["setup"]?>" />
+                                                        <input name="submit_subreseller" type="submit" class="btn btn-primary" value="Setup" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -153,7 +153,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

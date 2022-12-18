@@ -39,27 +39,27 @@ if ($rSettings["sidebar"]) {
                                         <?php if (!$detect->isMobile()) { ?>
                                         <a href="#" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-refresh"></i> <span class="auto-text"><?=$_["auto_refresh"]?></span>
+                                                <i class="mdi mdi-refresh"></i> <span class="auto-text">Auto-Refresh</span>
                                             </button>
                                         </a>
                                         <?php } else { ?>
                                         <a href="javascript:location.reload();" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-refresh"></i> <?=$_["refresh"]?>
+                                                <i class="mdi mdi-refresh"></i> Refresh
                                             </button>
                                         </a>
                                         <?php }
 										if ((hasPermissions("adv", "add_reguser")) OR ($rPermissions["is_reseller"])) { ?>
                                         <a href="<?php if ($rPermissions["is_admin"]) { echo "reg_user"; } else { echo "subreseller"; } ?>.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i> <?=$_["add"]?> <?php if ($rPermissions["is_admin"]) { ?><?=$_["registered_user"]?><?php } else { ?><?=$_["subresellers"]?><?php } ?>
+                                                <i class="mdi mdi-plus"></i> Add <?php if ($rPermissions["is_admin"]) { ?>Registered User<?php } else { ?>Subreseller<?php } ?>
                                             </button>
                                         </a>
 										<?php } ?>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if ($rPermissions["is_admin"]) { ?><?=$_["registered_users"]?><?php } else { ?><?=$_["subresellers"]?><?php } ?></h4>
+                            <h4 class="page-title"><?php if ($rPermissions["is_admin"]) { ?>Registered Users<?php } else { ?>Subresellers<?php } ?></h4>
                         </div>
                     </div>
                 </div>     
@@ -71,14 +71,14 @@ if ($rSettings["sidebar"]) {
                                 <form id="reg_users_search">
                                     <div class="form-group row mb-4">
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="reg_search" value="" placeholder="<?=$_["search_users"]?>">
+                                            <input type="text" class="form-control" id="reg_search" value="" placeholder="Search Users...">
                                         </div>
-                                        <label class="col-md-2 col-form-label text-center" for="reg_reseller"><?=$_["filter_results"]?></label>
+                                        <label class="col-md-2 col-form-label text-center" for="reg_reseller">Filter Results</label>
                                         <div class="col-md-3">
                                             <select id="reg_reseller" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_owners"]?></option>
+                                                <option value="" selected>All Owners</option>
                                                 <?php if ($rPermissions["is_admin"]) { ?>
-                                                <option value="0"><?=$_["no_owner"]?></option>
+                                                <option value="0">No Owner</option>
                                                 <?php } foreach ($rRegisteredUsers as $rRegisteredUser) { ?>
                                                 <option value="<?=$rRegisteredUser["id"]?>"><?=$rRegisteredUser["username"]?></option>
                                                 <?php } ?>
@@ -86,12 +86,12 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-2">
                                             <select id="reg_filter" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["no_filter"]?></option>
-                                                <option value="1"><?=$_["active"]?></option>
-                                                <option value="2"><?=$_["disabled"]?></option>
+                                                <option value="" selected>No Filter</option>
+                                                <option value="1">Active</option>
+                                                <option value="2">Disabled</option>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="reg_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="reg_show_entries">Show</label>
                                         <div class="col-md-1">
                                             <select id="reg_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -101,19 +101,19 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-users" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-users" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["username"]?></th>
-                                            <th><?=$_["owner"]?></th>
-                                            <th class="text-center"><?=$_["ip"]?></th>
-                                            <th class="text-center"><?=$_["type"]?></th>
-                                            <th class="text-center"><?=$_["status"]?></th>
-                                            <th class="text-center"><?=$_["credits"]?></th>
-                                            <th class="text-center"><?=$_["users"]?></th>
-                                            <th class="text-center"><?=$_["last_login"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Username</th>
+                                            <th>Owner</th>
+                                            <th class="text-center">IP</th>
+                                            <th class="text-center">Type</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Credits</th>
+                                            <th class="text-center">Users</th>
+                                            <th class="text-center">Last Login</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -132,7 +132,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -161,25 +161,25 @@ if ($rSettings["sidebar"]) {
         
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_clear_logs_for_this_period"]?>') == false) {
+                if (confirm('Are you sure you want to delete this registered user?') == false) {
                     return;
                 }
             }
             $.getJSON("./api.php?action=reg_user&sub=" + rType + "&user_id=" + rID, function(data) {
                 if (data.result === true) {
                     if (rType == "delete") {
-                        $.toast("<?=$_["user_has_been_deleted"]?>");
+                        $.toast("User has been deleted.");
                     } else if (rType == "enable") {
-                        $.toast("<?=$_["user_has_been_enabled"]?>");
+                        $.toast("User has been enabled.");
                     } else if (rType == "disable") {
-                        $.toast("<?=$_["user_has_been_disabled"]?>");
+                        $.toast("User has been disabled.");
 					} else if (rType == "reset") {
-                        $.toast("<?=$_["two_factor_authentication_has_been_reset"]?>");
+                        $.toast("Two factor authentication has been reset for this user.");
                     }
                     $('[data-toggle="tooltip"]').tooltip("hide");
                     $("#datatable-users").DataTable().ajax.reload(null, false);
                 } else {
-                    $.toast("<?=$_["an_error_occured"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }
@@ -254,9 +254,6 @@ if ($rSettings["sidebar"]) {
                 createdRow: function(row, data, index) {
                     $(row).addClass('user-' + data[0]);
                 },
-				pageLength: 50,
-                lengthMenu: [10, 25, 50, 250, 500, 1000],
-				stateSave: true,
                 responsive: false,
                 processing: true,
                 serverSide: true,

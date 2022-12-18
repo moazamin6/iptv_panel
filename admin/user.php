@@ -105,14 +105,6 @@ if (isset($_POST["submit_user"])) {
 	} else {
 		$rArray["allowed_ua"] = "[]";
 	}
-	//isp lock_device
-	if (isset($_POST["is_isplock"])) {
-            $rArray["is_isplock"] = true;
-        unset($_POST["is_isplock"]);
-    } else {
-        $rArray["is_isplock"] = false;
-    }
-	//isp lock_device
     if (!isset($_STATUS)) {
         foreach($_POST as $rKey => $rValue) {
             if (isset($rArray[$rKey])) {
@@ -204,13 +196,9 @@ if (isset($_GET["id"])) {
 		exit;
 	}
     $rMAGUser = getMAGUser($_GET["id"]);
-	if (($rUser["is_mag"])) {
-		$rUser["lock_device"] = $rMAGUser["lock_device"];
-		$rUser["mac_address_mag"] = base64_decode($rMAGUser["mac"]);
-	}
-	if (($rUser["is_e2"])) {
-        $rUser["mac_address_e2"] = getE2User($_GET["id"])["mac"];
-	}
+    $rUser["lock_device"] = $rMAGUser["lock_device"];
+    $rUser["mac_address_mag"] = base64_decode($rMAGUser["mac"]);
+    $rUser["mac_address_e2"] = getE2User($_GET["id"])["mac"];
     $rUser["outputs"] = getOutputs($rUser["id"]);
 } else if (!hasPermissions("adv", "add_user")) { exit; }
 
@@ -233,10 +221,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./users.php<?php if (isset($_GET["mag"])) { echo "?mag"; } else if (isset($_GET["e2"])) { echo "?e2"; } ?>"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_users"]?></li></a>
+                                    <a href="./users.php<?php if (isset($_GET["mag"])) { echo "?mag"; } else if (isset($_GET["e2"])) { echo "?e2"; } ?>"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Users</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rUser)) { echo $_["edit"]; } else { echo $_["add"]; } ?> <?=$_["user"]?></h4>
+                            <h4 class="page-title"><?php if (isset($rUser)) { echo "Edit"; } else { echo "Add"; } ?> User</h4>
                         </div>
                     </div>
                 </div>     
@@ -249,42 +237,42 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["user_operation_was_completed_successfully"]?>
+                            User operation was completed successfully.
                         </div>
                         <?php } else if ($_STATUS == 1) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["an_incorrect_expiration_date_was_entered"]?>
+                            An incorrect expiration date was entered, please try again.
                         </div>
                         <?php } else if ($_STATUS == 2) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } else if ($_STATUS == 3) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["this_username_already_exists"]?>
+                            This username already exists. Please try another.
                         </div>
                         <?php } else if ($_STATUS == 4) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["an_invalid_mac_address_was_entered"]?>
+                            An invalid MAC address was entered, please try again.
                         </div>
                         <?php } else if ($_STATUS == 5) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["this_mac_address_is_already_in_use"]?>
+                            This MAC address is already in use. Please use another.
                         </div>
                         <?php } 
                         } ?>
@@ -302,25 +290,25 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#user-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#advanced-options" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-folder-alert-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["advanced"]?></span>
+                                                    <span class="d-none d-sm-inline">Advanced</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#restrictions" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-hazard-lights mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["restrictions"]?></span>
+                                                    <span class="d-none d-sm-inline">Restrictions</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#bouquets" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-flower-tulip mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["bouquets"]?></span>
+                                                    <span class="d-none d-sm-inline">Bouquets</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -329,22 +317,22 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="username"><?=$_["username"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="username">Username</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" id="username" name="username" placeholder="<?=$_["auto_generate_if_blank"]?>" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["username"]); } ?>">
+                                                                <input type="text" class="form-control" id="username" name="username" placeholder="auto-generate if blank" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["username"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="password"><?=$_["password"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="password">Password</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" id="password" name="password" placeholder="<?=$_["auto_generate_if_blank"]?>" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["password"]); } ?>">
+                                                                <input type="text" class="form-control" id="password" name="password" placeholder="auto-generate if blank" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["password"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="member_id"><?=$_["owner"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="member_id">Owner</label>
                                                             <div class="col-md-8">
                                                                 <select name="member_id" id="member_id" class="form-control select2" data-toggle="select2">
-                                                                    <option value="-1"><?=$_["no_owner"]?></option>
+                                                                    <option value="-1">No Owner</option>
                                                                     <?php foreach ($rRegisteredUsers as $rRegisteredUser) { ?>
                                                                     <option <?php if (isset($rUser)) { if (intval($rUser["member_id"]) == intval($rRegisteredUser["id"])) { echo "selected "; } } else { if (intval($rUserInfo["id"]) == intval($rRegisteredUser["id"])) { echo "selected "; } } ?>value="<?=$rRegisteredUser["id"]?>"><?=$rRegisteredUser["username"]?></option>
                                                                     <?php } ?>
@@ -352,29 +340,29 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="max_connections"><?=$_["max_connections"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="max_connections">Max Connections</label>
                                                             <div class="col-md-2">
-                                                                <input type="text" class="form-control" id="max_connections" name="max_connections" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["max_connections"]); } else { echo "1"; } ?>" required data-parsley-trigger="<?=$_["change"]?>">
+                                                                <input type="text" class="form-control" id="max_connections" name="max_connections" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["max_connections"]); } else { echo "1"; } ?>" required data-parsley-trigger="change">
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="exp_date"><?=$_["expiry"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["leave_blank_for_unlimited"]?>" class="mdi mdi-information"></i></label>
-                                                            <div class="col-md-2" style="padding-right: 0px; padding-left: 0px;">
-                                                                <input type="text" style="padding-right: 1px; padding-left: 1px;" class="form-control text-center datetime" id="exp_date" name="exp_date" value="<?php if (isset($rUser)) { if (!is_null($rUser["exp_date"])) { echo date("Y-m-d HH:mm", $rUser["exp_date"]); } else { echo "\" disabled=\"disabled"; } } ?>" data-toggle="date-picker" data-single-date-picker="true">
+                                                            <label class="col-md-2 col-form-label" for="exp_date">Expiry <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Leave blank for unlimited." class="mdi mdi-information"></i></label>
+                                                            <div class="col-md-2">
+                                                                <input type="text" class="form-control text-center date" id="exp_date" name="exp_date" value="<?php if (isset($rUser)) { if (!is_null($rUser["exp_date"])) { echo date("Y-m-d", $rUser["exp_date"]); } else { echo "\" disabled=\"disabled"; } } ?>" data-toggle="date-picker" data-single-date-picker="true">
                                                             </div>
                                                             <div class="col-md-2">
                                                                 <div class="custom-control custom-checkbox mt-1">
                                                                     <input type="checkbox" class="custom-control-input" id="no_expire" name="no_expire"<?php if(isset($rUser)) { if (is_null($rUser["exp_date"])) { echo " checked"; } } ?>>
-                                                                    <label class="custom-control-label" for="no_expire"><?=$_["never"]?></label>
+                                                                    <label class="custom-control-label" for="no_expire">Never</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="admin_notes"><?=$_["admin_notes"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="admin_notes">Admin Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea id="admin_notes" name="admin_notes" class="form-control" rows="3" placeholder=""><?php if (isset($rUser)) { echo htmlspecialchars($rUser["admin_notes"]); } ?></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="reseller_notes"><?=$_["reseller_notes"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="reseller_notes">Reseller Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea id="reseller_notes" name="reseller_notes" class="form-control" rows="3" placeholder=""><?php if (isset($rUser)) { echo htmlspecialchars($rUser["reseller_notes"]); } ?></textarea>
                                                             </div>
@@ -383,7 +371,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -391,10 +379,10 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="force_server_id"><?=$_["forced_connection"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["force_this_user_to_connect_to"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="force_server_id">Forced Connection <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Force this user to connect to a specific server. Otherwise, the server with the lowest load will be selected." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <select name="force_server_id" id="force_server_id" class="form-control select2" data-toggle="select2">
-                                                                    <option <?php if (isset($rUser)) { if (intval($rUser["force_server_id"]) == 0) { echo "selected "; } } ?>value="0"><?=$_["disabled"]?></option>
+                                                                    <option <?php if (isset($rUser)) { if (intval($rUser["force_server_id"]) == 0) { echo "selected "; } } ?>value="0">Disabled</option>
                                                                     <?php foreach ($rServers as $rServer) { ?>
                                                                     <option <?php if (isset($rUser)) { if (intval($rUser["force_server_id"]) == intval($rServer["id"])) { echo "selected "; } } ?>value="<?=$rServer["id"]?>"><?=htmlspecialchars($rServer["server_name"])?></option>
                                                                     <?php } ?>
@@ -402,55 +390,49 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="is_stalker"><?=$_["ministra_portal"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["select_this_option"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="is_stalker">Ministra Portal <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Select this option if you intend to use this account with your Ministra / Stalker portal. Output formats, expiration and connections below will be ignored. Only MPEG-TS output is allowed." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="is_stalker" id="is_stalker" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_stalker"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-															<label class="col-md-4 col-form-label" for="is_restreamer"><?=$_["restreamer"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["if_selected_this_user"]?>" class="mdi mdi-information"></i></label>
+															<label class="col-md-4 col-form-label" for="is_restreamer">Restreamer <i data-toggle="tooltip" data-placement="top" title="" data-original-title="If selected, this user will not be blocked for restreaming channels." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="is_restreamer" id="is_restreamer" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_restreamer"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="is_e2"><?=$_["enigma_device"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["this_option_will_be_selected_enigma"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="is_e2">Enigma Device <i data-toggle="tooltip" data-placement="top" title="" data-original-title="This option will be selected if this device is a Enigma set top box. This will be a sub account and should not be modified directly." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input <?php if (!hasPermissions("adv", "add_e2")) { echo "disabled "; } ?>name="is_e2" id="is_e2" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_e2"] == 1) { echo "checked "; } } else if ((isset($_GET["e2"])) && (hasPermissions("adv", "add_e2"))) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="is_mag"><?=$_["mag_device"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["this_option_will_be_selected_mag"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="is_mag">MAG Device <i data-toggle="tooltip" data-placement="top" title="" data-original-title="This option will be selected if this device is a MAG set top box. This will be a sub account and should not be modified directly." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input <?php if (!hasPermissions("adv", "add_mag")) { echo "disabled "; } ?>name="is_mag" id="is_mag" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_mag"] == 1) { echo "checked "; } } else if ((isset($_GET["mag"])) && (hasPermissions("adv", "add_mag"))) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="is_trial"><?=$_["trial_account"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="is_trial">Trial Account</label>
                                                             <div class="col-md-2">
                                                                 <input name="is_trial" id="is_trial" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_trial"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="lock_device"><?=$_["mag_stb_lock"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="lock_device">MAG STB Lock</label>
                                                             <div class="col-md-2">
                                                                 <input name="lock_device" id="lock_device" type="checkbox" <?php if (isset($rUser)) { if ($rUser["lock_device"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
-														<div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="is_isplock">ISP LOCK</label>
-                                                            <div class="col-md-2">
-                                                                <input name="is_isplock" id="is_isplock" type="checkbox" <?php if (isset($rUser)) { if ($rUser["is_isplock"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
-                                                            </div>
-                                                        </div>
                                                         <div class="form-group row mb-4" style="display:none" id="mac_entry_mag">
-                                                            <label class="col-md-4 col-form-label" for="mac_address_mag"><?=$_["mac_address"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="mac_address_mag">MAC Address</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="mac_address_mag" name="mac_address_mag" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["mac_address_mag"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4" style="display:none" id="mac_entry_e2">
-                                                            <label class="col-md-4 col-form-label" for="mac_address_e2"><?=$_["mac_address"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="mac_address_e2">MAC Address</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="mac_address_e2" name="mac_address_e2" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["mac_address_e2"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="forced_country"><?=$_["forced_country"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["force_user_to_connect"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="forced_country">Forced Country <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Force user to connect to loadbalancer associated with the selected country." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <select name="forced_country" id="forced_country" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach ($rCountries as $rCountry) { ?>
@@ -460,7 +442,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="access_output"><?=$_["access_output"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="access_output">Access Output</label>
                                                             <div class="col-md-8">
                                                                 <?php foreach (getOutputs() as $rOutput) { ?>
                                                                 <div class="checkbox form-check-inline">
@@ -474,10 +456,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -485,7 +467,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="ip_field"><?=$_["allowed_ip_addresses"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="ip_field">Allowed IP Addresses</label>
                                                             <div class="col-md-8 input-group">
                                                                 <input type="text" id="ip_field" class="form-control" value="">
                                                                 <div class="input-group-append">
@@ -505,7 +487,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="ua_field"><?=$_["allowed_user-agents"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="ua_field">Allowed User-Agents</label>
                                                             <div class="col-md-8 input-group">
                                                                 <input type="text" id="ua_field" class="form-control" value="">
                                                                 <div class="input-group-append">
@@ -528,10 +510,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -542,15 +524,15 @@ if ($rSettings["sidebar"]) {
                                                             <table id="datatable-bouquets" class="table table-borderless mb-0">
                                                                 <thead class="bg-light">
                                                                     <tr>
-                                                                        <th class="text-center"><?=$_["id"]?></th>
-                                                                        <th><?=$_["bouquet_name"]?></th>
-                                                                        <th class="text-center"><?=$_["streams"]?></th>
-                                                                        <th class="text-center"><?=$_["series"]?></th>
+                                                                        <th class="text-center">ID</th>
+                                                                        <th>Bouquet Name</th>
+                                                                        <th class="text-center">Streams</th>
+                                                                        <th class="text-center">Series</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php foreach (getBouquets() as $rBouquet) { ?>
-                                                                    <tr<?php if (isset($rUser)) { if(in_array($rBouquet["id"], json_decode($rUser["bouquet"], True))) { echo " class='selected selectedfilter ui-selected'"; } } ?>>
+                                                                    <tr<?php if ((isset($rUser)) & (in_array($rBouquet["id"], json_decode($rUser["bouquet"], True)))) { echo " class='selected selectedfilter ui-selected'"; } ?>>
                                                                         <td class="text-center"><?=$rBouquet["id"]?></td>
                                                                         <td><?=$rBouquet["bouquet_name"]?></td>
                                                                         <td class="text-center"><?=count(json_decode($rBouquet["bouquet_channels"], True))?></td>
@@ -564,11 +546,11 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="list-inline-item float-right">
-                                                        <a href="javascript: void(0);" onClick="toggleBouquets()" class="btn btn-info"><?=$_["toggle_bouquets"]?></a>
-                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo $_["edit"]; } else { echo $_["add"]; } ?>" />
+                                                        <a href="javascript: void(0);" onClick="toggleBouquets()" class="btn btn-info">Toggle Bouquets</a>
+                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo "Edit"; } else { echo "Add"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -587,14 +569,14 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
         <!-- end Footer -->
         <script src="assets/js/vendor.min.js"></script>
         <script src="assets/libs/jquery-toast/jquery.toast.min.js"></script>
-		<script src="assets/libs/jquery-ui/jquery-ui.min.js"></script>
+        <script src="assets/libs/jquery-ui/jquery-ui.min.js"></script>
         <script src="assets/libs/jquery-nice-select/jquery.nice-select.min.js"></script>
         <script src="assets/libs/switchery/switchery.min.js"></script>
         <script src="assets/libs/select2/select2.min.js"></script>
@@ -612,7 +594,7 @@ if ($rSettings["sidebar"]) {
         <script src="assets/libs/datatables/buttons.print.min.js"></script>
         <script src="assets/libs/datatables/dataTables.keyTable.min.js"></script>
         <script src="assets/libs/datatables/dataTables.select.min.js"></script>
-		<script src="assets/libs/moment/moment.min.js"></script>
+        <script src="assets/libs/moment/moment.min.js"></script>
         <script src="assets/libs/daterangepicker/daterangepicker.js"></script>
         <script src="assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
         <script src="assets/libs/treeview/jstree.min.js"></script>
@@ -620,16 +602,8 @@ if ($rSettings["sidebar"]) {
         <script src="assets/js/pages/form-wizard.init.js"></script>
         <script src="assets/libs/parsleyjs/parsley.min.js"></script>
         <script src="assets/js/app.min.js"></script>
-		<style>
-            .daterangepicker select.ampmselect,.daterangepicker select.hourselect,.daterangepicker select.minuteselect,.daterangepicker select.secondselect{
-                background:#fff;
-                border:1px solid #fff;
-                color:rgb(0, 0, 0)
-            }
-        </style>
-
         
-		<script>
+        <script>
         var swObjs = {};
         <?php if (isset($rUser)) { ?>
         var rBouquets = <?=$rUser["bouquet"];?>;
@@ -720,22 +694,12 @@ if ($rSettings["sidebar"]) {
                 var init = new Switchery(element);
                 window.swObjs[element.id] = init;
             });
-			<?php if (hasPermissions("adv", "edit_user") && (!empty($_GET["id"]))) {
-              $startDate = "startDate: '" . date("Y-m-d H:i:s", $rUser["exp_date"]) . "'";
-            } else {
-              $startDate = "startDate: '" . date('Y-m-d H:i:s') . "'";
-            }
-             ?>
             $('#exp_date').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
-				timePicker24Hour: true,
-				timePicker: true,
-                <?php echo $startDate; ?>,
-                endDate: moment().startOf('hour').add(32, 'hour'),
                 minDate: new Date(),
                 locale: {
-                    format: 'YYYY-MM-DD HH:mm'
+                    format: 'YYYY-MM-DD'
                 }
             });
             
@@ -795,7 +759,7 @@ if ($rSettings["sidebar"]) {
                     $("#allowed_ips").append(o);
                     $("#ip_field").val("");
                 } else {
-                    $.toast("<?=$_["please_enter_a_valid_ip_address"]?>");
+                    $.toast("Please enter a valid IP address.");
                 }
             });
             $("#remove_ip").click(function() {
@@ -807,7 +771,7 @@ if ($rSettings["sidebar"]) {
                     $("#allowed_ua").append(o);
                     $("#ua_field").val("");
                 } else {
-                    $.toast("<?=$_["please_enter_a_user_agent"]?>");
+                    $.toast("Please enter a user-agent.");
                 }
             });
             $("#remove_ua").click(function() {

@@ -136,7 +136,7 @@ if ($rSettings["sidebar"]) {
                                         <?php } ?>
                                     </div>
                                 </form>
-                                <table id="datatable-streampage" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-streampage" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
@@ -166,7 +166,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

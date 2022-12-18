@@ -69,10 +69,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./isps.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_isps"]?></li></a>
+                                    <a href="./isps.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to ISP's</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rISPArr)) { echo $_["edit"]; } else { echo $_["block"]; } ?> <?=$_["isp"]?></h4>
+                            <h4 class="page-title"><?php if (isset($rISPArr)) { echo "Edit"; } else { echo "Block"; } ?> ISP</h4>
                         </div>
                     </div>
                 </div>     
@@ -84,14 +84,14 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["isp_operation_was_completed_successfully"]?>
+                            ISP operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -105,7 +105,7 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#isp-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -114,13 +114,13 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="isp"><?=$_["isp_name"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="isp">ISP Name</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="isp" name="isp" value="<?php if (isset($rISPArr)) { echo htmlspecialchars($rISPArr["isp"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="is_restreamer"><?=$_["blocked"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="is_restreamer">Blocked</label>
                                                             <div class="col-md-2">
                                                                 <input name="blocked" id="blocked" type="checkbox" <?php if (isset($rISPArr)) { if ($rISPArr["blocked"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
@@ -129,7 +129,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_isp" type="submit" class="btn btn-primary" value="<?php if (isset($rISPArr)) { echo $_["edit"]; } else { echo $_["block"]; } ?>" />
+                                                        <input name="submit_isp" type="submit" class="btn btn-primary" value="<?php if (isset($rISPArr)) { echo "Edit"; } else { echo "Block"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -149,7 +149,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

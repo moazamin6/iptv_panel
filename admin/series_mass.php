@@ -65,10 +65,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_series"]?></li></a>
+                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Series</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["mass_edit_series"]?> <small id="selected_count"></small></h4>
+                            <h4 class="page-title">Mass Edit Series <small id="selected_count"></small></h4>
                         </div>
                     </div>
                 </div>     
@@ -80,14 +80,14 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["mass_edit_of_series_was_successfully"]?>
+                            Mass edit of Series was successfully executed!
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -99,13 +99,13 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#stream-selection" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-youtube-tv mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["series"]?></span>
+                                                    <span class="d-none d-sm-inline">Series</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#stream-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -113,12 +113,12 @@ if ($rSettings["sidebar"]) {
                                             <div class="tab-pane" id="stream-selection">
                                                 <div class="row">
                                                     <div class="col-md-5 col-6">
-                                                        <input type="text" class="form-control" id="stream_search" value="" placeholder="<?=$_["search_series"]?>">
+                                                        <input type="text" class="form-control" id="stream_search" value="" placeholder="Search Series...">
                                                     </div>
                                                     <div class="col-md-4 col-6">
                                                         <select id="category_search" class="form-control" data-toggle="select2">
-                                                            <option value="" selected><?=$_["all_categories"]?></option>
-                                                            <option value="-1"><?=$_["no_tmdb_match"]?></option>
+                                                            <option value="" selected>All Categories</option>
+                                                            <option value="-1">No TMDb Match</option>
                                                             <?php foreach ($rCategories as $rCategory) { ?>
                                                             <option value="<?=$rCategory["id"]?>"<?php if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo " selected"; } ?>><?=$rCategory["category_name"]?></option>
                                                             <?php } ?>
@@ -136,12 +136,12 @@ if ($rSettings["sidebar"]) {
                                                             <i class="mdi mdi-selection"></i>
                                                         </button>
                                                     </div>
-                                                    <table id="datatable-mass" class="table table-hover table-borderless mb-0">
+                                                    <table id="datatable-mass" class="table table-borderless mb-0">
                                                         <thead class="bg-light">
                                                             <tr>
-                                                                <th class="text-center"><?=$_["id"]?></th>
-                                                                <th><?=$_["series_name"]?></th>
-                                                                <th><?=$_["category"]?></th>
+                                                                <th class="text-center">ID</th>
+                                                                <th>Series Name</th>
+                                                                <th>Category</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody></tbody>
@@ -152,14 +152,14 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["mass_edit_info"]?>
+                                                            To mass edit any of the below options, tick the checkbox next to it and change the input value.
                                                         </p>
                                                         <div class="form-group row mb-4">
                                                             <div class="checkbox checkbox-single col-md-1 checkbox-offset checkbox-primary">
                                                                 <input type="checkbox" class="activate" data-name="category_id" name="c_category_id">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="category_id"><?=$_["category_name"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="category_id">Category Name</label>
                                                             <div class="col-md-8">
                                                                 <select disabled name="category_id" id="category_id" class="form-control" data-toggle="select2">
                                                                     <?php foreach ($rCategories as $rCategory) { ?>
@@ -173,9 +173,9 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="bouquets" name="c_bouquets">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="bouquets"><?=$_["select_bouquets"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="bouquets">Select Bouquets</label>
                                                             <div class="col-md-8">
-                                                                <select disabled name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>">
+                                                                <select disabled name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach (getBouquets() as $rBouquet) { ?>
                                                                     <option value="<?=$rBouquet["id"]?>"><?=$rBouquet["bouquet_name"]?></option>
                                                                     <?php } ?>
@@ -184,7 +184,7 @@ if ($rSettings["sidebar"]) {
                                                         </div>
 														<div class="form-group row mb-4">
                                                             <div class="col-md-1"></div>
-                                                            <label class="col-md-3 col-form-label" for="reprocess_tmdb"><?=$_["reprocess_tmdb_data"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="reprocess_tmdb">Re-Process TMDb Data</label>
                                                             <div class="col-md-2">
                                                                 <input name="reprocess_tmdb" id="reprocess_tmdb" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd" />
                                                             </div>
@@ -194,11 +194,11 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                    
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_series" type="submit" class="btn btn-primary" value="<?=$_["edit_series"]?>" />
+                                                        <input name="submit_series" type="submit" class="btn btn-primary" value="Edit Series" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -220,7 +220,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -316,7 +316,7 @@ if ($rSettings["sidebar"]) {
                 $("#series").val(JSON.stringify(window.rSelected));
                 if (window.rSelected.length == 0) {
                     e.preventDefault();
-                    $.toast("<?=$_["select_at_least_one_stream_to_edit"]?>");
+                    $.toast("Select at least one stream to edit.");
                 }
             });
             $("input[type=checkbox].activate").change(function() {

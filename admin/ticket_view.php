@@ -30,7 +30,7 @@ if ($rSettings["sidebar"]) {
                             <div class="page-title-right">
                                 <a href="./ticket.php?id=<?=$rTicket["id"]?>">
                                     <button type="button" class="btn btn-sm btn-primary waves-effect waves-light float-right">
-                                        <i class="mdi mdi-plus"></i> <?=$_["add_response"]?>
+                                        <i class="mdi mdi-plus"></i> Add Response
                                     </button>
                                 </a>
                             </div>
@@ -67,7 +67,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

@@ -49,14 +49,14 @@ if ($rSettings["sidebar"]) {
                                     <li>
                                         <a href="stream_category.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i>  <?=$_["add_category"]?>
+                                                <i class="mdi mdi-plus"></i> Add Category
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
 							<?php } ?>
-                            <h4 class="page-title"> <?=$_["categories"]?> </h4>
+                            <h4 class="page-title">Categories</h4>
                         </div>
                     </div>
                 </div>     
@@ -70,25 +70,25 @@ if ($rSettings["sidebar"]) {
                                         <li class="nav-item">
                                             <a href="#category-order-1" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                 <i class="mdi mdi-play mr-1"></i>
-                                                <span class="d-none d-sm-inline"><?=$_["streams"]?></span>
+                                                <span class="d-none d-sm-inline">Streams</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#category-order-2" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                 <i class="mdi mdi-movie mr-1"></i>
-                                                <span class="d-none d-sm-inline"><?=$_["movies"]?></span>
+                                                <span class="d-none d-sm-inline">Movies</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#category-order-3" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                 <i class="mdi mdi-youtube-tv mr-1"></i>
-                                                <span class="d-none d-sm-inline"><?=$_["series"]?></span>
+                                                <span class="d-none d-sm-inline">Series</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#category-order-4" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                 <i class="mdi mdi-radio mr-1"></i>
-                                                <span class="d-none d-sm-inline"><?=$_["radio"]?></span>
+                                                <span class="d-none d-sm-inline">Radio</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -99,7 +99,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["to_re-order_a_category"]?>  <i class="mdi mdi-view-sequential"></i> <?=$_["click_save_changes_at"]?>
+                                                            To re-order a category, drag it up or down the list using the <i class="mdi mdi-view-sequential"></i> icon. Click Save Changes at the bottom once finished.
                                                         </p>
                                                         <div class="custom-dd dd" id="category_order-1">
                                                             <ol class="dd-list">
@@ -143,7 +143,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0 add-margin-top-20">
                                                     <li class="next list-inline-item float-right">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light"><?=$_["save_changes"]?></button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                                     </li>
                                                 </ul>
                                             </form>
@@ -154,7 +154,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["to_re-order_a_category"]?>  <i class="mdi mdi-view-sequential"></i> <?=$_["click_save_changes_at"]?>
+                                                            To re-order a category, drag it up or down the list using the <i class="mdi mdi-view-sequential"></i> icon. Click Save Changes at the bottom once finished.
                                                         </p>
                                                         <div class="custom-dd dd" id="category_order-2">
                                                             <ol class="dd-list">
@@ -198,18 +198,18 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0 add-margin-top-20">
                                                     <li class="next list-inline-item float-right">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light"><?=$_["save_changes"]?></button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                                     </li>
                                                 </ul>
                                             </form>
-										</div>
+                                        </div>
                                         <div class="tab-pane" id="category-order-3">
                                             <form action="./stream_categories.php" method="POST" id="stream_categories_form-3">
                                                 <input type="hidden" id="categories_input-3" name="categories" value="" />
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["to_re-order_a_category"]?>  <i class="mdi mdi-view-sequential"></i> <?=$_["click_save_changes_at"]?>
+                                                            To re-order a category, drag it up or down the list using the <i class="mdi mdi-view-sequential"></i> icon. Click Save Changes at the bottom once finished.
                                                         </p>
                                                         <div class="custom-dd dd" id="category_order-3">
                                                             <ol class="dd-list">
@@ -253,7 +253,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0 add-margin-top-20">
                                                     <li class="next list-inline-item float-right">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light"> <?=$_["save_changes"]?></button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                                     </li>
                                                 </ul>
                                             </form>
@@ -264,11 +264,11 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["to_re-order_a_category"]?>  <i class="mdi mdi-view-sequential"></i> <?=$_["click_save_changes_at"]?> 
+                                                            To re-order a category, drag it up or down the list using the <i class="mdi mdi-view-sequential"></i> icon. Click Save Changes at the bottom once finished.
                                                         </p>
                                                         <div class="custom-dd dd" id="category_order-4">
                                                             <ol class="dd-list">
-															    <?php foreach ($rMainCategories[4] as $rCategory) { ?>
+                                                                <?php foreach ($rMainCategories[4] as $rCategory) { ?>
                                                                 <li class="dd-item dd3-item category-<?=$rCategory["id"]?>" data-id="<?=$rCategory["id"]?>">
                                                                     <div class="dd-handle dd3-handle"></div>
                                                                     <div class="dd3-content"><?=$rCategory["category_name"]?>
@@ -308,7 +308,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0 add-margin-top-20">
                                                     <li class="next list-inline-item float-right">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light"> <?=$_["save_changes"]?></button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                                     </li>
                                                 </ul>
                                             </form>
@@ -327,7 +327,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -352,17 +352,17 @@ if ($rSettings["sidebar"]) {
         
         <script>
         function deleteCategory(rID) {
-            if (confirm("<?=$_["are_you_sure_you_want_to_delete_this_category"]?>")) {
+            if (confirm("Are you sure you want to delete this category? All streams attached will be uncategorised.")) {
                 $.getJSON("./api.php?action=category&sub=delete&category_id=" + rID, function(data) {
                     if (data.result === true) {
                         $(".category-" + rID).remove();
-                        $.toast("<?=$_["category_successfully_deleted"]?>");
+                        $.toast("Category successfully deleted.");
                         $.each($('.tooltip'), function (index, element) {
                             $(this).remove();
                         });
                         $('[data-toggle="tooltip"]').tooltip();
                     } else {
-                        $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                        $.toast("An error occured while processing your request.");
                     }
                 });
             }

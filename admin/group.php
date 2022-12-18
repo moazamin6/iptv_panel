@@ -91,8 +91,7 @@ $rAdvPermissions = Array(
 	Array("users", $_["permission_users"], $_["permission_users_text"]),
 	Array("episodes", $_["permission_episodes"], $_["permission_episodes_text"]),
 	Array("edit_tprofile", $_["permission_edit_tprofile"], $_["permission_edit_tprofile_text"]),
-	Array("folder_watch_add", $_["permission_folder_watch_add"], $_["permission_folder_watch_add_text"]),
-	Array("panel_errors", $_["permission_panel_errors"], $_["permission_panel_errors_text"])
+	Array("folder_watch_add", $_["permission_folder_watch_add"], $_["permission_folder_watch_add_text"])
 );
 
 if (isset($_POST["submit_group"])) {
@@ -103,12 +102,12 @@ if (isset($_POST["submit_group"])) {
         unset($rArray["group_id"]);
     } else {
 		if (!hasPermissions("adv", "add_group")) { exit; }
-        $rArray = Array("group_name" => "", "group_color" => "", "is_banned" => 0, "is_admin" => 0, "is_reseller" => 0, "total_allowed_gen_in" => "day", "total_allowed_gen_trials" => 0, "minimum_trial_credits" => 0, "can_delete" => 1, "delete_users" => 0, "allowed_pages" => "", "reseller_force_server" => "", "create_sub_resellers_price" => 0, "create_sub_resellers" => 0, "alter_packages_ids" => 0, "alter_packages_prices" => 0, "reseller_client_connection_logs" => 0, "reseller_assign_pass" => 0, "allow_change_pass" => 0, "allow_import" => 0, "allow_export" => 0, "reseller_trial_credit_allow" => 0, "edit_mac" => 0, "edit_isplock" => 0, "reset_stb_data" => 0, "reseller_bonus_package_inc" => 0, "allow_download" => 1, "reseller_can_select_bouquets" => 0);
+        $rArray = Array("group_name" => "", "group_color" => "", "is_banned" => 0, "is_admin" => 0, "is_reseller" => 0, "total_allowed_gen_in" => "day", "total_allowed_gen_trials" => 0, "minimum_trial_credits" => 0, "can_delete" => 1, "delete_users" => 0, "allowed_pages" => "", "reseller_force_server" => "", "create_sub_resellers_price" => 0, "create_sub_resellers" => 0, "alter_packages_ids" => 0, "alter_packages_prices" => 0, "reseller_client_connection_logs" => 0, "reseller_assign_pass" => 0, "allow_change_pass" => 0, "allow_import" => 0, "allow_export" => 0, "reseller_trial_credit_allow" => 0, "edit_mac" => 0, "edit_isplock" => 0, "reset_stb_data" => 0, "reseller_bonus_package_inc" => 0, "allow_download" => 1);
     }
     if (strlen($_POST["group_name"]) == 0) {
         $_STATUS = 1;
     }
-    foreach (Array("is_admin", "is_reseller", "is_banned", "delete_users", "create_sub_resellers", "allow_change_pass", "allow_download", "reseller_client_connection_logs", "reset_stb_data", "allow_import", "reseller_can_select_bouquets") as $rSelection) {
+    foreach (Array("is_admin", "is_reseller", "is_banned", "delete_users", "create_sub_resellers", "allow_change_pass", "allow_download", "reseller_client_connection_logs", "reset_stb_data", "allow_import") as $rSelection) {
         if (isset($_POST[$rSelection])) {
             $rArray[$rSelection] = 1;
             unset($_POST[$rSelection]);
@@ -332,18 +331,6 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="text" class="form-control" id="minimum_trial_credits" name="minimum_trial_credits" value="<?php if (isset($rGroup)) { echo intval($rGroup["minimum_trial_credits"]); } else { echo "0"; } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
-														
-														<div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="reseller_can_select_bouquets"><?=$_["reseller_select_bouquets"]?></label>
-                                                            <div class="col-md-2">
-                                                                <input name="reseller_can_select_bouquets" id="reseller_can_select_bouquets" type="checkbox" <?php if (isset($rGroup)) { if ($rGroup["reseller_can_select_bouquets"]) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
-                                                            </div>
-															<label class="col-md-4 col-form-label" for="allow_import">Can Use Reseller API</label>
-                                                            <div class="col-md-2">
-                                                                <input name="allow_import" id="allow_import" type="checkbox" <?php if (isset($rGroup)) { if ($rGroup["allow_import"]) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
-                                                            </div>
-                                                        </div>
-														
                                                     </div> <!-- end col -->
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
@@ -369,7 +356,7 @@ if ($rSettings["sidebar"]) {
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php foreach ($rAdvPermissions as $rPermission) { ?>
-                                                                    <tr<?php if (isset($rGroup)) { if(in_array($rPermission[0], json_decode($rGroup["allowed_pages"], True))) { echo " class='selected selectedfilter ui-selected'"; } } ?>>
+                                                                    <tr<?php if ((isset($rGroup)) & (in_array($rPermission[0], json_decode($rGroup["allowed_pages"], True)))) { echo " class='selected selectedfilter ui-selected'"; } ?>>
                                                                         <td style="display:none;"><?=$rPermission[0]?></td>
                                                                         <td><?=$rPermission[1]?></td>
                                                                         <td><?=$rPermission[2]?></td>
@@ -406,7 +393,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

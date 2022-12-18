@@ -110,10 +110,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./users.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_users"]?></li></a>
+                                    <a href="./users.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Users</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["mass_edit_users"]?> <small id="selected_count"></small></h4>
+                            <h4 class="page-title">Mass Edit Users <small id="selected_count"></small></h4>
                         </div>
                     </div>
                 </div>     
@@ -125,14 +125,14 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["mass_edit_of_users"]?>
+                            Mass edit of users was successfully executed!
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["there_was_an_error"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -145,19 +145,19 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#user-selection" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-group mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["user"]?></span>
+                                                    <span class="d-none d-sm-inline">Users</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#user-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#bouquets" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-flower-tulip mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["bouquets"]?></span>
+                                                    <span class="d-none d-sm-inline">Bouquets</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -165,11 +165,11 @@ if ($rSettings["sidebar"]) {
                                             <div class="tab-pane" id="user-selection">
                                                 <div class="row">
                                                     <div class="col-md-3 col-6">
-                                                        <input type="text" class="form-control" id="user_search" value="" placeholder="<?=$_["search_users"]?>">
+                                                        <input type="text" class="form-control" id="user_search" value="" placeholder="Search Users...">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <select id="reseller_search" class="form-control" data-toggle="select2">
-                                                            <option value="" selected><?=$_["all_resellers"]?></option>
+                                                            <option value="" selected>All Resellers</option>
                                                             <?php foreach (getRegisteredUsers() as $rRegisteredUser) { ?>
                                                             <option value="<?=$rRegisteredUser["id"]?>"><?=$rRegisteredUser["username"]?></option>
                                                             <?php } ?>
@@ -177,14 +177,14 @@ if ($rSettings["sidebar"]) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <select id="filter" class="form-control" data-toggle="select2">
-                                                            <option value="" selected><?=$_["no_filter"]?></option>
-                                                            <option value="1"><?=$_["active"]?></option>
-                                                            <option value="2"><?=$_["disabled"]?></option>
-                                                            <option value="3"><?=$_["banned"]?></option>
-                                                            <option value="4"><?=$_["expired"]?></option>
-                                                            <option value="5"><?=$_["trial"]?></option>
-															<option value="6"><?=$_["mag_device"]?></option>
-															<option value="7"><?=$_["enigma_device"]?></option>
+                                                            <option value="" selected>No Filter</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="2">Disabled</option>
+                                                            <option value="3">Banned</option>
+                                                            <option value="4">Expired</option>
+                                                            <option value="5">Trial</option>
+															<option value="6">MAG Device</option>
+															<option value="7">Enigma Device</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-2 col-8">
@@ -199,19 +199,19 @@ if ($rSettings["sidebar"]) {
                                                             <i class="mdi mdi-selection"></i>
                                                         </button>
                                                     </div>
-                                                    <table id="datatable-mass" class="table table-hover table-borderless mb-0">
+                                                    <table id="datatable-mass" class="table table-borderless mb-0">
                                                         <thead class="bg-light">
                                                             <tr>
-                                                                <th class="text-center"><?=$_["id"]?></th>
-                                                                <th><?=$_["username"]?></th>
+                                                                <th class="text-center">ID</th>
+                                                                <th>Username</th>
                                                                 <th></th>
-                                                                <th><?=$_["reseller"]?></th>
-                                                                <th class="text-center"><?=$_["status"]?></th>
-                                                                <th class="text-center"><?=$_["online"]?></th>
-                                                                <th class="text-center"><?=$_["trial"]?></th>
-                                                                <th class="text-center"><?=$_["expiration"]?></th>
+                                                                <th>Reseller</th>
+                                                                <th class="text-center">Status</th>
+                                                                <th class="text-center">Online</th>
+                                                                <th class="text-center">Trial</th>
+                                                                <th class="text-center">Expiration</th>
                                                                 <th></th>
-                                                                <th class="text-center"><?=$_["conns"]?></th>
+                                                                <th class="text-center">Conns.</th>
                                                                 <th></th>
                                                                 <th></th>
                                                             </tr>
@@ -224,14 +224,14 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["to_mass_edit_any_of_the_below_options"]?>
+                                                            To mass edit any of the below options, tick the checkbox next to it and change the input value.
                                                         </p>
                                                         <div class="form-group row mb-4">
                                                             <div class="checkbox checkbox-single col-md-1 checkbox-offset checkbox-primary">
                                                                 <input type="checkbox" class="activate" data-name="member_id" name="c_member_id">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="member_id"><?=$_["owner"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="member_id">Owner</label>
                                                             <div class="col-md-8">
                                                                 <select disabled name="member_id" id="member_id" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach (getRegisteredUsers() as $rRegisteredUser) { ?>
@@ -245,18 +245,18 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="max_connections" name="c_max_connections">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="max_connections"><?=$_["max_connections"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="max_connections">Max Connections</label>
                                                             <div class="col-md-2">
                                                                 <input disabled type="text" class="form-control" id="max_connections" name="max_connections" value="1">
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="exp_date"><?=$_["expiry_date"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="exp_date">Expiry Date</label>
                                                             <div class="col-md-2">
                                                                 <input disabled type="text" disabled class="form-control text-center date" id="exp_date" name="exp_date" value="" data-toggle="date-picker" data-single-date-picker="true">
                                                             </div>
                                                             <div class="col-md-1">
                                                                 <div class="custom-control custom-checkbox mt-1">
                                                                     <input disabled type="checkbox" class="custom-control-input" id="no_expire" name="no_expire">
-                                                                    <label class="custom-control-label" for="no_expire"><?=$_["never"]?></label>
+                                                                    <label class="custom-control-label" for="no_expire">Never</label>
                                                                 </div>
                                                             </div>
                                                             <div class="checkbox checkbox-single col-md-1 checkbox-offset checkbox-primary">
@@ -269,7 +269,7 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="admin_notes" name="c_admin_notes">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="admin_notes"><?=$_["admin_notes"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="admin_notes">Admin Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea disabled id="admin_notes" name="admin_notes" class="form-control" rows="3" placeholder=""></textarea>
                                                             </div>
@@ -279,7 +279,7 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="reseller_notes" name="c_reseller_notes">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="reseller_notes"><?=$_["reseller_notes"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="reseller_notes">Reseller Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea disabled id="reseller_notes" name="reseller_notes" class="form-control" rows="3" placeholder=""></textarea>
                                                             </div>
@@ -289,10 +289,10 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="force_server_id" name="c_force_server_id">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="force_server_id"><?=$_["forced_connection"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="force_server_id">Forced Connection</label>
                                                             <div class="col-md-8">
                                                                 <select disabled name="force_server_id" id="force_server_id" class="form-control select2" data-toggle="select2">
-                                                                    <option selected value="0"><?=$_["disabled"]?></option>
+                                                                    <option selected value="0">Disabled</option>
                                                                     <?php foreach ($rServers as $rServer) { ?>
                                                                     <option value="<?=$rServer["id"]?>"><?=$rServer["server_name"]?></option>
                                                                     <?php } ?>
@@ -304,11 +304,11 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="is_stalker" data-type="switch" name="c_is_stalker">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="is_stalker"><?=$_["ministra_portal"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="is_stalker">Ministra Portal</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="is_stalker" id="is_stalker" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="is_restreamer"><?=$_["restreamer"]?>></label>
+                                                            <label class="col-md-3 col-form-label" for="is_restreamer">Restreamer</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="is_restreamer" id="is_restreamer" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
@@ -322,11 +322,11 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="is_e2" data-type="switch" name="c_is_e2">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="is_e2"><?=$_["enigma_device"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="is_e2">Enigma Device</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="is_e2" id="is_e2" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="is_mag"><?=$_["mag_device"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="is_mag">MAG Device</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="is_mag" id="is_mag" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
@@ -340,11 +340,11 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="lock_device" data-type="switch" name="c_lock_device">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="lock_device"><?=$_["mag_stb_lock"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="lock_device">MAG STB Lock</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="lock_device" id="lock_device" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-5 col-form-label" for="reset_stb_lock"><?=$_["reset_stb_lock"]?></label>
+                                                            <label class="col-md-5 col-form-label" for="reset_stb_lock">Reset STB Lock</label>
                                                             <div class="checkbox checkbox-single col-md-1 checkbox-offset checkbox-primary">
                                                                 <input type="checkbox" name="reset_stb_lock">
                                                                 <label></label>
@@ -355,11 +355,11 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="is_trial" data-type="switch" name="c_is_trial">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="is_trial"><?=$_["trial_account"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="is_trial">Trial Account</label>
                                                             <div class="col-md-2">
                                                                 <input disabled name="is_trial" id="is_trial" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="access_output"><?=$_["access_output"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="access_output">Access Output</label>
                                                             <div class="col-md-3">
                                                                 <?php foreach (getOutputs() as $rOutput) { ?>
                                                                 <div class="checkbox form-check-inline">
@@ -378,7 +378,7 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="checkbox" class="activate" data-name="forced_country" name="c_forced_country">
                                                                 <label></label>
                                                             </div>
-                                                            <label class="col-md-3 col-form-label" for="forced_country"><?=$_["forced_country"]?></label>
+                                                            <label class="col-md-3 col-form-label" for="forced_country">Forced Country</label>
                                                             <div class="col-md-8">
                                                                 <select disabled name="forced_country" id="forced_country" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach ($rCountries as $rCountry) { ?>
@@ -391,10 +391,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -405,10 +405,10 @@ if ($rSettings["sidebar"]) {
                                                             <table id="datatable-bouquets" class="table table-borderless mb-0">
                                                                 <thead class="bg-light">
                                                                     <tr>
-                                                                        <th class="text-center"><?=$_["id"]?></th>
-                                                                        <th><?=$_["bouquet_name"]?></th>
-                                                                        <th class="text-center"><?=$_["streams"]?></th>
-                                                                        <th class="text-center"><?=$_["series"]?></th>
+                                                                        <th class="text-center">ID</th>
+                                                                        <th>Bouquet Name</th>
+                                                                        <th class="text-center">Streams</th>
+                                                                        <th class="text-center">Series</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -424,18 +424,18 @@ if ($rSettings["sidebar"]) {
                                                             </table>
                                                             <div class="custom-control col-md-12 custom-checkbox text-center" style="margin-top:20px;">
                                                                 <input type="checkbox" class="custom-control-input" id="c_bouquets" data-name="bouquets" data-type="bouquet" name="c_bouquets">
-                                                                <label class="custom-control-label" for="c_bouquets"><?=$_["tick_this_box_to_apply"]?></label>
+                                                                <label class="custom-control-label" for="c_bouquets">Tick this box to apply the above bouquets to all selected users. Selecting none will remove bouquets from users.</label>
                                                             </div>
                                                         </div>
                                                     </div> <!-- end col -->
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" onClick="toggleBouquets()" class="btn btn-info"><?=$_["toggle_bouquets"]?></a>
-                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?=$_["mass_edit"]?>" />
+                                                        <a href="javascript: void(0);" onClick="toggleBouquets()" class="btn btn-info">Toggle Bouquets</a>
+                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="Mass Edit" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -456,7 +456,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -580,7 +580,7 @@ if ($rSettings["sidebar"]) {
                 $("#users_selected").val(JSON.stringify(window.rSelected));
                 if (window.rSelected.length == 0) {
                     e.preventDefault();
-                    $.toast("<?=$_["select_at_least_one_user_to_edit"]?>");
+                    $.toast("Select at least one user to edit.");
                 }
             });
             $("input[type=checkbox].activate").change(function() {

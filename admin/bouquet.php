@@ -414,7 +414,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -474,7 +474,7 @@ if ($rSettings["sidebar"]) {
                         rTable.row.add([rData.series[rIndex].id, '<?=$_["series"]?>', rData.series[rIndex].title, '<button type="button" class="btn-remove btn btn-light waves-effect waves-light btn-xs" onClick="toggleBouquet(' + rData.series[rIndex].id + ', \'series\', true);"><i class="mdi mdi-minus"></i></button>']);
                     });
                 } else {
-                    alert("<?=$_["bouquet_review_failed"]?>");
+                    alert("Bouquet review failed!");
                 }
                 rTable.draw();
             }, "json");

@@ -16,7 +16,7 @@ if ($rSettings["sidebar"]) {
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box">
-                            <h4 class="page-title"><?=$_["line_ip_usage"]?></h4>
+                            <h4 class="page-title">Line IP Usage</h4>
                         </div>
                     </div>
                 </div>     
@@ -27,13 +27,13 @@ if ($rSettings["sidebar"]) {
                             <div class="card-body" style="overflow-x:auto;">
                                 <div class="form-group row mb-4">
                                     <div class="col-md-7">
-                                        <input type="text" class="form-control" id="log_search" value="" placeholder="<?=$_["search_logs"]?>">
+                                        <input type="text" class="form-control" id="log_search" value="" placeholder="Search Logs...">
                                     </div>
                                     <div class="col-md-3">
                                         <select id="range" class="form-control" data-toggle="select2">
-                                            <option value="604800"><?=$_["last_7_days"]?></option>
-                                            <option value="86400"><?=$_["last_24_hours"]?></option>
-                                            <option value="3600"><?=$_["last_hour"]?></option>
+                                            <option value="604800">Last 7 Days</option>
+                                            <option value="86400">Last 24 Hours</option>
+                                            <option value="3600">Last Hour</option>
                                         </select>
                                     </div>
                                     <div class="col-md-2">
@@ -44,13 +44,13 @@ if ($rSettings["sidebar"]) {
                                         </select>
                                     </div>
                                 </div>
-                                <table id="datatable-activity" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable-activity" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th><?=$_["user_id"]?></th>
-                                            <th><?=$_["username"]?></th>
-                                            <th><?=$_["ip_count"]?></th>
-                                            <th><?=$_["actions"]?></th>
+                                            <th>User ID</th>
+                                            <th>Username</th>
+                                            <th>IP Count</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -69,7 +69,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

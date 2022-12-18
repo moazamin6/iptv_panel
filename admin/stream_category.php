@@ -63,10 +63,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                             <a href="./stream_categories.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_categories"]?> </li></a>
+                                    <a href="./stream_categories.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Categories</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rCategoryArr)) { echo $_["edit"]; } else { echo $_["add"]; } ?> <?=$_["category"]?> </h4>
+                            <h4 class="page-title"><?php if (isset($rCategoryArr)) { echo "Edit"; } else { echo "Add"; } ?> Category</h4>
                         </div>
                     </div>
                 </div>     
@@ -78,15 +78,15 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["category_operation_was_completed_successfully"]?> 
+                            Category operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?> 
-                         </div>
+                            There was an error performing this operation! Please check the form entry and try again.
+                        </div>
                         <?php } ?>
                         <div class="card">
                             <div class="card-body">
@@ -100,14 +100,14 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#category-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                   <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <?php if (isset($rCategoryArr)) { ?>
                                             <li class="nav-item">
                                                 <a href="#view-channels" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-play mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["permission_streams"]?> </span>
+                                                    <span class="d-none d-sm-inline">View Streams</span>
                                                 </a>
                                             </li>
                                             <?php } ?>
@@ -118,7 +118,7 @@ if ($rSettings["sidebar"]) {
                                                     <div class="col-12">
                                                         <?php if (!isset($rCategoryArr)) { ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="category_type"><?=$_["category_type"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="category_type">Category Type</label>
                                                             <div class="col-md-8">
                                                                 <select name="category_type" id="category_type" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach (Array("live" => "Live TV", "movie" => "Movie", "series" => "TV Series", "radio" => "Radio Station") as $rGroupID => $rGroup) { ?>
@@ -131,8 +131,8 @@ if ($rSettings["sidebar"]) {
                                                         <input type="hidden" name="category_type" value="<?=$rCategoryArr["category_type"]?>" />
                                                         <?php } ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="category_name"><?=$_["category_name"]?> </label>
-                                                             <div class="col-md-8">
+                                                            <label class="col-md-4 col-form-label" for="category_name">Category Name</label>
+                                                            <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="category_name" name="category_name" value="<?php if (isset($rCategoryArr)) { echo htmlspecialchars($rCategoryArr["category_name"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
@@ -140,7 +140,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_category" type="submit" class="btn btn-primary" value="<?php if (isset($rCategoryArr)) { echo $_["edit"]; } else { echo $_["add"]; } ?>" />
+                                                        <input name="submit_category" type="submit" class="btn btn-primary" value="<?php if (isset($rCategoryArr)) { echo "Edit"; } else { echo "Add"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -150,9 +150,9 @@ if ($rSettings["sidebar"]) {
                                                         <table id="datatable" class="table dt-responsive nowrap">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="text-center"><?=$_["stream_id"]?> </th>
-                                                                    <th><?=$_["stream_name"]?> </th>
-                                                                    <th class="text-center"><?=$_["actions"]?> </th>
+                                                                    <th class="text-center">Stream ID</th>
+                                                                    <th>Stream Name</th>
+                                                                    <th class="text-center">Actions</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody></tbody>
@@ -176,7 +176,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

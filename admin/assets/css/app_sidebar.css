@@ -769,7 +769,7 @@ body {
     font-size: 1.25rem;
     margin: 0;
     line-height: 75px;
-    color: #ffffff;	
+    color: #323a46;
 }
 
 .page-title-box .page-title-right {
@@ -800,7 +800,7 @@ body {
     left: 240px;
     background-size: cover;
     background-position: center;
-    background:#3d454e;
+    background-image: url(../images/footer.png);
 }
 
 .footer .footer-links a {

@@ -96,10 +96,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_series"]?></li></a>
+                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Series</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rSeries)) { echo $rSeries["title"]; } else { echo $_["add_series"]; } ?></h4>
+                            <h4 class="page-title"><?php if (isset($rSeries)) { echo $rSeries["title"]; } else { echo "Add Series"; } ?></h4>
                         </div>
                     </div>
                 </div>     
@@ -111,14 +111,14 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["series_operation"]?>
+                            Series operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -127,19 +127,19 @@ if ($rSettings["sidebar"]) {
                                     <?php if (isset($rSeries)) { ?>
                                     <input type="hidden" name="edit" value="<?=$rSeries["id"]?>" />
                                     <?php } ?>
-                                    <!--<input type="hidden" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["tmdb_id"]); } ?>" />-->
+                                    <input type="hidden" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["tmdb_id"]); } ?>" />
                                     <div id="basicwizard">
                                         <ul class="nav nav-pills bg-light nav-justified form-wizard-header mb-4">
                                             <li class="nav-item">
                                                 <a href="#stream-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#movie-information" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-movie-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["information"]?></span>
+                                                    <span class="d-none d-sm-inline">Information</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -148,31 +148,31 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="title"><?=$_["series_name"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="title">Series Name</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="title" name="title" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["title"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="tmdb_search"><?=$_["tmdb_results"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="tmdb_search">TMDb Results</label>
                                                             <div class="col-md-8">
                                                                 <select id="tmdb_search" class="form-control" data-toggle="select2"></select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="category_id"><?=$_["category_name"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="category_id">Category Name</label>
                                                             <div class="col-md-8">
                                                                 <select name="category_id" id="category_id" class="form-control" data-toggle="select2">
                                                                     <?php foreach ($rCategories as $rCategory) { ?>
-                                                                   <option <?php if (isset($rSeries)) { if (intval($rSeries["category_id"]) == intval($rCategory["id"])) { echo "selected "; } } else if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo "selected "; } ?>value="<?=$rCategory["id"]?>"><?=$rCategory["category_name"]?></option>
-                                                                     <?php } ?>
+                                                                    <option <?php if (isset($rSeries)) { if (intval($rSeries["category_id"]) == intval($rCategory["id"])) { echo "selected "; } } else if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo "selected "; } ?>value="<?=$rCategory["id"]?>"><?=$rCategory["category_name"]?></option>
+                                                                    <?php } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="bouquets"><?=$_["add_to_bouquets"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="bouquets">Add To Bouquets</label>
                                                             <div class="col-md-8">
-                                                                <select name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>">
+                                                                <select name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach (getBouquets() as $rBouquet) { ?>
                                                                     <option <?php if (isset($rSeries)) { if (in_array($rSeries["id"], json_decode($rBouquet["bouquet_series"], True))) { echo "selected "; } } ?>value="<?=$rBouquet["id"]?>"><?=htmlspecialchars($rBouquet["bouquet_name"])?></option>
                                                                     <?php } ?>
@@ -183,7 +183,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -191,7 +191,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="cover"><?=$_["poster_url"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="cover">Poster URL</label>
                                                             <div class="col-md-8 input-group">
                                                                 <input type="text" class="form-control" id="cover" name="cover" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["cover"]); } ?>">
                                                                 <div class="input-group-append">
@@ -200,7 +200,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="backdrop_path"><?=$_["backdrop_url"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="backdrop_path">Backdrop URL</label>
                                                             <div class="col-md-8 input-group">
                                                                 <input type="text" class="form-control" id="backdrop_path" name="backdrop_path" value="<?php if (isset($rSeries)) { echo htmlspecialchars(json_decode($rSeries["backdrop_path"], True)[0]); } ?>">
                                                                 <div class="input-group-append">
@@ -209,61 +209,55 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="plot"><?=$_["plot"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="plot">Plot</label>
                                                             <div class="col-md-8">
                                                                 <textarea rows="6" class="form-control" id="plot" name="plot"><?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["plot"]); } ?></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="cast"><?=$_["cast"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="cast">Cast</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="cast" name="cast" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["cast"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="director"><?=$_["director"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="director">Director</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="director" name="director" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["director"]); } ?>">
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="genre"><?=$_["genres"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="genre">Genres</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="genre" name="genre" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["genre"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="releaseDate"><?=$_["release_date"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="releaseDate">Release Date</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="releaseDate" name="releaseDate" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["releaseDate"]); } ?>">
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="episode_run_time"><?=$_["runtime"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="episode_run_time">Runtime</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="episode_run_time" name="episode_run_time" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["episode_run_time"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="youtube_trailer"><?=$_["youtube_trailer"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="youtube_trailer">Youtube Trailer</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="youtube_trailer" name="youtube_trailer" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["youtube_trailer"]); } ?>">
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="rating"><?=$_["rating"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="rating">Rating</label>
                                                             <div class="col-md-3">
                                                                 <input type="text" class="form-control" id="rating" name="rating" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["rating"]); } ?>">
-                                                            </div>
-					                                    </div>
-														<div class="form-group row mb-4">
-															<label class="col-md-4 col-form-label" for="tmdb_id"><?=$_["tmdb_id"]?></label>
-                                                            <div class="col-md-3">
-                                                                <input type="text" class="form-control" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rSeries)) { echo htmlspecialchars($rSeries["tmdb_id"]); } ?>">
                                                             </div>
                                                         </div>
                                                     </div> <!-- end col -->
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?></a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_series" type="submit" class="btn btn-primary" value="<?php if (isset($rSeries)) { echo $_["edit"]; } else { echo $_["add"]; } ?>" />
+                                                        <input name="submit_series" type="submit" class="btn btn-primary" value="<?php if (isset($rSeries)) { echo "Edit"; } else { echo "Add"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -282,7 +276,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -356,7 +350,7 @@ if ($rSettings["sidebar"]) {
             $("#series_form").submit(function(e){
                 if ($("#title").val().length == 0) {
                     e.preventDefault();
-                    $.toast("<?=$_["enter_a_series_name"]?>");
+                    $.toast("Enter a series name.");
                 }
             });
             
@@ -371,9 +365,9 @@ if ($rSettings["sidebar"]) {
                         $.getJSON("./api.php?action=tmdb_search&type=series&term=" + $("#title").val(), function(data) {
                             if (data.result == true) {
                                 if (data.data.length > 0) {
-                                    newOption = new Option("<?=$_["found_"]?>" + data.data.length + "<?=$_["_results"]?>", -1, true, true);
+                                    newOption = new Option("Found " + data.data.length + " results", -1, true, true);
                                 } else {
-                                    newOption = new Option("<?=$_["no_results_found"]?>", -1, true, true);
+                                    newOption = new Option("No results found", -1, true, true);
                                 }
                                 $("#tmdb_search").append(newOption).trigger('change');
                                 $(data.data).each(function(id, item) {
@@ -386,7 +380,7 @@ if ($rSettings["sidebar"]) {
                                     $("#tmdb_search").append(newOption);
                                 });
                             } else {
-                                newOption = new Option("<?=$_["no_results_found"]?>", -1, true, true);
+                                newOption = new Option("No results found", -1, true, true);
                             }
                             $("#tmdb_search").val(-1).trigger('change');
                         });

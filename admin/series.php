@@ -35,27 +35,27 @@ if ($rSettings["sidebar"]) {
                                         <?php if (!$detect->isMobile()) { ?>
                                         <a href="#" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-refresh"></i> <span class="auto-text"><?=$_["auto_refresh"]?></span>
+                                                <i class="mdi mdi-refresh"></i> <span class="auto-text">Auto-Refresh</span>
                                             </button>
                                         </a>
                                         <?php } else { ?>
                                         <a href="javascript:location.reload();" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-refresh"></i> <?=$_["refresh"]?>
+                                                <i class="mdi mdi-refresh"></i> Refresh
                                             </button>
                                         </a>
                                         <?php }
                                         if (($rPermissions["is_admin"]) && (hasPermissions("adv", "add_series"))) { ?>
                                         <a href="serie.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i> <?=$_["add_series"]?>
+                                                <i class="mdi mdi-plus"></i> Add Series
                                             </button>
                                         </a>
                                         <?php } ?>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["series"]?></h4>
+                            <h4 class="page-title">Series</h4>
                         </div>
                     </div>
                 </div>     
@@ -67,39 +67,39 @@ if ($rSettings["sidebar"]) {
                                 <form id="series_form">
                                     <div class="form-group row mb-4">
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="series_search" value="" placeholder="<?=$_["search_series"]?>">
+                                            <input type="text" class="form-control" id="series_search" value="" placeholder="Search Series...">
                                         </div>
                                         <div class="col-md-3">
                                             <select id="series_category_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_categories"]?></option>
-                                                <option value="-1"><?=$_["no_tmdb_match"]?></option>
+                                                <option value="" selected>All Categories</option>
+                                                <option value="-1">No TMDb Match</option>
                                                 <?php foreach ($rCategories as $rCategory) { ?>
                                                 <option value="<?=$rCategory["id"]?>"><?=$rCategory["category_name"]?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="series_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="series_show_entries">Show</label>
                                         <div class="col-md-2">
                                             <select id="series_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
-                                                <option<?php if ($rAdminSettings["default_entries"] == $rShow) { echo $_["selected"]; } ?> value="<?=$rShow?>"><?=$rShow?></option>
+                                                <option<?php if ($rAdminSettings["default_entries"] == $rShow) { echo " selected"; } ?> value="<?=$rShow?>"><?=$rShow?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-streampage" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-streampage" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["name"]?></th>
-                                            <th><?=$_["category"]?></th>
-                                            <th class="text-center"><?=$_["seasons"]?></th>
-                                            <th class="text-center"><?=$_["episodes"]?></th>
-                                            <th class="text-center"><?=$_["first_aired"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th class="text-center">Seasons</th>
+                                            <th class="text-center">Episodes</th>
+                                            <th class="text-center">First Aired</th>
                                             <?php if ($rPermissions["is_admin"]) { ?>
-                                            <th class="text-center"><?=$_["last_updated"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">Last Updated</th>
+                                            <th class="text-center">Actions</th>
                                             <?php } ?>
                                         </tr>
                                     </thead>
@@ -118,7 +118,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -149,23 +149,23 @@ if ($rSettings["sidebar"]) {
         function toggleAuto() {
             if (autoRefresh == true) {
                 autoRefresh = false;
-                $(".auto-text").html("<?=$_["manual_mode"]?>");
+                $(".auto-text").html("Manual Mode");
             } else {
                 autoRefresh = true;
-                $(".auto-text").html("<?=$_["auto_refresh"]?>");
+                $(".auto-text").html("Auto-Refresh");
             }
         }
         <?php if ($rPermissions["is_admin"]) { ?>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_series"]?>') == false) {
+                if (confirm('Are you sure you want to delete this series and all episodes?') == false) {
                     return;
                 }
             }
             $.getJSON("./api.php?action=series&sub=" + rType + "&series_id=" + rID, function(data) {
                 if (data.result == true) {
                     if (rType == "delete") {
-                        $.toast("<?=$_["series_successfully_deleted"]?>");
+                        $.toast("Series successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
@@ -173,10 +173,10 @@ if ($rSettings["sidebar"]) {
                     $('[data-toggle="tooltip"]').tooltip("hide");
                     $("#datatable-streampage").DataTable().ajax.reload( null, false );
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             }).fail(function() {
-                $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                $.toast("An error occured while processing your request.");
             });
         }
         <?php } ?>

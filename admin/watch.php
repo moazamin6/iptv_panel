@@ -28,25 +28,25 @@ if ($rSettings["sidebar"]) {
 										<?php if (hasPermissions("adv", "folder_watch_settings")) { ?>
                                         <a href="settings_watch.php">
                                             <button type="button" class="btn btn-primary waves-effect waves-light btn-sm">
-                                                <?=$_["settings"]?>
+                                                Settings
                                             </button>
                                         </a>
 										<?php }
 										if (hasPermissions("adv", "folder_watch_output")) { ?>
                                         <a href="watch_output.php">
                                             <button type="button" class="btn btn-info waves-effect waves-light btn-sm">
-                                                <?=$_["watch_output"]?>
+                                                Watch Output
                                             </button>
                                         </a>
 										<?php } ?>
                                         <a href="watch.php?kill=1">
-                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["kill_process"]?>">
+                                            <button type="button" class="btn btn-danger waves-effect waves-light btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Kill Process">
                                                 <i class="mdi mdi-hammer"></i>
                                             </button>
                                         </a>
 										<?php if (hasPermissions("adv", "folder_watch_add")) { ?>
                                         <a href="watch_add.php">
-                                            <button type="button" class="btn btn-success waves-effect waves-light btn-sm" data-toggle="tooltip" data-placement="top" title=""  data-original-title="<?=$_["add_folder"]?>">
+                                            <button type="button" class="btn btn-success waves-effect waves-light btn-sm" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Folder">
                                                 <i class="mdi mdi-plus"></i>
                                             </button>
                                         </a>
@@ -54,7 +54,7 @@ if ($rSettings["sidebar"]) {
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["folder_watch"]?></h4>
+                            <h4 class="page-title">Folder Watch</h4>
                         </div>
                     </div>
                 </div>     
@@ -67,20 +67,20 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["folder_watch_process"]?>
+                            Folder watch process has been killed.
                         </div>
                         <?php } ?>
                         <div class="card">
                             <div class="card-body" style="overflow-x:auto;">
-                                <table id="datatable" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["type"]?></th>
-                                            <th><?=$_["server_name"]?></th>
-                                            <th><?=$_["directory"]?></th>
-                                            <th class="text-center"><?=$_["last_run"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Type</th>
+                                            <th>Server Name</th>
+                                            <th>Directory</th>
+                                            <th class="text-center">Last Run</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,7 +120,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -144,7 +144,7 @@ if ($rSettings["sidebar"]) {
         <script>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_profile"]?>') == false) {
+                if (confirm('Are you sure you want to delete this profile? This cannot be undone!') == false) {
                     return;
                 }
             }
@@ -152,14 +152,14 @@ if ($rSettings["sidebar"]) {
                 if (data.result === true) {
                     if (rType == "delete") {
                         $("#folder-" + rID).remove();
-                        $.toast("<?=$_["folder_successfully_deleted"]?>");
+                        $.toast("Folder successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
                     });
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }
@@ -175,10 +175,7 @@ if ($rSettings["sidebar"]) {
                 drawCallback: function() {
                     $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
                 },
-                pageLength: 50,
-                lengthMenu: [10, 25, 50, 250, 500, 1000],
-                responsive: false,
-				stateSave: true
+                responsive: false
             });
             $("#datatable").css("width", "100%");
         });

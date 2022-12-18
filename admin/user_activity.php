@@ -28,18 +28,18 @@ if ($rSettings["sidebar"]) {
                                         </a>
                                         <?php if ($rPermissions["is_admin"]) { ?>
                                         <button type="button" class="btn btn-info waves-effect waves-light btn-sm btn-clear-logs">
-                                            <i class="mdi mdi-minus"></i> <?=$_["clear_logs"]?>
+                                            <i class="mdi mdi-minus"></i> Clear Logs
                                         </button>
                                         <?php } ?>
                                         <a href="javascript:location.reload();" onClick="toggleAuto();" style="margin-right:10px;">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-refresh"></i> <?=$_["refresh"]?>
+                                                <i class="mdi mdi-refresh"></i> Refresh
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["activity_logs"]?></h4>
+                            <h4 class="page-title">Activity Logs</h4>
                         </div>
                     </div>
                 </div>     
@@ -51,22 +51,22 @@ if ($rSettings["sidebar"]) {
                                 <form id="user_activity_search">
                                     <div class="form-group row mb-4">
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="act_search" value="" placeholder="<?=$_["search_logs"]?>">
+                                            <input type="text" class="form-control" id="act_search" value="" placeholder="Search Logs...">
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="act_filter"><?=$_["filter"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="act_filter">Filter</label>
                                         <div class="col-md-3">
                                             <select id="act_filter" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="act_range"><?=$_["dates"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="act_range">Dates</label>
                                         <div class="col-md-2">
                                             <input type="text" class="form-control text-center date" id="act_range" name="range" data-toggle="date-picker" data-single-date-picker="true">
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="act_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="act_show_entries">Show</label>
                                         <div class="col-md-1">
                                             <select id="act_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -76,18 +76,18 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-activity" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable-activity" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["username"]?></th>
-                                            <th><?=$_["stream"]?></th>
-                                            <th><?=$_["server"]?></th>
-                                            <th><?=$_["isp"]?></th>
-                                            <th class="text-center"><?=$_["start"]?></th>
-                                            <th class="text-center"><?=$_["stop"]?></th>
-                                            <th class="text-center"><?=$_["ip"]?></th>
-                                            <th class="text-center"><?=$_["country"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Username</th>
+                                            <th>Stream</th>
+                                            <th>Server</th>
+                                            <th>ISP</th>
+                                            <th class="text-center">Start</th>
+                                            <th class="text-center">Stop</th>
+                                            <th class="text-center">IP</th>
+                                            <th class="text-center">Country</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -105,21 +105,21 @@ if ($rSettings["sidebar"]) {
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="clearLogsLabel"><?=$_["clear_logs"]?></h4>
+                        <h4 class="modal-title" id="clearLogsLabel">Clear Logs</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row mb-4">
-                            <label class="col-md-4 col-form-label" for="range_clear"><?=$_["date_range"]?></label>
+                            <label class="col-md-4 col-form-label" for="range_clear">Date Range</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control text-center date" id="range_clear_from" name="range_clear_from" data-toggle="date-picker" data-single-date-picker="true" autocomplete="off" placeholder="<?=$_["from"]?>">
+                                <input type="text" class="form-control text-center date" id="range_clear_from" name="range_clear_from" data-toggle="date-picker" data-single-date-picker="true" autocomplete="off" placeholder="From">
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control text-center date" id="range_clear_to" name="range_clear_to" data-toggle="date-picker" data-single-date-picker="true" autocomplete="off" placeholder="<?=$_["to"]?>">
+                                <input type="text" class="form-control text-center date" id="range_clear_to" name="range_clear_to" data-toggle="date-picker" data-single-date-picker="true" autocomplete="off" placeholder="To">
                             </div>
                         </div>
                         <div class="text-center">
-                            <input id="clear_logs" type="submit" class="btn btn-primary" value="<?=$_["clear"]?>" style="width:100%" />
+                            <input id="clear_logs" type="submit" class="btn btn-primary" value="Clear" style="width:100%" />
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
@@ -132,7 +132,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -241,12 +241,12 @@ if ($rSettings["sidebar"]) {
                 $(".bs-logs-modal-center").modal("show");
             });
             $("#clear_logs").click(function() {
-                if (confirm('<?=$_["are_you_sure_you_want_to_clear_logs"]?>') == false) {
+                if (confirm('Are you sure you want to clear logs for this period?') == false) {
                     return;
                 }
                 $(".bs-logs-modal-center").modal("hide");
                 $.getJSON("./api.php?action=clear_logs&type=user_activity&from=" + encodeURIComponent($("#range_clear_from").val()) + "&to=" + encodeURIComponent($("#range_clear_to").val()), function(data) {
-                    $.toast("<?=$_["logs_have_been_cleared"]?>");
+                    $.toast("Logs have been cleared.");
                     $("#datatable-activity").DataTable().ajax.reload( null, false );
                 });
             });

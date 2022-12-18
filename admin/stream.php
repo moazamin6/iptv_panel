@@ -14,7 +14,7 @@ if (isset($_POST["submit_stream"])) {
         unset($rArray["id"]);
     } else {
 		if (!hasPermissions("adv", "add_stream")) { exit; }
-        $rArray = Array("type" => 1, "added" => time(), "read_native" => 0, "stream_all" => 0, "redirect_stream" => 1, "direct_source" => 0, "gen_timestamps" => 1, "transcode_attributes" => Array(), "stream_display_name" => "", "stream_source" => Array(), "category_id" => 0, "stream_icon" => "", "notes" => "", "custom_sid" => "", "custom_ffmpeg" => "", "custom_map" => "", "transcode_profile_id" => 0, "enable_transcode" => 0, "auto_restart" => "[]", "allow_record" => 1, "rtmp_output" => 0, "epg_id" => null, "channel_id" => null, "epg_lang" => null, "tv_archive_server_id" => 0, "tv_archive_duration" => 0, "delay_minutes" => 0, "external_push" => Array(), "probesize_ondemand" => 256000);
+        $rArray = Array("type" => 1, "added" => time(), "read_native" => 0, "stream_all" => 0, "redirect_stream" => 1, "direct_source" => 0, "gen_timestamps" => 1, "transcode_attributes" => Array(), "stream_display_name" => "", "stream_source" => Array(), "category_id" => 0, "stream_icon" => "", "notes" => "", "custom_sid" => "", "custom_ffmpeg" => "", "custom_map" => "", "transcode_profile_id" => 0, "enable_transcode" => 0, "auto_restart" => "[]", "allow_record" => 1, "rtmp_output" => 0, "epg_id" => null, "channel_id" => null, "epg_lang" => null, "tv_archive_server_id" => 0, "tv_archive_duration" => 0, "delay_minutes" => 0, "external_push" => Array(), "probesize_ondemand" => 128000);
     }
     if ((isset($_POST["days_to_restart"])) && (preg_match("/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/", $_POST["time_to_restart"]))) {
         $rTimeArray = Array("days" => Array(), "at" => $_POST["time_to_restart"]);
@@ -318,12 +318,10 @@ if (isset($_POST["submit_stream"])) {
 }
 
 if (isset($_STATUS)) {
-	if (is_array($rStream)) {
-	    foreach ($rStream as $rKey => $rValue) {
-		    if (is_array($rValue)) {
+	foreach ($rStream as $rKey => $rValue) {
+		if (is_array($rValue)) {
 			$rStream[$rKey] = json_encode($rValue);
-		    }
-	    }
+		}
 	}
 }
 
@@ -390,26 +388,26 @@ if ($rSettings["sidebar"]) {
                                     <li>
                                         <a href="./streams.php<?php if (isset($_GET["category"])) { echo "?category=".$_GET["category"]; } ?>">
                                             <button type="button" class="btn btn-primary waves-effect waves-light btn-sm">
-                                                <?=$_["permission_streams"]?> 
+                                                View Streams
                                             </button>
                                         </a>
                                         <?php if (!isset($rStream)) { if (!isset($_GET["import"])) { ?>
                                         <a href="./stream.php?import">
                                             <button type="button" class="btn btn-info waves-effect waves-light btn-sm">
-                                                <?=$_["import_m3u"]?> 
+                                                Import M3U
                                             </button>
                                         </a>
                                         <?php } else { ?>
                                         <a href="./stream.php">
                                             <button type="button" class="btn btn-info waves-effect waves-light btn-sm">
-                                                <?=$_["add_single"]?> 
+                                                Add Single
                                             </button>
                                         </a>
                                         <?php } } ?>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rStream["id"])) { echo $rStream["stream_display_name"].' &nbsp;<button type="button" class="btn btn-outline-info waves-effect waves-light btn-xs" onClick="player('.$rStream["id"].');"><i class="mdi mdi-play"></i></button>'; } else if (isset($_GET["import"])) { echo $_["import_streams"]; } else { echo $_["add_stream"]; } ?></h4>
+                            <h4 class="page-title"><?php if (isset($rStream["id"])) { echo $rStream["stream_display_name"].' &nbsp;<button type="button" class="btn btn-outline-info waves-effect waves-light btn-xs" onClick="player('.$rStream["id"].');"><i class="mdi mdi-play"></i></button>'; } else if (isset($_GET["import"])) { echo "Import Streams"; } else { echo "Add Stream"; } ?></h4>
                         </div>
                     </div>
                 </div>     
@@ -421,28 +419,28 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["stream_operation_was_completed_successfully"]?> 
+                            Stream operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 1)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["an_error_occured_while"]?> 
+                            An error occured while inserting into the database, please check the form.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 2)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["the_stream_name_is_already_in_use"]?> 
+                            The stream name is already in use, please select another.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 3)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["no_new_streams_were_imported"]?> 
+                            No new streams were imported from the M3U. Please check the input.
                         </div>
                         <?php }
                         if (isset($rStream["id"])) { ?>
@@ -451,19 +449,19 @@ if ($rSettings["sidebar"]) {
                                 <table id="datatable" class="table table-borderless mb-0">
                                     <thead class="bg-light">
                                         <tr>
-                                            <th><?=$_["id"]?></th>
-											<th><?=$_["icon"]?></th>
-											<th><?=$_["stream_name"]?></th>
-                                            <th><?=$_["source"]?></th>
-                                            <th><?=$_["clients"]?></th>
-                                            <th><?=$_["uptime"]?></th>
-                                            <th><?=$_["actions"]?></th>
-											<th><?=$_["player"]?></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>Source</th>
+                                            <th>Clients</th>
+                                            <th>Uptime</th>
+                                            <th>Actions</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td colspan="9" class="text-center"><?=$_["loading_stream_information"]?> </td>
+                                            <td colspan="8" class="text-center">Loading stream information...</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -482,41 +480,41 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#stream-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?> </span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#advanced-options" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-folder-alert-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["advanced"]?> </span>
+                                                    <span class="d-none d-sm-inline">Advanced</span>
                                                 </a>
                                             </li>
 											<?php if (!isset($_GET["import"])) { ?>
                                             <li class="nav-item">
                                                 <a href="#stream-map" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-map mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["map"]?> </span>
+                                                    <span class="d-none d-sm-inline">Map</span>
                                                 </a>
                                             </li>
 											<?php } ?>
                                             <li class="nav-item">
                                                 <a href="#auto-restart" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-clock-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["auto_restart"]?> </span>
+                                                    <span class="d-none d-sm-inline">Auto Restart</span>
                                                 </a>
                                             </li>
                                             <?php if (!isset($_GET["import"])) { ?>
                                             <li class="nav-item">
                                                 <a href="#epg-options" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-television-guide mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["epg"]?> </span>
+                                                    <span class="d-none d-sm-inline">EPG</span>
                                                 </a>
                                             </li>
                                             <?php } ?>
                                             <li class="nav-item">
                                                 <a href="#load-balancing" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2">
                                                     <i class="mdi mdi-server-network mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["servers"]?> </span>
+                                                    <span class="d-none d-sm-inline">Servers</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -526,7 +524,7 @@ if ($rSettings["sidebar"]) {
                                                     <div class="col-12">
                                                         <?php if (!isset($_GET["import"])) { ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="stream_display_name"><?=$_["stream_name"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="stream_display_name">Stream Name</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="stream_display_name" name="stream_display_name" value="<?php if (isset($rStream)) { echo htmlspecialchars($rStream["stream_display_name"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
@@ -545,7 +543,7 @@ if ($rSettings["sidebar"]) {
                                                             foreach ($rStreamSources as $rStreamSource) { $i++
                                                             ?>
                                                             <div class="form-group row mb-4 stream-url">
-                                                                <label class="col-md-4 col-form-label" for="stream_source"> <?=$_["stream_url"]?> </label>
+                                                                <label class="col-md-4 col-form-label" for="stream_source"> Stream URL</label>
                                                                 <div class="col-md-8 input-group">
                                                                     <input type="text" id="stream_source" name="stream_source[]" class="form-control" value="<?=htmlspecialchars($rStreamSource)?>">
                                                                     <div class="input-group-append">
@@ -560,14 +558,14 @@ if ($rSettings["sidebar"]) {
                                                         </span>
                                                         <?php } else { ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="m3u_file"><?=$_["m3u"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="m3u_file">M3U</label>
                                                             <div class="col-md-8">
                                                                 <input type="file" id="m3u_file" name="m3u_file" />
                                                             </div>
                                                         </div>
                                                         <?php } ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="category_id"><?=$_["category_name"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="category_id">Category Name</label>
                                                             <div class="col-md-8">
                                                                 <select name="category_id" id="category_id" class="form-control" data-toggle="select2">
                                                                     <?php foreach ($rCategories as $rCategory) { ?>
@@ -577,9 +575,9 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="bouquets"><?=$_["add_to_bouquets"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="bouquets">Add To Bouquets</label>
                                                             <div class="col-md-8">
-                                                                <select name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>">
+                                                                <select name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach (getBouquets() as $rBouquet) { ?>
                                                                     <option <?php if (isset($rStream)) { if (in_array($rStream["id"], json_decode($rBouquet["bouquet_channels"], True))) { echo "selected "; } } ?>value="<?=$rBouquet["id"]?>"><?=$rBouquet["bouquet_name"]?></option>
                                                                     <?php } ?>
@@ -588,14 +586,14 @@ if ($rSettings["sidebar"]) {
                                                         </div>
                                                         <?php if (!isset($_GET["import"])) { ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="stream_icon"><?=$_["stream_logo_url"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="stream_icon">Stream Logo URL</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="stream_icon" name="stream_icon" value="<?php if (isset($rStream)) { echo htmlspecialchars($rStream["stream_icon"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <?php } ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="notes"><?=$_["notes"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="notes">Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea id="notes" name="notes" class="form-control" rows="3" placeholder=""><?php if (isset($rStream)) { echo htmlspecialchars($rStream["notes"]); } ?></textarea>
                                                             </div>
@@ -604,7 +602,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -612,84 +610,84 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="gen_timestamps"><?=$_["generate_pts"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Allow FFmpeg to generate presentation timestamps for you to achieve better synchronization with the stream codecs. In some streams this can cause de-sync." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="gen_timestamps">Generate PTS <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Allow FFmpeg to generate presentation timestamps for you to achieve better synchronization with the stream codecs. In some streams this can cause de-sync." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="gen_timestamps" id="gen_timestamps" type="checkbox" <?php if (isset($rStream)) { if ($rStream["gen_timestamps"] == 1) { echo "checked "; } } else { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="read_native"><?=$_["native_frames"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="You should always read live streams as non-native frames. However if you are streaming static video files, set this to true otherwise the encoding process will fail." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="read_native">Native Frames <i data-toggle="tooltip" data-placement="top" title="" data-original-title="You should always read live streams as non-native frames. However if you are streaming static video files, set this to true otherwise the encoding process will fail." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="read_native" id="read_native" type="checkbox" <?php if (isset($rStream)) { if ($rStream["read_native"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="stream_all"><?=$_["stream_all_codecs"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="This option will stream all codecs from your stream. Some streams have more than one audio/video/subtitles channels." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="stream_all">Stream All Codecs <i data-toggle="tooltip" data-placement="top" title="" data-original-title="This option will stream all codecs from your stream. Some streams have more than one audio/video/subtitles channels." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="stream_all" id="stream_all" type="checkbox" <?php if (isset($rStream)) { if ($rStream["stream_all"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="allow_record"><?=$_["allow_recording"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="allow_record">Allow Recording</label>
                                                             <div class="col-md-2">
                                                                 <input name="allow_record" id="allow_record" type="checkbox" <?php if (isset($rStream)) { if ($rStream["allow_record"] == 1) { echo "checked "; } } else { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="rtmp_output"><?=$_["allow_rtmp_output"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Enable RTMP output for this channel." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="rtmp_output">Allow RTMP Output <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Enable RTMP output for this channel." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="rtmp_output" id="rtmp_output" type="checkbox" <?php if (isset($rStream)) { if ($rStream["rtmp_output"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="direct_source"><?=$_["direct_source"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Don't run source through Xtream Codes, just redirect instead." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="direct_source">Direct Source <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Don't run source through Xtream Codes, just redirect instead." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="direct_source" id="direct_source" type="checkbox" <?php if (isset($rStream)) { if ($rStream["direct_source"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="custom_sid"><?=$_["custom_channel_sid"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Here you can specify the SID of the channel in order to work with the epg on the enigma2 devices. You have to specify the code with the ':' but without the first number, 1 or 4097 . Example: if we have this code:  '1:0:1:13f:157c:13e:820000:0:0:0:2097' then you have to add on this field:  ':0:1:13f:157c:13e:820000:0:0:0:" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="custom_sid">Custom Channel SID <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Here you can specify the SID of the channel in order to work with the epg on the enigma2 devices. You have to specify the code with the ':' but without the first number, 1 or 4097 . Example: if we have this code:  '1:0:1:13f:157c:13e:820000:0:0:0:2097' then you have to add on this field:  ':0:1:13f:157c:13e:820000:0:0:0:" class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control" id="custom_sid" name="custom_sid" value="<?php if (isset($rStream)) { echo htmlspecialchars($rStream["custom_sid"]); } ?>">
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="delay_minutes"><?=$_["minute_delay"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Delay stream by X minutes. Will not work with on demand streams." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="delay_minutes">Minute Delay <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Delay stream by X minutes. Will not work with on demand streams." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control" id="delay_minutes" name="delay_minutes" value="<?php if (isset($rStream)) { echo $rStream["delay_minutes"]; } else { echo "0"; } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="custom_ffmpeg"><?=$_["custom_ffmpeg_command"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="In this field you can write your own custom FFmpeg command. Please note that this command will be placed after the input and before the output. If the command you will specify here is about to do changes in the output video or audio, it may require to transcode the stream. In this case, you have to use and change at least the Video/Audio Codecs using the transcoding attributes below. The custom FFmpeg command will only be used by the server(s) that take the stream from the Source." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="custom_ffmpeg">Custom FFmpeg Command <i data-toggle="tooltip" data-placement="top" title="" data-original-title="In this field you can write your own custom FFmpeg command. Please note that this command will be placed after the input and before the output. If the command you will specify here is about to do changes in the output video or audio, it may require to transcode the stream. In this case, you have to use and change at least the Video/Audio Codecs using the transcoding attributes below. The custom FFmpeg command will only be used by the server(s) that take the stream from the Source." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control" id="custom_ffmpeg" name="custom_ffmpeg" value="<?php if (isset($rStream)) { echo htmlspecialchars($rStream["custom_ffmpeg"]); } ?>">
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="probesize_ondemand"><?=$_["on_demand_probesize"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Adjustable probesize for ondemand streams. Adjust this setting if you experience issues with no audio." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="probesize_ondemand">On Demand Probesize <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Adjustable probesize for ondemand streams. Adjust this setting if you experience issues with no audio." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control" id="probesize_ondemand" name="probesize_ondemand" value="<?php if (isset($rStream)) { echo $rStream["probesize_ondemand"]; } else { echo "128000"; } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="user_agent"><?=$_["user_agent"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="user_agent">User Agent</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="user_agent" name="user_agent" value="<?php if (isset($rStreamOptions[1])) { echo htmlspecialchars($rStreamOptions[1]["value"]); } else { echo htmlspecialchars($rStreamArguments["user_agent"]["argument_default_value"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="http_proxy"><?=$_["http_proxy"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Format: ip:port" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="http_proxy">HTTP Proxy <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Format: ip:port" class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="http_proxy" name="http_proxy" value="<?php if (isset($rStreamOptions[2])) { echo htmlspecialchars($rStreamOptions[2]["value"]); } else { echo htmlspecialchars($rStreamArguments["proxy"]["argument_default_value"]); } ?>">
                                                             </div>
                                                         </div>
 														<div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="cookie"><?=$_["cookie"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Format: key=value;" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="cookie">Cookie <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Format: key=value;" class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="cookie" name="cookie" value="<?php if (isset($rStreamOptions[17])) { echo htmlspecialchars($rStreamOptions[17]["value"]); } else { echo htmlspecialchars($rStreamArguments["cookie"]["argument_default_value"]); } ?>">
                                                             </div>
                                                         </div>
 														<div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="headers"><?=$_["headers"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="FFmpeg -headers command." class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="headers">Headers <i data-toggle="tooltip" data-placement="top" title="" data-original-title="FFmpeg -headers command." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="headers" name="headers" value="<?php if (isset($rStreamOptions[19])) { echo htmlspecialchars($rStreamOptions[19]["value"]); } else { echo htmlspecialchars($rStreamArguments["headers"]["argument_default_value"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="transcode_profile_id"><?=$_["transcoding_profile"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["episode_tooltip_7"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="transcode_profile_id">Transcoding Profile <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Sometimes, in order to make a stream compatible with most devices, it must be transcoded. Please note that the transcode will only be applied to the server(s) that take the stream directly from the source, all other servers attached to the transcoding server will not transcode the stream." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-8">
                                                                 <select name="transcode_profile_id" id="transcode_profile_id" class="form-control" data-toggle="select2">
-                                                                    <option <?php if (isset($rStream)) { if (intval($rStream["transcode_profile_id"]) == 0) { echo "selected "; } } ?>value="0"><?=$_["transcoding_disabled"]?></option>
+                                                                    <option <?php if (isset($rStream)) { if (intval($rStream["transcode_profile_id"]) == 0) { echo "selected "; } } ?>value="0">Transcoding Disabled</option>
                                                                     <?php foreach ($rTranscodeProfiles as $rProfile) { ?>
                                                                     <option <?php if (isset($rStream)) { if (intval($rStream["transcode_profile_id"]) == intval($rProfile["profile_id"])) { echo "selected "; } } ?>value="<?=$rProfile["profile_id"]?>"><?=$rProfile["profile_name"]?></option>
                                                                     <?php } ?>
@@ -700,10 +698,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -712,7 +710,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-3 col-form-label" for="custom_map"><?=$_["custom_map"]?> </label>
+                                                            <label class="col-md-3 col-form-label" for="custom_map">Custom Map</label>
                                                             <div class="col-md-9 input-group">
                                                                 <input type="text" class="form-control" id="custom_map" name="custom_map" value="<?php if (isset($rStream)) { echo htmlspecialchars($rStream["custom_map"]); } ?>">
                                                                 <div class="input-group-append">
@@ -721,14 +719,14 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="alert alert-warning bg-warning text-white border-0" role="alert">
-                                                            <?=$_["custom_maps_are_advanced"]?> 
+                                                            Custom maps are advanced features and you should only modify these if you know what you're doing. Hit the search icon to map the streams. Once mapped, you can select them from the table below.
                                                         </div>
                                                         <table id="datatable-map" class="table table-borderless mb-0">
                                                             <thead class="bg-light">
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th><?=$_["type"]?> </th>
-                                                                    <th><?=$_["information"]?> </th>
+                                                                    <th>Type</th>
+                                                                    <th>Information</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody></tbody>
@@ -737,10 +735,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -749,7 +747,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="days_to_restart"><?=$_["days_to_restart"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="days_to_restart">Days to Restart</label>
                                                             <div class="col-md-8">
                                                                 <?php
                                                                 $rAutoRestart = Array("days" => Array(), "at" => "06:00");
@@ -760,7 +758,7 @@ if ($rSettings["sidebar"]) {
                                                                         if (!isset($rAutoRestart["at"])) { $rAutoRestart["at"] = "06:00"; }
                                                                     }
                                                                 } ?>
-                                                                <select id="days_to_restart" name="days_to_restart[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose_"]?>">
+                                                                <select id="days_to_restart" name="days_to_restart[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
                                                                     <?php foreach (Array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday") as $rDay) { ?>
                                                                     <option value="<?=$rDay?>"<?php if (in_array($rDay, $rAutoRestart["days"])) { echo " selected"; } ?>><?=$rDay?></option>
                                                                     <?php } ?>
@@ -768,7 +766,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="time_to_restart"><?=$_["time_to_restart"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="time_to_restart">Time to Restart</label>
                                                             <div class="col-md-8">
                                                                 <div class="input-group clockpicker" data-placement="top" data-align="top" data-autoclose="true">
                                                                     <input id="time_to_restart" name="time_to_restart" type="text" class="form-control" value="<?=$rAutoRestart["at"]?>">
@@ -782,10 +780,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -794,10 +792,10 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="epg_id"><?=$_["epg_source"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="epg_id">EPG Source</label>
                                                             <div class="col-md-8">
                                                                 <select name="epg_id" id="epg_id" class="form-control" data-toggle="select2">
-                                                                    <option <?php if (isset($rStream)) { if (intval($rStream["epg_id"]) == 0) { echo "selected "; } } ?>value="0"><?=$_["no_epg"]?> </option>
+                                                                    <option <?php if (isset($rStream)) { if (intval($rStream["epg_id"]) == 0) { echo "selected "; } } ?>value="0">No EPG</option>
                                                                     <?php foreach ($rEPGSources as $rEPG) { ?>
                                                                     <option <?php if (isset($rStream)) { if (intval($rStream["epg_id"]) == $rEPG["id"]) { echo "selected "; } } ?>value="<?=$rEPG["id"]?>"><?=$rEPG["epg_name"]?></option>
                                                                     <?php } ?>
@@ -805,11 +803,11 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="channel_id"><?=$_["epg_channel_id"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="channel_id">EPG Channel ID</label>
                                                             <div class="col-md-8">
                                                                 <select name="channel_id" id="channel_id" class="form-control" data-toggle="select2">
                                                                 <?php if (isset($rStream)) {
-                                                                    foreach ((array)json_decode($rEPGSources[intval($rStream["epg_id"])]["data"], True) as $rKey => $rEPGChannel) { ?>
+                                                                    foreach (json_decode($rEPGSources[intval($rStream["epg_id"])]["data"], True) as $rKey => $rEPGChannel) { ?>
                                                                     <option value="<?=$rKey?>"<?php if ($rStream["channel_id"] == $rKey) { echo " selected"; } ?>><?=$rEPGChannel["display_name"]?></option>
                                                                     <?php }
                                                                 } ?>
@@ -817,11 +815,11 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="epg_lang"><?=$_["epg_language"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="epg_lang">EPG Language</label>
                                                             <div class="col-md-8">
                                                                 <select name="epg_lang" id="epg_lang" class="form-control" data-toggle="select2">
                                                                 <?php if (isset($rStream)) {
-                                                                    foreach ((array)json_decode($rEPGSources[intval($rStream["epg_id"])]["data"], True)[$rStream["channel_id"]]["langs"] as $rID => $rLang) { ?>
+                                                                    foreach (json_decode($rEPGSources[intval($rStream["epg_id"])]["data"], True)[$rStream["channel_id"]]["langs"] as $rID => $rLang) { ?>
                                                                     <option value="<?=$rLang?>"<?php if ($rStream["epg_lang"] == $rLang) { echo " selected"; } ?>><?=$rLang?></option>
                                                                     <?php }
                                                                 } ?>
@@ -832,10 +830,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["next"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Next</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -844,15 +842,15 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="servers"><?=$_["server_tree"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="servers">Server Tree</label>
                                                             <div class="col-md-8">
                                                                 <div id="server_tree"></div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="on_demand"><?=$_["on_demand"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="on_demand">On Demand</label>
                                                             <div class="col-md-8">
-                                                                <select id="on_demand" name="on_demand[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["bouquet_order"]?>Choose ...">
+                                                                <select id="on_demand" name="on_demand[]" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose ...">
                                                                     <?php foreach($rServers as $rServerItem) { ?>
                                                                         <option value="<?=$rServerItem["id"]?>"<?php if (in_array($rServerItem["id"], $rOnDemand)) { echo " selected"; } ?>><?=$rServerItem["server_name"]?></option>
                                                                     <?php } ?>
@@ -860,10 +858,10 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="tv_archive_server_id"><?=$_["timeshift_server"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="tv_archive_server_id">Timeshift Server</label>
                                                             <div class="col-md-8">
                                                                 <select name="tv_archive_server_id" id="tv_archive_server_id" class="form-control" data-toggle="select2">
-                                                                    <option value="0"><?=$_["timeshift_disabled"]?> </option>
+                                                                    <option value="0">Timeshift Disabled</option>
                                                                     <?php foreach ($rServers as $rServer) { ?>
                                                                     <option value="<?=$rServer["id"]?>"<?php if ((isset($rStream)) && ($rStream["tv_archive_server_id"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                                     <?php } ?>
@@ -871,12 +869,12 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="tv_archive_duration"><?=$_["timeshift_days"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="tv_archive_duration">Timeshift Days</label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control" id="tv_archive_duration" name="tv_archive_duration" value="<?php if (isset($rStream)) { echo $rStream["tv_archive_duration"]; } else { echo "0"; } ?>">
                                                                 </select>
                                                             </div>
-															<label class="col-md-4 col-form-label" for="restart_on_edit"><?php if (isset($rStream["id"])) { ?><?=$_["restart_on_edit"]?> <?php } else { ?><?=$_["start_stream_now"]?> <?php } ?></label>
+															<label class="col-md-4 col-form-label" for="restart_on_edit"><?php if (isset($rStream["id"])) { ?>Restart on Edit<?php } else { ?>Start Stream Now<?php } ?></label>
 															<div class="col-md-2">
 																<input name="restart_on_edit" id="restart_on_edit" type="checkbox" data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
 															</div>
@@ -885,10 +883,10 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="previous list-inline-item">
-                                                        <a href="javascript: void(0);" class="btn btn-secondary"><?=$_["prev"]?> </a>
+                                                        <a href="javascript: void(0);" class="btn btn-secondary">Previous</a>
                                                     </li>
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_stream" type="submit" class="btn btn-primary" value="<?php if (isset($rStream["id"])) { echo $_["edit"]; } else { echo $_["add"]; } ?>" />
+                                                        <input name="submit_stream" type="submit" class="btn btn-primary" value="<?php if (isset($rStream["id"])) { echo "Edit"; } else { echo "Add"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -930,7 +928,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -1028,28 +1026,28 @@ if ($rSettings["sidebar"]) {
         }
         function api(rID, rServerID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_stream"]?>') == false) {
+                if (confirm('Are you sure you want to delete this stream?') == false) {
                     return;
                 }
             }
             $.getJSON("./api.php?action=stream&sub=" + rType + "&stream_id=" + rID + "&server_id=" + rServerID, function(data) {
                 if (data.result == true) {
                     if (rType == "start") {
-                        $.toast("<?=$_["stream_successfully_started"]?>");
+                        $.toast("Stream successfully started. It will take a minute or so before the stream becomes available.");
                     } else if (rType == "stop") {
-                        $.toast("<?=$_["stream_successfully_stopped"]?>");
+                        $.toast("Stream successfully stopped.");
                     } else if (rType == "restart") {
-                        $.toast("<?=$_["stream_successfully_restarted"]?>");
+                        $.toast("Stream successfully restarted. It will take a minute or so before the stream becomes available.");
                     } else if (rType == "delete") {
                         $("#stream-" + rID + "-" + rServerID).remove();
-                        $.toast("<?=$_["stream_successfully_deleted"]?>");
+                        $.toast("Stream successfully deleted.");
                     }
                     $("#datatable").DataTable().ajax.reload( null, false );
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             }).fail(function() {
-                $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                $.toast("An error occured while processing your request.");
             });
         }
         function player(rID) {
@@ -1120,7 +1118,7 @@ if ($rSettings["sidebar"]) {
             $("#load_maps").click(function() {
                 rURL = $("#stream_source:eq(0)").val();
                 if (rURL.length > 0) {
-                    $.toast("<?=$_["stream_map_has_started"]?>");
+                    $.toast("Stream map has started, this can take a while depending on how many streams are present.");
                     $("#datatable-map").DataTable().clear().draw();
                     $.getJSON("./api.php?action=map_stream&stream=" + encodeURIComponent(rURL), function(data) {
                         $(data.streams).each(function(id, array) {
@@ -1140,30 +1138,6 @@ if ($rSettings["sidebar"]) {
                                 }
                                 $("#datatable-map").DataTable().row.add([array.index, "Video", rString]);
                             } else if (array.codec_type == "audio") {
-                                rString = array.codec_name.toUpperCase();
-                                if ((array.sample_rate) && (array.sample_rate > 0)) {
-                                    rString += " - " + array.sample_rate + " Hz";
-                                }
-                                if (array.channel_layout) {
-                                    rString += " - " + array.channel_layout;
-                                }
-                                if (array.sample_fmt) {
-                                    rString += " - " + array.sample_fmt;
-                                }
-                                if (array.bit_rate) {
-                                    rString += " - " + Math.ceil(array.bit_rate / 1000) + " kb/s";
-                                }
-                                if (array.disposition.visual_impaired) {
-                                    rString += " - Visual Impaired";
-                                }
-                                if (array.disposition.hearing_impaired) {
-                                    rString += " - Hearing Impaired";
-                                }
-                                if (array.disposition.dub) {
-                                    rString += " - Dub";
-                                }
-                                $("#datatable-map").DataTable().row.add([array.index, "Audio", rString]);
-                            } else if ((array.codec_type == "audio") && (array.tags.language)) {
                                 rString = array.codec_name.toUpperCase();
                                 if (array.tags.language) {
                                     rString += " - " + array.tags.language.toUpperCase();
@@ -1210,12 +1184,12 @@ if ($rSettings["sidebar"]) {
                         });
                         $("#datatable-map").DataTable().draw();
                         if (data.streams.length > 0) {
-                            $.toast("<?=$_["stream_map_complete"]?>");
+                            $.toast("Stream map complete. Please select relevant streams from the table.");
                         } else {
-                            $.toast("<?=$_["stream_mapping"]?>");
+                            $.toast("Stream mapping didn't return any information.");
                         }
                     }).fail(function() {
-                        $.toast("<?=$_["an_error_occured_while_mapping_streams"]?>");
+                        $.toast("An error occured while mapping streams.");
                     });
                 }
             });
@@ -1229,7 +1203,7 @@ if ($rSettings["sidebar"]) {
                 <?php } else { ?>
                 if ($("#m3u_file").val().length == 0) {
                     e.preventDefault();
-                    $.toast("<?=$_["please_select_a_m3u"]?>");
+                    $.toast("Please select a M3U file to upload.");
                 }
                 <?php } ?>
                 $("#server_tree_data").val(JSON.stringify($('#server_tree').jstree(true).get_json('#', {flat:true})));
@@ -1259,8 +1233,8 @@ if ($rSettings["sidebar"]) {
                     }
                 },
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,1,2,3,4,5,6,7]},
-                    {"visible": false, "targets": []}
+                    {"className": "dt-center", "targets": [3,4,5,6]},
+                    {"visible": false, "targets": [0,1,2,7]}
                 ],
             });
             setTimeout(reloadStream, 5000);
@@ -1270,7 +1244,7 @@ if ($rSettings["sidebar"]) {
                 searching: false,
                 bInfo: false,
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,1,2]},
+                    {"className": "dt-center", "targets": [0,1]},
                 ],
                 select: {
                     style: 'multi'

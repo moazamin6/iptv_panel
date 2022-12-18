@@ -20,12 +20,12 @@ if ($rSettings["sidebar"]) {
                             <div class="page-title-right">
                                 <a href="./ticket.php">
                                     <button type="button" class="btn btn-sm btn-primary waves-effect waves-light float-right">
-                                        <i class="mdi mdi-plus"></i> <?=$_["create_ticket"]?>
+                                        <i class="mdi mdi-plus"></i> Create Ticket
                                     </button>
                                 </a>
                             </div>
                             <?php } ?>
-                            <h4 class="page-title"><?=$_["tickets"]?></h4>
+                            <h4 class="page-title">Tickets</h4>
                         </div>
                     </div>
                 </div>     
@@ -35,15 +35,15 @@ if ($rSettings["sidebar"]) {
                             <table class="table table-hover m-0 table-centered dt-responsive nowrap w-100" id="tickets-table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center"><?=$_["id"]?></th>
+                                        <th class="text-center">ID</th>
                                         <?php if ($rPermissions["is_admin"]) { ?>
-                                        <th><?=$_["reseller"]?></th>
+                                        <th>Reseller</th>
                                         <?php } ?>
-                                        <th><?=$_["subject"]?></th>
-                                        <th class="text-center"><?=$_["status"]?></th>
-                                        <th class="text-center"><?=$_["created_date"]?></th>
-                                        <th class="text-center"><?=$_["last_reply"]?></th>
-                                        <th class="text-center"><?=$_["action"]?></th>
+                                        <th>Subject</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Created Date</th>
+                                        <th class="text-center">Last Reply</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,19 +67,19 @@ if ($rSettings["sidebar"]) {
                                             <div class="btn-group dropdown">
                                                 <a href="javascript: void(0);" class="table-action-btn dropdown-toggle arrow-none btn btn-light btn-sm" data-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="./ticket_view.php?id=<?=$rTicket["id"]?>"><i class="mdi mdi-eye mr-2 text-muted font-18 vertical-middle"></i><?=$_["view_ticket"]?></a>
+                                                    <a class="dropdown-item" href="./ticket_view.php?id=<?=$rTicket["id"]?>"><i class="mdi mdi-eye mr-2 text-muted font-18 vertical-middle"></i>View Ticket</a>
 													<?php if (hasPermissions("adv", "ticket")) {
                                                     if ($rTicket["status"] > 0) { ?>
-                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'close');"><i class="mdi mdi-check-all mr-2 text-muted font-18 vertical-middle"></i><?=$_["close"]?></a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'close');"><i class="mdi mdi-check-all mr-2 text-muted font-18 vertical-middle"></i>Close</a>
                                                     <?php } else if ($rPermissions["is_admin"]) { ?>
-                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'reopen');"><i class="mdi mdi-check-all mr-2 text-muted font-18 vertical-middle"></i><?=$_["re-open"]?></a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'reopen');"><i class="mdi mdi-check-all mr-2 text-muted font-18 vertical-middle"></i>Re-Open</a>
                                                     <?php } ?>
                                                     <?php if ($rPermissions["is_admin"]) { ?>
-                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'delete');"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i><?=$_["delete"]?></a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'delete');"><i class="mdi mdi-delete mr-2 text-muted font-18 vertical-middle"></i>Delete</a>
                                                     <?php if ($rTicket["admin_read"] == 0) { ?>
-                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'read');"><i class="mdi mdi-star mr-2 font-18 text-muted vertical-middle"></i><?=$_["mark_as_read"]?></a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'read');"><i class="mdi mdi-star mr-2 font-18 text-muted vertical-middle"></i>Mark as Read</a>
                                                     <?php } else { ?>
-                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'unread');"><i class="mdi mdi-star mr-2 font-18 text-muted vertical-middle"></i><?=$_["mark_as_unread"]?></a>
+                                                    <a class="dropdown-item" href="javascript:void(0);" onClick="api(<?=$rTicket["id"]?>, 'unread');"><i class="mdi mdi-star mr-2 font-18 text-muted vertical-middle"></i>Mark as Unread</a>
                                                     <?php }
                                                     } } ?>
                                                 </div>
@@ -100,7 +100,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -115,7 +115,7 @@ if ($rSettings["sidebar"]) {
         <script>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_ticket"]?>') == false) {
+                if (confirm('Are you sure you want to delete this ticket?') == false) {
                     return;
                 }
             }
@@ -123,10 +123,10 @@ if ($rSettings["sidebar"]) {
                 if (data.result == true) {
                     location.reload();
                 } else {
-                    $.toast("<?=$_["an_error_occured"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             }).fail(function() {
-                $.toast("<?=$_["an_error_occured"]?>");
+                $.toast("An error occured while processing your request.");
             });
         }        
         $(document).ready(function() {

@@ -43,13 +43,13 @@ if ($rSettings["sidebar"]) {
                                         <?php if (!$detect->isMobile()) { ?>
                                         <a href="#" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <span class="auto-text"><?=$_["auto_refresh"]?> </span>
+                                                <span class="auto-text">Auto-Refresh</span>
                                             </button>
                                         </a>
                                         <?php } else { ?>
                                         <a href="javascript:location.reload();" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <?=$_["refresh"]?> 
+                                                Refresh
                                             </button>
                                         </a>
                                         <?php }
@@ -57,14 +57,14 @@ if ($rSettings["sidebar"]) {
 										if (hasPermissions("adv", "add_stream")) { ?>
                                         <a href="stream.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <?=$_["add_stream"]?> 
+                                                Add Stream
                                             </button>
                                         </a>
 										<?php }
 										if (hasPermissions("adv", "create_channel")) { ?>
                                         <a href="created_channel.php">
                                             <button type="button" class="btn btn-purple waves-effect waves-light btn-sm">
-                                               <?=$_["create"]?>  
+                                                Create
                                             </button>
                                         </a>
                                         <?php }
@@ -72,7 +72,7 @@ if ($rSettings["sidebar"]) {
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["streams"]?> <?php if ($rCategory) { echo " - ".$rCategory["category_name"]; } ?></h4>
+                            <h4 class="page-title">Streams<?php if ($rCategory) { echo " - ".$rCategory["category_name"]; } ?></h4>
                         </div>
                     </div>
                 </div>     
@@ -86,11 +86,11 @@ if ($rSettings["sidebar"]) {
                                     <div class="form-group row mb-4">
                                         <?php if ($rPermissions["is_reseller"]) { ?>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="stream_search" value="" placeholder="<?=$_["search_streams"]?>">
+                                            <input type="text" class="form-control" id="stream_search" value="" placeholder="Search Streams...">
                                         </div>
                                         <div class="col-md-3">
                                             <select id="stream_category_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_categories"]?></option>
+                                                <option value="" selected>All Categories</option>
                                                 <?php foreach ($rCategories as $rCategory) { ?>
                                                 <option value="<?=$rCategory["id"]?>"<?php if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo " selected"; } ?>><?=$rCategory["category_name"]?></option>
                                                 <?php } ?>
@@ -98,13 +98,13 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="stream_server_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"<?php if ((isset($_GET["server"])) && ($_GET["server"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="stream_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="stream_show_entries">Show</label>
                                         <div class="col-md-2">
                                             <select id="stream_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -114,11 +114,11 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <?php } else { ?>
                                         <div class="col-md-2">
-                                            <input type="text" class="form-control" id="stream_search" value="" placeholder="<?=$_["search_streams"]?>">
+                                            <input type="text" class="form-control" id="stream_search" value="" placeholder="Search Streams...">
                                         </div>
                                         <div class="col-md-3">
                                             <select id="stream_server_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"<?php if ((isset($_GET["server"])) && ($_GET["server"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
@@ -126,7 +126,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="stream_category_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_categories"]?></option>
+                                                <option value="" selected>All Categories</option>
                                                 <?php foreach ($rCategories as $rCategory) { ?>
                                                 <option value="<?=$rCategory["id"]?>"<?php if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo " selected"; } ?>><?=$rCategory["category_name"]?></option>
                                                 <?php } ?>
@@ -134,18 +134,18 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-2">
                                             <select id="stream_filter" class="form-control" data-toggle="select2">
-                                                <option value=""<?php if (!isset($_GET["filter"])) { echo " selected"; } ?>><?=$_["no_filter"]?></option>
-                                                <option value="1"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 1)) { echo " selected"; } ?>><?=$_["online"]?></option>
-                                                <option value="2"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 2)) { echo " selected"; } ?>><?=$_["down"]?></option>
-                                                <option value="3"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 3)) { echo " selected"; } ?>><?=$_["stopped"]?></option>
-                                                <option value="4"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 4)) { echo " selected"; } ?>><?=$_["starting"]?></option>
-                                                <option value="5"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 5)) { echo " selected"; } ?>><?=$_["on_demand"]?></option>
-                                                <option value="6"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 6)) { echo " selected"; } ?>><?=$_["direct"]?></option>
-												<option value="7"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 7)) { echo " selected"; } ?>><?=$_["timeshift"]?></option>
-                                                <option value="8"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 8)) { echo " selected"; } ?>><?=$_["created_channel"]?></option>
+                                                <option value=""<?php if (!isset($_GET["filter"])) { echo " selected"; } ?>>No Filter</option>
+                                                <option value="1"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 1)) { echo " selected"; } ?>>Online</option>
+                                                <option value="2"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 2)) { echo " selected"; } ?>>Down</option>
+                                                <option value="3"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 3)) { echo " selected"; } ?>>Stopped</option>
+                                                <option value="4"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 4)) { echo " selected"; } ?>>Starting</option>
+                                                <option value="5"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 5)) { echo " selected"; } ?>>On Demand</option>
+                                                <option value="6"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 6)) { echo " selected"; } ?>>Direct</option>
+												<option value="7"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 7)) { echo " selected"; } ?>>Timeshift</option>
+                                                <option value="8"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 8)) { echo " selected"; } ?>>Created Channel</option>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="stream_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="stream_show_entries">Show</label>
                                         <div class="col-md-1">
                                             <select id="stream_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -156,21 +156,21 @@ if ($rSettings["sidebar"]) {
                                         <?php } ?>
                                     </div>
                                 </form>
-                                <table id="datatable-streampage" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-streampage" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th class="text-center"><?=$_["icon"]?></th>
-                                            <th><?=$_["name"]?></th>
-                                            <th><?=$_["source"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Icon</th>
+                                            <th>Name</th>
+                                            <th>Source</th>
                                             <?php if ($rPermissions["is_admin"]) { ?>
-                                            <th class="text-center"><?=$_["clients"]?></th>
-                                            <th class="text-center"><?=$_["uptime"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
-                                            <th class="text-center"><?=$_["player"]?></th>
-                                            <th class="text-center"><?=$_["epg"]?></th>
+                                            <th class="text-center">Clients</th>
+                                            <th class="text-center">Uptime</th>
+                                            <th class="text-center">Actions</th>
+                                            <th class="text-center">Player</th>
+                                            <th class="text-center">EPG</th>
                                             <?php } ?>
-                                            <th class="text-center"><?=$_["stream_info"]?></th>
+                                            <th class="text-center">Stream Info</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -188,7 +188,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -228,20 +228,20 @@ if ($rSettings["sidebar"]) {
         
         function api(rID, rServerID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_stream"]?>') == false) {
+                if (confirm('Are you sure you want to delete this stream?') == false) {
                     return;
                 }
             }
             $.getJSON("./api.php?action=stream&sub=" + rType + "&stream_id=" + rID + "&server_id=" + rServerID, function(data) {
                 if (data.result == true) {
                     if (rType == "start") {
-                        $.toast("<?=$_["stream_successfully_started"]?>");
+                        $.toast("Stream successfully started. It will take a minute or so before the stream becomes available.");
                     } else if (rType == "stop") {
-                        $.toast("<?=$_["stream_successfully_stopped"]?>");
+                        $.toast("Stream successfully stopped.");
                     } else if (rType == "restart") {
-                        $.toast("<?=$_["stream_successfully_restarted"]?>");
+                        $.toast("Stream successfully restarted. It will take a minute or so before the stream becomes available.");
                     } else if (rType == "delete") {
-                        $.toast("<?=$_["stream_successfully_deleted"]?>");
+                        $.toast("Stream successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
@@ -249,10 +249,10 @@ if ($rSettings["sidebar"]) {
                     $('[data-toggle="tooltip"]').tooltip("hide");
                     $("#datatable-streampage").DataTable().ajax.reload( null, false );
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             }).fail(function() {
-                $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                $.toast("An error occured while processing your request.");
             });
         }
         function player(rID) {

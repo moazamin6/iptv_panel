@@ -46,7 +46,7 @@ if ($rSettings["sidebar"]) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body" style="overflow-x:auto;">
-                                <table id="datatable" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
@@ -86,7 +86,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -130,7 +130,7 @@ if ($rSettings["sidebar"]) {
                         $.toast("<?=$_["blocked_ip_deleted"]?>");
                     }
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }

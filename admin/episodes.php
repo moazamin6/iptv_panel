@@ -70,7 +70,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="episodes_server" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"<?php if ((isset($_GET["server"])) && ($_GET["server"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
@@ -78,7 +78,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="episodes_series" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_series"]?></option>
+                                                <option value="" selected>All Series</option>
                                                 <?php foreach (getSeriesList() as $rSeriesArr) { ?>
                                                 <option value="<?=$rSeriesArr["id"]?>"<?php if ((isset($_GET["series"])) && ($_GET["series"] == $rSeriesArr["id"])) { echo " selected"; } ?>><?=$rSeriesArr["title"]?></option>
                                                 <?php } ?>
@@ -133,7 +133,7 @@ if ($rSettings["sidebar"]) {
                                         <?php } ?>
                                     </div>
                                 </form>
-                                <table id="datatable-streampage" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-streampage" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
@@ -190,7 +190,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

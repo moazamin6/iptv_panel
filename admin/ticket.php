@@ -69,16 +69,16 @@ if ($rSettings["sidebar"]) {
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <?php if (isset($rTicket)) { ?>
-                                    <a href="./ticket_view.php?id=<?=$rTicket["id"]?>"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_ticket"]?></li></a>
+                                    <a href="./ticket_view.php?id=<?=$rTicket["id"]?>"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Ticket</li></a>
                                     <?php } else { ?>
-                                    <a href="./tickets.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_ticket"]?></li></a>
+                                    <a href="./tickets.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Tickets</li></a>
                                     <?php } ?>
                                 </ol>
                             </div>
                             <?php if (isset($rTicket)) { ?>
-                            <h4 class="page-title"><?=$_["ticket_response"]?></h4>
+                            <h4 class="page-title">Ticket Response</h4>
                             <?php } else { ?>
-                            <h4 class="page-title"><?=$_["create_ticket"]?></h4>
+                            <h4 class="page-title">Create Ticket</h4>
                             <?php } ?>
                         </div>
                     </div>
@@ -91,7 +91,7 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -105,7 +105,7 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#ticket-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -115,23 +115,23 @@ if ($rSettings["sidebar"]) {
                                                     <div class="col-12">
                                                         <?php if (!isset($rTicket)) { ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="title"><?=$_["subject"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="title">Subject</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" id="title" name="title" value="" required data-parsley-trigger="<?=$_["change"]?>">
+                                                                <input type="text" class="form-control" id="title" name="title" value="" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <?php } ?>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="message"><?=$_["message"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="message">Message</label>
                                                             <div class="col-md-8">
-                                                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="" required data-parsley-trigger="<?=$_["change"]?>"></textarea>
+                                                                <textarea id="message" name="message" class="form-control" rows="3" placeholder="" required data-parsley-trigger="change"></textarea>
                                                             </div>
                                                         </div>
                                                     </div> <!-- end col -->
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_ticket" type="submit" class="btn btn-primary" value="<?=$_["create"]?>" />
+                                                        <input name="submit_ticket" type="submit" class="btn btn-primary" value="Create" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -151,7 +151,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

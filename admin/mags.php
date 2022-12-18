@@ -108,7 +108,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-users" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-users" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
@@ -119,10 +119,6 @@ if ($rSettings["sidebar"]) {
                                             <th class="text-center"><?=$_["online"]?></th>
                                             <th class="text-center"><?=$_["trial"]?></th>
                                             <th class="text-center"><?=$_["expiration"]?></th>
-											<th class="text-center"><?=$_["days"]?></th>
-											
-
-											<th class="text-center"><?=$_["info"]?></th>
                                             <th class="text-center"><?=$_["actions"]?></th>
                                         </tr>
                                     </thead>
@@ -136,8 +132,7 @@ if ($rSettings["sidebar"]) {
                 <!-- end row-->
             </div> <!-- end container -->
         </div>
-		<?php // if ($rPermissions["is_admin"])
-        if (($rPermissions["is_admin"]) OR (($rPermissions["is_reseller"]) && ($rAdminSettings["reseller_mag_events"]))) { ?>
+		<?php if ($rPermissions["is_admin"]) { ?>
 		<div class="modal fade messageModal" role="dialog" aria-labelledby="messageModal" aria-hidden="true" style="display: none;" data-id="">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
@@ -194,7 +189,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -227,14 +222,6 @@ if ($rSettings["sidebar"]) {
                 if (confirm('<?=$_["device_delete_confirm"]?>') == false) {
                     return;
                 }
-			} else if (rType == "kill") {
-                if (confirm('<?=$_["are_you_sure_you_want_to kill"]?>') == false) {
-                    return;
-                }	
-			} else if (rType == "resetispuser") {
-                if (confirm('Are you sure you want to reset this ISP?') == false) {
-                    return;
-                }
             }
             $.getJSON("./api.php?action=user&sub=" + rType + "&user_id=" + rID, function(data) {
                 if (data.result === true) {
@@ -244,18 +231,10 @@ if ($rSettings["sidebar"]) {
                         $.toast("<?=$_["device_confirmed_2"]?>");
                     } else if (rType == "disable") {
                         $.toast("<?=$_["device_confirmed_3"]?>");
-					} else if (rType == "resetispuser") {
-                        $.toast("isp reseted");
-                    } else if (rType == "lockk") {
-                        $.toast("isp has been locked.");
-                    } else if (rType == "unlockk") {
-                        $.toast("isp has been unlocked.");  
                     } else if (rType == "unban") {
                         $.toast("<?=$_["device_confirmed_4"]?>");
                     } else if (rType == "ban") {
                         $.toast("<?=$_["device_confirmed_5"]?>");
-                    } else if (rType == "kill") {
-                        $.toast("<?=$_["all_connections_for_this_user_have_been_killed"]?>");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
@@ -316,8 +295,7 @@ if ($rSettings["sidebar"]) {
             $('[data-toggle="tooltip"]').tooltip("hide");
             $("#datatable-users").DataTable().ajax.reload( null, false );
         }
-		<?php // if ($rPermissions["is_admin"])
-        if (($rPermissions["is_admin"]) OR (($rPermissions["is_reseller"]) && ($rAdminSettings["reseller_mag_events"]))) { ?>					 
+		<?php if ($rPermissions["is_admin"]) { ?>
 		function message(id, mac) {
             $('.messageModal').data('id', id);
 			$("#messageModal").text("Send Event - " + mac.toUpperCase());
@@ -368,8 +346,8 @@ if ($rSettings["sidebar"]) {
                     }
                 },
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,2,3,4,5,6,7,8,9,10]},
-                    {"orderable": false, "targets": [8,9,10]},
+                    {"className": "dt-center", "targets": [0,2,4,5,6,7,8]},
+                    {"orderable": false, "targets": [8]},
                     {"visible": false, "targets": [1]}
                 ],
                 order: [[ 0, "desc" ]],
@@ -399,8 +377,7 @@ if ($rSettings["sidebar"]) {
                     $("#datatable-users").DataTable().ajax.reload( null, false );
                 }
             });
-			<?php // if ($rPermissions["is_admin"])
-            if (($rPermissions["is_admin"]) OR (($rPermissions["is_reseller"]) && ($rAdminSettings["reseller_mag_events"]))) { ?>				 
+			<?php if ($rPermissions["is_admin"]) { ?>
 			$("#message_type").change(function(){
 				if ($(this).val() == "send_msg") {
 					$("#send_msg_form").show();

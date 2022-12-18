@@ -68,7 +68,7 @@ if ($rSettings["sidebar"]) {
                                                             <?php } ?>
                                                         </select>
                                                     </div>
-                                                    <table id="datatable-md1" class="table table-hover table-borderless mb-0">
+                                                    <table id="datatable-md1" class="table table-borderless mb-0">
                                                         <thead class="bg-light">
                                                             <tr>
                                                                 <th class="text-center"><?=$_["id"]?></th>
@@ -157,7 +157,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

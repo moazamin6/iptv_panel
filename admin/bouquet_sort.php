@@ -55,11 +55,11 @@ if ($rSettings["sidebar"]) {
                     <div class="col-xl-12">
                         <?php if ((isset($_STATUS)) && ($_STATUS == 0)) { ?>
                         <div class="alert alert-success show" role="alert">
-                            <?=$_["bouquet_order_has_taken_effect_and"]?>
+                            Bouquet order has taken effect and all users and packages have been modified to utilise the new bouquet order.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 1)) { ?>
                         <div class="alert alert-success show" role="alert">
-                            <?=$_["bouquet_order_has_taken_effect_any"]?>
+                            Bouquet order has taken effect, any new users and packages will use this order.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -89,7 +89,7 @@ if ($rSettings["sidebar"]) {
                                                         </select>
                                                         <div class="custom-control custom-checkbox add-margin-top-20">
 															<input type="checkbox" class="custom-control-input" name="confirmReplace" id="confirmReplace">
-															<label class="custom-control-label" for="confirmReplace"><?=$_["replace_bouquet_order"]?></label>
+															<label class="custom-control-label" for="confirmReplace">Replace bouquet order for all users and packages retrospectively. This can take a while.</label>
 														</div>
                                                     </div> <!-- end col -->
                                                 </div> <!-- end row -->
@@ -121,7 +121,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

@@ -17,7 +17,7 @@ if (isset($_POST["submit_movie"])) {
         unset($rArray["id"]);
     } else {
 		if (!hasPermissions("adv", "add_movie")) { exit; }
-        $rArray = Array("movie_symlink" => 0, "type" => 2, "target_container" => Array("mp4"), "added" => time(), "read_native" => 0, "stream_all" => 0, "redirect_stream" => 1, "direct_source" => 0, "gen_timestamps" => 1, "transcode_attributes" => Array(), "stream_display_name" => "", "stream_source" => Array(), "movie_subtitles" => Array(), "category_id" => 0, "stream_icon" => "", "notes" => "", "custom_sid" => "", "custom_ffmpeg" => "", "transcode_profile_id" => 0, "enable_transcode" => 0, "auto_restart" => "[]", "allow_record" => 0, "rtmp_output" => 0, "epg_id" => null, "channel_id" => null, "epg_lang" => null, "tv_archive_server_id" => 0, "tv_archive_duration" => 0, "delay_minutes" => 0, "external_push" => Array(), "probesize_ondemand" => 256000);
+        $rArray = Array("movie_symlink" => 0, "type" => 2, "target_container" => Array("mp4"), "added" => time(), "read_native" => 0, "stream_all" => 0, "redirect_stream" => 1, "direct_source" => 0, "gen_timestamps" => 1, "transcode_attributes" => Array(), "stream_display_name" => "", "stream_source" => Array(), "movie_subtitles" => Array(), "category_id" => 0, "stream_icon" => "", "notes" => "", "custom_sid" => "", "custom_ffmpeg" => "", "transcode_profile_id" => 0, "enable_transcode" => 0, "auto_restart" => "[]", "allow_record" => 0, "rtmp_output" => 0, "epg_id" => null, "channel_id" => null, "epg_lang" => null, "tv_archive_server_id" => 0, "tv_archive_duration" => 0, "delay_minutes" => 0, "external_push" => Array(), "probesize_ondemand" => 128000);
     }
     $rArray["stream_display_name"] = $_POST["stream_display_name"];
     if (strlen($_POST["movie_subtitles"]) > 0) {
@@ -157,7 +157,7 @@ if (isset($_POST["submit_movie"])) {
             $_POST["backdrop_path"] = downloadImage($_POST["backdrop_path"]);
         }
         $rSeconds = intval($_POST["episode_run_time"]) * 60;
-        $rImportArray["movie_propeties"] = Array("tmdb_url" => $rTMDBURL, "tmdb_id" => $_POST["tmdb_id"], "name" => $rArray["stream_display_name"], "o_name" => $rArray["stream_display_name"], "cover_big" => $_POST["movie_image"], "movie_image" => $_POST["movie_image"], "releasedate" => $_POST["releasedate"], "episode_run_time" => $_POST["episode_run_time"], "youtube_trailer" => $_POST["youtube_trailer"], "director" => $_POST["director"], "actors" => $_POST["cast"], "cast" => $_POST["cast"], "description" => $_POST["plot"], "plot" => $_POST["plot"], "age" => "", "mpaa_rating" => "", "rating_count_kinopoisk" => 0, "country" => $_POST["country"], "genre" => $_POST["genre"], "backdrop_path" => Array($_POST["backdrop_path"]), "duration_secs" => $rSeconds, "duration" => sprintf('%02d:%02d:%02d', ($rSeconds/3600),($rSeconds/60%60), $rSeconds%60), "video" => Array(), "audio" => Array(), "bitrate" => 0, "rating" => $_POST["rating"]);
+        $rImportArray["movie_propeties"] = Array("kinopoisk_url" => $rTMDBURL, "tmdb_id" => $_POST["tmdb_id"], "name" => $rArray["stream_display_name"], "o_name" => $rArray["stream_display_name"], "cover_big" => $_POST["movie_image"], "movie_image" => $_POST["movie_image"], "releasedate" => $_POST["releasedate"], "episode_run_time" => $_POST["episode_run_time"], "youtube_trailer" => $_POST["youtube_trailer"], "director" => $_POST["director"], "actors" => $_POST["cast"], "cast" => $_POST["cast"], "description" => $_POST["plot"], "plot" => $_POST["plot"], "age" => "", "mpaa_rating" => "", "rating_count_kinopoisk" => 0, "country" => $_POST["country"], "genre" => $_POST["genre"], "backdrop_path" => Array($_POST["backdrop_path"]), "duration_secs" => $rSeconds, "duration" => sprintf('%02d:%02d:%02d', ($rSeconds/3600),($rSeconds/60%60), $rSeconds%60), "video" => Array(), "audio" => Array(), "bitrate" => 0, "rating" => $_POST["rating"]);
         if (strlen($rImportArray["movie_propeties"]["backdrop_path"][0]) == 0) {
             unset($rImportArray["movie_propeties"]["backdrop_path"]);
         }
@@ -417,7 +417,7 @@ if ($rSettings["sidebar"]) {
                                     <?php if (isset($rMovie["id"])) { ?>
                                     <input type="hidden" name="edit" value="<?=$rMovie["id"]?>" />
                                     <?php } ?>
-                                    <!--<input type="text" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rMovie)) { echo htmlspecialchars($rMovie["properties"]["tmdb_id"]); } ?>" />-->
+                                    <input type="hidden" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rMovie)) { echo htmlspecialchars($rMovie["properties"]["tmdb_id"]); } ?>" />
                                     <input type="hidden" name="server_tree_data" id="server_tree_data" value="" />
                                     <div id="basicwizard">
                                         <ul class="nav nav-pills bg-light nav-justified form-wizard-header mb-4">
@@ -621,12 +621,8 @@ if ($rSettings["sidebar"]) {
                                                         </div>
                                                         <div class="form-group row mb-4">
                                                             <label class="col-md-4 col-form-label" for="country"><?=$_["country"]?></label>
-                                                            <div class="col-md-3">
+                                                            <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="country" name="country" value="<?php if (isset($rMovie)) { echo htmlspecialchars($rMovie["properties"]["country"]); } ?>">
-                                                            </div>
-															<label class="col-md-2 col-form-label" for="tmdb_id"><?=$_["tmdb_id"]?></label>
-                                                            <div class="col-md-3">
-                                                                <input type="text" class="form-control" id="tmdb_id" name="tmdb_id" value="<?php if (isset($rMovie)) { echo htmlspecialchars($rMovie["properties"]["tmdb_id"]); } ?>">
                                                             </div>
                                                         </div>
                                                     </div> <!-- end col -->
@@ -815,7 +811,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <?php if (isset($_GET["import"])) { ?>
                                         <div class="float-right">
-                                            <input id="select_folder" type="button" class="btn btn-info" value="<?=$_["select"]?>" />
+                                            <input id="select_folder" type="button" class="btn btn-info" value="Select" />
                                         </div>
                                         <?php } ?>
                                     </div> <!-- end col -->
@@ -832,7 +828,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -1196,8 +1192,7 @@ if ($rSettings["sidebar"]) {
                         $.getJSON("./api.php?action=tmdb_search&type=movie&term=" + $("#stream_display_name").val(), function(data) {
                             if (data.result == true) {
                                 if (data.data.length > 0) {
-                                    //newOption = new Option("<?=$_["found_results"]?>".replace('{num}', data.data.length), -1, true, true);
-									newOption = new Option("<?=$_["found_"]?>" + data.data.length + "<?=$_["_results"]?>", -1, true, true);
+                                    newOption = new Option("<?=$_["found_results"]?>".replace('{num}', data.data.length), -1, true, true);
                                 } else {
                                     newOption = new Option("<?=$_["no_results_found"]?>", -1, true, true);
                                 }
@@ -1228,7 +1223,7 @@ if ($rSettings["sidebar"]) {
                             window.changeTitle = true;
                             rTitle = data.data.title;
                             if (data.data.release_date) {
-                                rTitle += "";
+                                rTitle += " (" + data.data.release_date.substr(0, 4) + ")";
                             }
                             $("#stream_display_name").val(rTitle);
                             $("#movie_image").val("");

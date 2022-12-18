@@ -25,17 +25,17 @@ if ($rSettings["sidebar"]) {
                                             </button>
                                         </a>
                                         <button type="button" class="btn btn-info waves-effect waves-light btn-sm btn-clear-logs">
-                                            <i class="mdi mdi-minus"></i> <?=$_["clear_logs"]?>
+                                            <i class="mdi mdi-minus"></i> Clear Logs
                                         </button>
                                         <a href="./watch.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <?=$_["view_folders"]?>
+                                                View Folders
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["folder_watch_output"]?></h4>
+                            <h4 class="page-title">Folder Watch Output</h4>
                         </div>
                     </div>
                 </div>     
@@ -47,11 +47,11 @@ if ($rSettings["sidebar"]) {
                                 <form id="series_form">
                                     <div class="form-group row mb-4">
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="result_search" value="" placeholder="<?=$_["search_results"]?>">
+                                            <input type="text" class="form-control" id="result_search" value="" placeholder="Search Results...">
                                         </div>
                                         <div class="col-md-2">
                                             <select id="result_server" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach ($rServers as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
@@ -59,7 +59,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-2">
                                             <select id="result_type" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_types"]?></option>
+                                                <option value="" selected>All Types</option>
                                                 <?php foreach (Array(1 => "Movies", 2 => "Series") as $rID => $rType) { ?>
                                                 <option value="<?=$rID?>"><?=$rType?></option>
                                                 <?php } ?>
@@ -67,13 +67,13 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-2">
                                             <select id="result_status" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_statuses"]?></option>
+                                                <option value="" selected>All Statuses</option>
                                                 <?php foreach (Array(1 => "Added", 2 => "SQL Error", 3 => "No Category", 4 => "No Match", 5 => "Invalid File") as $rID => $rType) { ?>
                                                 <option value="<?=$rID?>"><?=$rType?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="result_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="result_show_entries">Show</label>
                                         <div class="col-md-2">
                                             <select id="result_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -83,16 +83,16 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-md1" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-md1" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["type"]?></th>
-                                            <th><?=$_["server"]?></th>
-                                            <th><?=$_["filename"]?></th>
-                                            <th class="text-center"><?=$_["status"]?></th>
-                                            <th class="text-center"><?=$_["date_added"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Type</th>
+                                            <th>Server</th>
+                                            <th>Filename</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Date Added</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -108,12 +108,12 @@ if ($rSettings["sidebar"]) {
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="clearLogsLabel"><?=$_["clear_logs"]?></h4>
+                        <h4 class="modal-title" id="clearLogsLabel">Clear Logs</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group row mb-4">
-                            <label class="col-md-4 col-form-label" for="range_clear"><?=$_["date_range"]?></label>
+                            <label class="col-md-4 col-form-label" for="range_clear">Date Range</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control text-center date" id="range_clear_from" name="range_clear_from" data-toggle="date-picker" data-single-date-picker="true" autocomplete="off" placeholder="From">
                             </div>
@@ -134,7 +134,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -166,7 +166,7 @@ if ($rSettings["sidebar"]) {
         <?php if ($rPermissions["is_admin"]) { ?>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_user_this_record"]?>') == false) {
+                if (confirm('Are you sure you want to delete this record?') == false) {
                     return;
                 }
             }
@@ -181,10 +181,10 @@ if ($rSettings["sidebar"]) {
                     $('[data-toggle="tooltip"]').tooltip("hide");
                     $("#datatable-md1").DataTable().ajax.reload( null, false );
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             }).fail(function() {
-                $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                $.toast("An error occured while processing your request.");
             });
         }
         <?php } ?>
@@ -312,12 +312,12 @@ if ($rSettings["sidebar"]) {
                 $(".bs-logs-modal-center").modal("show");
             });
             $("#clear_logs").click(function() {
-                if (confirm('<?=$_["are_you_sure_you_want_to_clear_logs_for_this_period"]?>') == false) {
+                if (confirm('Are you sure you want to clear logs for this period?') == false) {
                     return;
                 }
                 $(".bs-logs-modal-center").modal("hide");
                 $.getJSON("./api.php?action=clear_logs&type=watch_output&from=" + encodeURIComponent($("#range_clear_from").val()) + "&to=" + encodeURIComponent($("#range_clear_to").val()), function(data) {
-                    $.toast("<?=$_["logs_have_been_cleared"]?>");
+                    $.toast("Logs have been cleared.");
                     //window.location.href = './watch_output.php';
                 });
             });

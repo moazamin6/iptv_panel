@@ -67,10 +67,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./useragents.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_user-agents"]?></li></a>
+                                    <a href="./useragents.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to User-Agents</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rUAArr)) { echo $_["edit"]; } else { echo $_["block"]; } ?> <?=$_["user-agent"]?></h4>
+                            <h4 class="page-title"><?php if (isset($rUAArr)) { echo "Edit"; } else { echo "Block"; } ?> User-Agent</h4>
                         </div>
                     </div>
                 </div>     
@@ -82,14 +82,14 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["user-agent_operation"]?>
+                            User-Agent operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS > 0)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["there_was_an_error"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -103,7 +103,7 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#useragent-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -112,13 +112,13 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="user_agent"><?=$_["user-agent"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="user_agent">User-Agent</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="user_agent" name="user_agent" value="<?php if (isset($rUAArr)) { echo htmlspecialchars($rUAArr["user_agent"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="exact_match"><?=$_["exact_match"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="exact_match">Exact Match</label>
                                                             <div class="col-md-2">
                                                                 <input name="exact_match" id="exact_match" type="checkbox" <?php if (isset($rUAArr)) { if ($rUAArr["exact_match"] == 1) { echo "checked "; } } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
@@ -127,7 +127,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="next list-inline-item float-right">
-                                                        <input name="submit_ua" type="submit" class="btn btn-primary" value="<?php if (isset($rUAArr)) { echo $_["edit"]; } else { echo $_["block"]; } ?>" />
+                                                        <input name="submit_ua" type="submit" class="btn btn-primary" value="<?php if (isset($rUAArr)) { echo "Edit"; } else { echo "Block"; } ?>" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -147,7 +147,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

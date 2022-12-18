@@ -102,10 +102,10 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./reg_users.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_registered_users"]?></li></a>
+                                    <a href="./reg_users.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Registered Users</li></a>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?php if (isset($rUser)) { echo $_["edit"]; } else { echo $_["add"]; } ?> <?=$_["registered_user"]?></h4>
+                            <h4 class="page-title"><?php if (isset($rUser)) { echo "Edit"; } else { echo "Add"; } ?> Registered User</h4>
                         </div>
                     </div>
                 </div>     
@@ -117,21 +117,21 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["user_operation_was_completed_successfully"]?>
+                            User operation was completed successfully.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 1)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["please_enter_a_username"]?>
+                            Please enter a username, password and email address for this user.
                         </div>
                         <?php } else if ((isset($_STATUS)) && ($_STATUS == 2)) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?>
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -146,13 +146,13 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#user-details" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["details"]?></span>
+                                                    <span class="d-none d-sm-inline">Details</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#package-override" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-package mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["package_override"]?></span>
+                                                    <span class="d-none d-sm-inline">Package Override</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -161,25 +161,25 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="username"><?=$_["username"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="username">Username</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="username" name="username" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["username"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="password"><?php if (isset($rUser)) { ?><?=$_["change"]?> <?php } ?><?=$_["password"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="password"><?php if (isset($rUser)) { ?>Change <?php } ?>Password</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="password" name="password" <?php if (!isset($rUser)) { echo 'value="'.generateString(10).'" required data-parsley-trigger="change"'; } else { echo 'value=""'; } ?>>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="email"><?=$_["email_address"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="email">Email Address</label>
                                                             <div class="col-md-8">
                                                                 <input type="email" id="email" class="form-control" name="email" required value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["email"]); } ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="member_group_id"><?=$_["member_group"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="member_group_id">Member Group</label>
                                                             <div class="col-md-8">
                                                                 <select name="member_group_id" id="member_group_id" class="form-control select2" data-toggle="select2">
                                                                     <?php foreach (getMemberGroups() as $rGroup) { ?>
@@ -189,10 +189,10 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="owner_id"><?=$_["owner"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="owner_id">Owner</label>
                                                             <div class="col-md-8">
                                                                 <select name="owner_id" id="owner_id" class="form-control select2" data-toggle="select2">
-                                                                    <option value="0"><?=$_["no_owner"]?></option>
+                                                                    <option value="0">No Owner</option>
                                                                     <?php foreach (getRegisteredUsers(0) as $rRegUser) { ?>
                                                                     <option <?php if (isset($rUser)) { if (intval($rUser["owner_id"]) == intval($rRegUser["id"])) { echo "selected "; } } else { if (intval($rUserInfo["id"]) == intval($rRegUser["id"])) { echo "selected "; } } ?>value="<?=$rRegUser["id"]?>"><?=$rRegUser["username"]?></option>
                                                                     <?php } ?>
@@ -200,29 +200,29 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="verified"><?=$_["verified"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="verified">Verified</label>
                                                             <div class="col-md-2">
                                                                 <input name="verified" id="verified" type="checkbox"<?php if ((isset($rUser)) && ($rUser["verified"] == 1)) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="credits"><?=$_["credits"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="credits">Credits</label>
                                                             <div class="col-md-2">
                                                                 <input type="text" class="form-control text-center" id="credits" onkeypress="return isNumberKey(event)" name="credits" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["credits"]); } else { echo "0"; } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4" style="display: none;" id="credits_reason_div">
-                                                            <label class="col-md-4 col-form-label" for="credits_reason"><?=$_["reason_for_credits_adjustment"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="credits_reason">Reason for Credits Adjustment</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="credits_reason" name="credits_reason" value="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="reseller_dns"><?=$_["reseller_dns"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="reseller_dns">Reseller DNS</label>
                                                             <div class="col-md-8">
                                                                 <input type="text" class="form-control" id="reseller_dns" name="reseller_dns" value="<?php if (isset($rUser)) { echo htmlspecialchars($rUser["reseller_dns"]); } ?>">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="notes"><?=$_["notes"]?></label>
+                                                            <label class="col-md-4 col-form-label" for="notes">Notes</label>
                                                             <div class="col-md-8">
                                                                 <textarea id="notes" name="notes" class="form-control" rows="3" placeholder=""><?php if (isset($rUser)) { echo htmlspecialchars($rUser["notes"]); } ?></textarea>
                                                             </div>
@@ -231,7 +231,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo $_["edit"]; } else { echo $_["add"]; } ?> <?=$_["user"]?>" />
+                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo "Edit"; } else { echo "Add"; } ?> User" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -239,15 +239,15 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["leave_the_override_cell_blank"]?>
+                                                            Leave the override cell blank to disable package override for the selected package.
                                                         </p>
                                                         <table class="table table-centered mb-0">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="text-center">#</th>
-                                                                    <th><?=$_["package"]?></th>
-                                                                    <th class="text-center"><?=$_["credits"]?></th>
-                                                                    <th class="text-center"><?=$_["override"]?></th>
+                                                                    <th>Package</th>
+                                                                    <th class="text-center">Credits</th>
+                                                                    <th class="text-center">Override</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -275,7 +275,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo $_["edit"]; } else { echo $_["add"]; } ?> <?=$_["user"]?>" />
+                                                        <input name="submit_user" type="submit" class="btn btn-primary" value="<?php if (isset($rUser)) { echo "Edit"; } else { echo "Add"; } ?> User" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -295,7 +295,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

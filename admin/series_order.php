@@ -43,7 +43,7 @@ if ($rSettings["sidebar"]) {
                         <div class="page-title-box">
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> <?=$_["back_to_series"]?></li></a>
+                                    <a href="./series.php"><li class="breadcrumb-item"><i class="mdi mdi-backspace"></i> Back to Series</li></a>
                                 </ol>
                             </div>
                             <h4 class="page-title"><?=$rSeries["title"]?></h4>
@@ -74,7 +74,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                         <?=$_["to_re-order"]?>  <i class="mdi mdi-chevron-up"></i> <?=$_["and"]?> <i class="mdi mdi-chevron-down"></i> <?=$_["buttons_to_move_it"]?>
+                                                            To re-order an episode, select it and use the <i class="mdi mdi-chevron-up"></i> and <i class="mdi mdi-chevron-down"></i> buttons to move it. Select multiple by dragging or using CTRL. Click Save Changes at the bottom once finished.
                                                         </p>
                                                         <select multiple id="sort_episode_<?=$rSeasonNum?>" class="form-control" style="min-height:400px;">
                                                         <?php $i = 0; foreach ($rSeasonArray as $rEpisode) { $i ++; ?>
@@ -87,10 +87,10 @@ if ($rSettings["sidebar"]) {
                                                     <li class="list-inline-item">
                                                         <a href="javascript: void(0);" onClick="MoveUp(<?=$rSeasonNum?>)" class="btn btn-purple"><i class="mdi mdi-chevron-up"></i></a>
                                                         <a href="javascript: void(0);" onClick="MoveDown(<?=$rSeasonNum?>)" class="btn btn-purple"><i class="mdi mdi-chevron-down"></i></a>
-                                                        <a href="javascript: void(0);" onClick="AtoZ(<?=$rSeasonNum?>)" class="btn btn-info"><?=$_["sort_all_a_to_z"]?></a>
+                                                        <a href="javascript: void(0);" onClick="AtoZ(<?=$rSeasonNum?>)" class="btn btn-info">Sort All A to Z</a>
                                                     </li>
                                                     <li class="list-inline-item float-right">
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light"><?=$_["save_changes"]?></button>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -110,7 +110,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

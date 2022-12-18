@@ -477,7 +477,7 @@ if ($rSettings["sidebar"]) {
                                                                 <input type="text" class="form-control" id="series_name" name="series_name" value="<?=$rSeries["title"]?>" readonly>
                                                             </div>
                                                             <div class="col-md-2">
-                                                                <input type="text" class="form-control text-center" id="season_num" name="season_num" placeholder="<?=$_["season"]?>" value="" required data-parsley-trigger="change">
+                                                                <input type="text" class="form-control text-center" id="season_num" name="season_num" placeholder="Season" value="" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4 stream-url">
@@ -741,7 +741,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -979,7 +979,7 @@ if ($rSettings["sidebar"]) {
                     var data = this.data();
                     rExt = data[1].split('.').pop().toLowerCase();
                     if (["mp4", "mkv", "mov", "avi", "mpg", "mpeg", "flv", "wmv"].includes(rExt)) {
-                        $("#episode_add").append('<div class="form-group row mb-4"><label class="col-md-4 col-form-label" for="episode_' + rID + '_name"><?=$_["episode_to_add"]?></label><div class="col-md-6"><input type="text" class="form-control" id="episode_' + rID + '_name" name="episode_' + rID + '_name" value="' + data[1] + '" readonly></div><div class="col-md-2"><input type="text" class="form-control text-center" id="episode_' + rID + '_num" name="episode_' + rID + '_num" value="' + rID + '" placeholder="Episode""></div></div>');
+                        $("#episode_add").append('<div class="form-group row mb-4"><label class="col-md-4 col-form-label" for="episode_' + rID + '_name"><?=$_["episode_to_add"]?></label><div class="col-md-6"><input type="text" class="form-control" id="episode_' + rID + '_name" name="episode_' + rID + '_name" value="' + data[1] + '" readonly></div><div class="col-md-2"><input type="text" class="form-control text-center" id="episode_' + rID + '_num" name="episode_' + rID + '_num" placeholder="Episode" value=""></div></div>');
                         $("#episode_" + rID + "_num").inputFilter(function(value) { return /^\d*$/.test(value); });
                     }
                     rID ++;

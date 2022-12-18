@@ -75,18 +75,18 @@ if ($rSettings["sidebar"]) {
                                     <li>
                                         <a href="./watch.php">
                                             <button type="button" class="btn btn-primary waves-effect waves-light btn-sm">
-                                                <?=$_["folders"]?> 
+                                                Folders
                                             </button>
                                         </a>
                                         <a href="./settings_watch.php?update=1">
                                             <button type="button" class="btn btn-info waves-effect waves-light btn-sm">
-                                                <?=$_["update_from_tmdb"]?> 
+                                                Update from TMDb
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["folder_watch_settings"]?> </h4>
+                            <h4 class="page-title">Folder Watch Settings</h4>
                         </div>
                     </div>
                 </div>     
@@ -98,7 +98,7 @@ if ($rSettings["sidebar"]) {
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <?=$_["generic_fail"]?> 
+                            There was an error performing this operation! Please check the form entry and try again.
                         </div>
                         <?php } ?>
                         <div class="card">
@@ -109,19 +109,19 @@ if ($rSettings["sidebar"]) {
                                             <li class="nav-item">
                                                 <a href="#setup" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-account-card-details-outline mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["setup"]?> </span>
+                                                    <span class="d-none d-sm-inline">Setup</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#categories" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-movie mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["movie_categories"]?> </span>
+                                                    <span class="d-none d-sm-inline">Movie Categories</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="#categories-tv" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2"> 
                                                     <i class="mdi mdi-youtube-tv mr-1"></i>
-                                                    <span class="d-none d-sm-inline"><?=$_["tv_categories"]?> </span>
+                                                    <span class="d-none d-sm-inline">TV Categories</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -130,40 +130,40 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="read_native"><?=$_["native_frames"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="read_native">Native Frames</label>
                                                             <div class="col-md-2">
                                                                 <input name="read_native" id="read_native" type="checkbox" <?php if ($rWatchSettings["read_native"] == 1) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="movie_symlink"><?=$_["create_symlink"]?> <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["generate_a_symlink"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="movie_symlink">Create Symlink <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Generate a symlink to the original file instead of encoding. File needs to exist on all selected servers." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="movie_symlink" id="movie_symlink" type="checkbox" <?php if ($rWatchSettings["movie_symlink"] == 1) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="auto_encode"><?=$_["auto_encode"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["start_encoding_as_soon"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="auto_encode">Auto-Encode <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Start encoding as soon as the movie is added." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="auto_encode" id="auto_encode" type="checkbox" <?php if ($rWatchSettings["auto_encode"] == 1) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="ffprobe_input"><?=$_["probe_input"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["use_ffmpeg_to_probe_input_files"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="ffprobe_input">Probe Input <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Use ffmpeg to probe input files to ensure broken / incomplete files aren't added. Will increase load." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
                                                                 <input name="ffprobe_input" id="ffprobe_input" type="checkbox" <?php if ($rWatchSettings["ffprobe_input"] == 1) { echo "checked "; } ?>data-plugin="switchery" class="js-switch" data-color="#039cfd"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="scan_seconds"><?=$_["scan_frequency"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["scan_a_folder"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="scan_seconds">Scan Frequency <i data-toggle="tooltip" data-placement="top" title="" data-original-title="Scan a folder every X seconds." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
-                                                                <input type="text" class="form-control" id="scan_seconds" name="scan_seconds" value="<?php echo htmlspecialchars($rWatchSettings["scan_seconds"]); ?>" required data-parsley-trigger="<?=$_["change"]?>">
+                                                                <input type="text" class="form-control" id="scan_seconds" name="scan_seconds" value="<?php echo htmlspecialchars($rWatchSettings["scan_seconds"]); ?>" required data-parsley-trigger="change">
                                                             </div>
-                                                            <label class="col-md-4 col-form-label" for="percentage_match"><?=$_["match_percentage"]?>  <i data-toggle="tooltip" data-placement="top" title="" data-original-title="<?=$_["tmdb_match_tolerance"]?>" class="mdi mdi-information"></i></label>
+                                                            <label class="col-md-4 col-form-label" for="percentage_match">Match Percentage <i data-toggle="tooltip" data-placement="top" title="" data-original-title="TMDb match tolerance. Will not accept match if below this percentage threshold." class="mdi mdi-information"></i></label>
                                                             <div class="col-md-2">
-                                                                <input type="text" class="form-control" id="percentage_match" name="percentage_match" value="<?php echo htmlspecialchars($rWatchSettings["percentage_match"]); ?>" required data-parsley-trigger="<?=$_["change"]?>">
+                                                                <input type="text" class="form-control" id="percentage_match" name="percentage_match" value="<?php echo htmlspecialchars($rWatchSettings["percentage_match"]); ?>" required data-parsley-trigger="change">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-4">
-                                                            <label class="col-md-4 col-form-label" for="transcode_profile_id"><?=$_["transcoding_profile"]?> </label>
+                                                            <label class="col-md-4 col-form-label" for="transcode_profile_id">Transcoding Profile</label>
                                                             <div class="col-md-8">
                                                                 <select name="transcode_profile_id" id="transcode_profile_id" class="form-control" data-toggle="select2">
-                                                                    <option <?php if (intval($rWatchSettings["transcode_profile_id"]) == 0) { echo "selected "; } ?>value="0"><?=$_["transcoding_disabled"]?> </option>
+                                                                    <option <?php if (intval($rWatchSettings["transcode_profile_id"]) == 0) { echo "selected "; } ?>value="0">Transcoding Disabled</option>
                                                                     <?php foreach (getTranscodeProfiles() as $rProfile) { ?>
                                                                     <option <?php if (intval($rWatchSettings["transcode_profile_id"]) == intval($rProfile["profile_id"])) { echo "selected "; } ?>value="<?=$rProfile["profile_id"]?>"><?=$rProfile["profile_name"]?></option>
                                                                     <?php } ?>
@@ -174,7 +174,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="<?=$_["save_changes"]?> " />
+                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="Save Changes" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -182,7 +182,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["select_a_category_and"]?> 
+                                                            Select a Category and/or Bouquet to apply to each Genre. The first Genre of each movie will be used for allocation.
                                                         </p>
                                                         <?php $rResult = $db->query("SELECT * FROM `watch_categories` WHERE `type` = 1 ORDER BY `genre` ASC;");
                                                         if (($rResult) && ($rResult->num_rows > 0)) { while ($rRow = $rResult->fetch_assoc()) { ?>
@@ -190,15 +190,15 @@ if ($rSettings["sidebar"]) {
                                                             <label class="col-md-2 col-form-label" for="genre_<?=$rRow["genre_id"]?>"><?=$rRow["genre"]?></label>
                                                             <div class="col-md-4">
                                                                 <select name="genre_<?=$rRow["genre_id"]?>" id="genre_<?=$rRow["genre_id"]?>" class="form-control select2" data-toggle="select2">
-                                                                    <option <?php if (intval($rRow["category_id"]) == 0) { echo "selected "; } ?>value="0"><?=$_["do_not_use"]?> </option>
+                                                                    <option <?php if (intval($rRow["category_id"]) == 0) { echo "selected "; } ?>value="0">Do Not Use</option>
                                                                     <?php foreach (getCategories("movie") as $rCategory) { ?>
                                                                         <option <?php if (intval($rRow["category_id"]) == intval($rCategory["id"])) { echo "selected "; } ?>value="<?=$rCategory["id"]?>"><?=$rCategory["category_name"]?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="bouquet_<?=$rRow["genre_id"]?>"><?=$_["add_to_bouquets"]?> </label>
+                                                            <label class="col-md-2 col-form-label" for="bouquet_<?=$rRow["genre_id"]?>">Add To Bouquets</label>
                                                             <div class="col-md-4">
-                                                                <select name="bouquet_<?=$rRow["genre_id"]?>[]" id="bouquet_<?=$rRow["genre_id"]?>" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>">
+                                                                <select name="bouquet_<?=$rRow["genre_id"]?>[]" id="bouquet_<?=$rRow["genre_id"]?>" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach ($rBouquets as $rBouquet) { ?>
                                                                     <option <?php if (in_array(intval($rBouquet["id"]), json_decode($rRow["bouquets"], True))) { echo "selected "; } ?>value="<?=$rBouquet["id"]?>"><?=$rBouquet["bouquet_name"]?></option>
                                                                     <?php } ?>
@@ -210,7 +210,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="<?=$_["save_changes"]?> " />
+                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="Save Changes" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -218,7 +218,7 @@ if ($rSettings["sidebar"]) {
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <p class="sub-header">
-                                                            <?=$_["select_a_category_and"]?> 
+                                                            Select a Category and/or Bouquet to apply to each Genre. The first Genre of each movie will be used for allocation.
                                                         </p>
                                                         <?php $rResult = $db->query("SELECT * FROM `watch_categories` WHERE `type` = 2 ORDER BY `genre` ASC;");
                                                         if (($rResult) && ($rResult->num_rows > 0)) { while ($rRow = $rResult->fetch_assoc()) { ?>
@@ -226,15 +226,15 @@ if ($rSettings["sidebar"]) {
                                                             <label class="col-md-2 col-form-label" for="genretv_<?=$rRow["genre_id"]?>"><?=$rRow["genre"]?></label>
                                                             <div class="col-md-4">
                                                                 <select name="genretv_<?=$rRow["genre_id"]?>" id="genretv_<?=$rRow["genre_id"]?>" class="form-control select2" data-toggle="select2">
-                                                                    <option <?php if (intval($rRow["category_id"]) == 0) { echo "selected "; } ?>value="0"><?=$_["do_not_use"]?></option>
+                                                                    <option <?php if (intval($rRow["category_id"]) == 0) { echo "selected "; } ?>value="0">Do Not Use</option>
                                                                     <?php foreach (getCategories("series") as $rCategory) { ?>
                                                                         <option <?php if (intval($rRow["category_id"]) == intval($rCategory["id"])) { echo "selected "; } ?>value="<?=$rCategory["id"]?>"><?=$rCategory["category_name"]?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
-                                                            <label class="col-md-2 col-form-label" for="bouquettv_<?=$rRow["genre_id"]?>"><?=$_["add_to_bouquets"]?></label>
+                                                            <label class="col-md-2 col-form-label" for="bouquettv_<?=$rRow["genre_id"]?>">Add To Bouquets</label>
                                                             <div class="col-md-4">
-                                                                <select name="bouquettv_<?=$rRow["genre_id"]?>[]" id="bouquettv_<?=$rRow["genre_id"]?>" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>">
+                                                                <select name="bouquettv_<?=$rRow["genre_id"]?>[]" id="bouquettv_<?=$rRow["genre_id"]?>" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach ($rBouquets as $rBouquet) { ?>
                                                                     <option <?php if (in_array(intval($rBouquet["id"]), json_decode($rRow["bouquets"], True))) { echo "selected "; } ?>value="<?=$rBouquet["id"]?>"><?=$rBouquet["bouquet_name"]?></option>
                                                                     <?php } ?>
@@ -246,7 +246,7 @@ if ($rSettings["sidebar"]) {
                                                 </div> <!-- end row -->
                                                 <ul class="list-inline wizard mb-0">
                                                     <li class="list-inline-item float-right">
-                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="<?=$_["save_changes"]?> " />
+                                                        <input name="submit_settings" type="submit" class="btn btn-primary" value="Save Changes" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -265,7 +265,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

@@ -3,7 +3,7 @@ include "session.php"; include "functions.php";
 if ((!$rPermissions["is_admin"]) OR (!hasPermissions("adv", "add_server"))) { exit; }
 
 if (isset($_POST["submit_server"])) {
-    $rArray = Array("server_name" => "", "domain_name" => "", "server_ip" => "", "vpn_ip" => "", "diff_time_main" => 0, "http_broadcast_port" => 25461, "total_clients" => 1000, "system_os" => "", "network_interface" => "", "status" => 3, "enable_geoip" => 0, "can_delete" => 1, "rtmp_port" => 25462, "enable_isp" => 0, "boost_fpm" => 0, "network_guaranteed_speed" => 1000, "https_broadcast_port" => 25463, "whitelist_ips" => Array(), "timeshift_only" => 0);
+    $rArray = Array("server_name" => "", "domain_name" => "", "server_ip" => "", "vpn_ip" => "", "diff_time_main" => 0, "http_broadcast_port" => 25461, "total_clients" => 1000, "system_os" => "", "network_interface" => "eth0", "status" => 3, "enable_geoip" => 0, "can_delete" => 1, "rtmp_port" => 25462, "enable_isp" => 0, "boost_fpm" => 0, "network_guaranteed_speed" => 1000, "https_broadcast_port" => 25463, "whitelist_ips" => Array(), "timeshift_only" => 0);
     if ((strlen($_POST["server_name"]) == 0) OR (strlen($_POST["server_ip"]) == 0) OR (strlen($_POST["ssh_port"]) == 0) OR (strlen($_POST["http_broadcast_port"]) == 0) OR (strlen($_POST["https_broadcast_port"]) == 0) OR (strlen($_POST["rtmp_port"]) == 0) OR (strlen($_POST["root_password"]) == 0)) {
         $_STATUS = 1;
     }
@@ -39,9 +39,7 @@ if (isset($_POST["submit_server"])) {
             $rServerID = intval($db->insert_id);
             $rJSON = Array("status" => 0, "port" => intval($_POST["ssh_port"]), "http_broadcast_port" => intval($rArray["http_broadcast_port"]), "https_broadcast_port" => intval($rArray["https_broadcast_port"]), "rtmp_port" => intval($rArray["rtmp_port"]), "host" => $_POST["server_ip"], "password" => $_POST["root_password"], "time" => intval(time()), "id" => $rServerID, "type" => "install");
             file_put_contents("/home/xtreamcodes/iptv_xtream_codes/adtools/balancer/".$rServerID.".json", json_encode($rJSON));
-			startcmd();
             header("Location: ./servers.php");
-			startcmd();
         } else {
             $_STATUS = 2;
         }
@@ -160,7 +158,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

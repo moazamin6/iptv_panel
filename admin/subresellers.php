@@ -24,21 +24,21 @@ if ($rSettings["sidebar"]) {
 										<?php if (hasPermissions("adv", "mng_regusers")) { ?>
                                         <a href="reg_users.php">
                                             <button type="button" class="btn btn-info waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-account-group"></i> <?=$_["registered_users"]?>
+                                                <i class="mdi mdi-account-group"></i> Registered Users
                                             </button>
                                         </a>
 										<?php }
 										if (hasPermissions("adv", "subreseller")) { ?>
                                         <a href="subreseller_setup.php">
                                             <button type="button" class="btn btn-primary waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i> <?=$_["setup_access"]?>
+                                                <i class="mdi mdi-plus"></i> Setup Access
                                             </button>
                                         </a>
 										<?php } ?>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["subreseller_setup"]?></h4>
+                            <h4 class="page-title">Subreseller Setup</h4>
                         </div>
                     </div>
                 </div>     
@@ -48,13 +48,13 @@ if ($rSettings["sidebar"]) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body" style="overflow-x:auto;">
-                                <table id="datatable" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["reseller_owner"]?></th>
-                                            <th><?=$_["subreseller"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Reseller Owner</th>
+                                            <th>Subreseller</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -88,7 +88,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -112,7 +112,7 @@ if ($rSettings["sidebar"]) {
         <script>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_setup"]?>') == false) {
+                if (confirm('Are you sure you want to delete this setup? This cannot be undone!') == false) {
                     return;
                 }
             }
@@ -120,14 +120,14 @@ if ($rSettings["sidebar"]) {
                 if (data.result === true) {
                     if (rType == "delete") {
                         $("#setup-" + rID).remove();
-                        $.toast("<?=$_["setup_successfully_deleted"]?>");
+                        $.toast("Setup successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
                     });
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_request"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }

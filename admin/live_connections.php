@@ -1,5 +1,4 @@
 <?php
-die('hellloo');
 include "session.php"; include "functions.php";
 if (($rPermissions["is_admin"]) && (!hasPermissions("adv", "live_connections"))) { exit; }
 if (($rPermissions["is_reseller"]) && (!$rPermissions["reseller_client_connection_logs"])) { exit; }
@@ -75,7 +74,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                     </div>
                                 </form>
-                                <table id="datatable-activity" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable-activity" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
@@ -87,7 +86,6 @@ if ($rSettings["sidebar"]) {
                                             <th class="text-center"><?=$_["time"]?></th>
                                             <th class="text-center"><?=$_["ip"]?></th>
                                             <th class="text-center"><?=$_["country"]?></th>
-											<th class="text-center">ISP</th>
                                             <th class="text-center"><?=$_["actions"]?></th>
                                         </tr>
                                     </thead>
@@ -107,7 +105,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -221,7 +219,7 @@ if ($rSettings["sidebar"]) {
                     }
                 },
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,1,6,7,8,10]},
+                    {"className": "dt-center", "targets": [0,1,6,7,8,9]},
                     {"className": "ellipsis", "targets": [5]}
                 ],
                 order: [[ 0, "desc" ]],

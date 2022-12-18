@@ -20,8 +20,8 @@ if ($rSettings["sidebar"]) {
         <?php } ?>
 				<?php if (hasPermissions("adv", "index")) { ?>
                 <!-- start page title -->
-                <div class="card-box1">
-                    <!--<div class="col-12">
+                <div class="row">
+                    <div class="col-12">
                         <div class="page-title-box">
                             <ul class="nav nav-tabs nav-bordered dashboard-tabs" style="flex-wrap: nowrap !important;">
                                 <li class="nav-item">
@@ -38,34 +38,33 @@ if ($rSettings["sidebar"]) {
                                 <?php } ?>
                             </ul>
                         </div>
-                    </div>-->
-                </div>
-				
+                    </div>
+                </div>     
                 <!-- end page title --> 
                 <div class="tab-content">
                     <div class="tab-pane show active" id="server-home">
                         <div class="row">
-                            <div class="col-md-6 col-xl-2">
+                            <div class="col-md-6 col-xl-3">
 								<?php if (hasPermissions("adv", "live_connections")) { ?>
 								<a href="./live_connections.php">
 								<?php } ?>
-									<div class="card-box active-connections bg-primary">
+									<div class="card-box active-connections">
 										<div class="row">
 											<div class="col-6">
 												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-box avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-secondary rounded">
+													<i class="fe-zap avatar-title font-22 text-white"></i>
 												</div>
 												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-box avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-soft-purple rounded">
+													<i class="fe-zap avatar-title font-22 text-purple"></i>
 												</div>
 												<?php } ?>
 											</div>
 											<div class="col-6">
 												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-													<p class="text-white mb-1 text-truncate"><?=$_["open_connections"]?></p>
+													<h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+													<p class="text-muted mb-1 text-truncate"><?=$_["open_connections"]?></p>
 												</div>
 											</div>
 										</div>
@@ -75,27 +74,27 @@ if ($rSettings["sidebar"]) {
 								<?php } ?>
                             </div> <!-- end col -->
 
-                            <div class="col-md-6 col-xl-2">
+                            <div class="col-md-6 col-xl-3">
 								<?php if (hasPermissions("adv", "live_connections")) { ?>
 								<a href="./live_connections.php">
 								<?php } ?>
-									<div class="card-box online-users bg-success">
+									<div class="card-box online-users">
 										<div class="row">
 											<div class="col-6">
 												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
+												<div class="avatar-sm bg-secondary rounded">
 													<i class="fe-users avatar-title font-22 text-white"></i>
 												</div>
 												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-users avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-soft-success rounded">
+													<i class="fe-users avatar-title font-22 text-success"></i>
 												</div>
 												<?php } ?>
 											</div>
 											<div class="col-6">
 												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-													<p class="text-white mb-1 text-truncate"><?=$_["online_users"]?></p>
+													<h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+													<p class="text-muted mb-1 text-truncate"><?=$_["online_users"]?></p>
 												</div>
 											</div>
 										</div>
@@ -105,87 +104,27 @@ if ($rSettings["sidebar"]) {
 								<?php } ?>
                             </div> <!-- end col -->
 							
-							<div class="col-md-6 col-xl-2">
-								<?php if (hasPermissions("adv", "live_connections")) { ?>
-								<a href="./live_connections.php">
-								<?php } ?>
-									<div class="card-box input-flow bg-pink">
-										<div class="row">
-											<div class="col-6">
-												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-download avatar-title font-22 text-white"></i>
-												</div>
-												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-download avatar-title font-22 text-white"></i>
-												</div>
-												<?php } ?>
-											</div>
-											<div class="col-6">
-												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span><small> Mbps</small></h3>
-													<p class="text-white mb-1 text-white"><?=$_["total_input"]?></p>
-												</div>
-											</div>
-										</div>
-									</div> <!-- end card-box-->
-								<?php if (hasPermissions("adv", "live_connections")) { ?>
-								</a>
-								<?php } ?>
-                            </div> <!-- end col -->
-
-                            <div class="col-md-6 col-xl-2">
-								<?php if (hasPermissions("adv", "live_connections")) { ?>
-								<a href="./live_connections.php">
-								<?php } ?>
-									<div class="card-box output-flow bg-info">
-										<div class="row">
-											<div class="col-6">
-												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-upload avatar-title font-22 text-white"></i>
-												</div>
-												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-upload avatar-title font-22 text-white"></i>
-												</div>
-												<?php } ?>
-											</div>
-											<div class="col-6">
-												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span><small> Mbps</small></h3>
-													<p class="text-white mb-1 text-white"><?=$_["total_output"]?></p>
-												</div>
-											</div>
-										</div>
-									</div> <!-- end card-box-->
-								<?php if (hasPermissions("adv", "live_connections")) { ?>
-								</a>
-								<?php } ?>
-                            </div> <!-- end col -->
-							
-							<div class="col-md-6 col-xl-2">
+							<div class="col-md-6 col-xl-3">
 								<?php if (hasPermissions("adv", "streams")) { ?>
 								<a href="./streams.php?filter=1">
 								<?php } ?>
-									<div class="card-box active-streams bg-warning">
+									<div class="card-box active-streams">
 										<div class="row">
 											<div class="col-6">
 												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-video avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-secondary rounded">
+													<i class="fe-play avatar-title font-22 text-white"></i>
 												</div>
 												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-video avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-soft-pink rounded">
+													<i class="fe-play avatar-title font-22 text-pink"></i>
 												</div>
 												<?php } ?>
 											</div>
 											<div class="col-6">
 												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-													<p class="text-white mb-1 text-truncate"><?=$_["online_streams"]?></p>
+													<h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+													<p class="text-muted mb-1 text-truncate"><?=$_["online_streams"]?></p>
 												</div>
 											</div>
 										</div>
@@ -195,27 +134,27 @@ if ($rSettings["sidebar"]) {
 								<?php } ?>
                             </div> <!-- end col -->
 							
-							<div class="col-md-6 col-xl-2">
+							<div class="col-md-6 col-xl-3">
 								<?php if (hasPermissions("adv", "streams")) { ?>
 								<a href="./streams.php?filter=2">
 								<?php } ?>
-									<div class="card-box offline-streams bg-danger">
+									<div class="card-box offline-streams">
 										<div class="row">
 											<div class="col-6">
 												<?php if ($rAdminSettings["dark_mode"]) { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-video-off avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-secondary rounded">
+													<i class="fe-pause avatar-title font-22 text-white"></i>
 												</div>
 												<?php } else { ?>
-												<div class="avatar-md rounded">
-													<i class="fe-video-off avatar-title font-22 text-white"></i>
+												<div class="avatar-sm bg-soft-info rounded">
+													<i class="fe-pause avatar-title font-22 text-info"></i>
 												</div>
 												<?php } ?>
 											</div>
 											<div class="col-6">
 												<div class="text-right">
-													<h3 class="text-white my-1"><span data-plugin="counterup" class="entry">0</span></h3>
-													<p class="text-white mb-1 text-white"><?=$_["offline_streams"]?></p>
+													<h3 class="text-dark my-1"><span data-plugin="counterup" class="entry">0</span></h3>
+													<p class="text-muted mb-1 text-truncate"><?=$_["offline_streams"]?></p>
 												</div>
 											</div>
 										</div>
@@ -224,7 +163,6 @@ if ($rSettings["sidebar"]) {
 								</a>
 								<?php } ?>
                             </div> <!-- end col -->
-							
 							<?php if (($rSettings["save_closed_connection"]) && ($rAdminSettings["dashboard_stats"])) { ?>
 							<div class="col-xl-12">
 								<!-- Portlet card -->
@@ -232,16 +170,16 @@ if ($rSettings["sidebar"]) {
 									<div class="card-body">
 										<div class="card-widgets">
 											<a href="javascript: setPeriod('week');">
-												<button type="button" class="btn btn-info waves-effect waves-light btn-xs"><?=$_["week"]?></button>
+												<button type="button" class="btn btn-info waves-effect waves-light btn-xs">Week</button>
 											</a>
 											<a href="javascript: setPeriod('day');">
-												<button type="button" class="btn btn-info waves-effect waves-light btn-xs"><?=$_["day"]?></button>
+												<button type="button" class="btn btn-info waves-effect waves-light btn-xs">Day</button>
 											</a>
 											<a href="javascript: setPeriod('hour');">
-												<button type="button" class="btn btn-info waves-effect waves-light btn-xs"><?=$_["hour"]?></button>
+												<button type="button" class="btn btn-info waves-effect waves-light btn-xs">Hour</button>
 											</a>
 										</div>
-										<h4 class="header-title mb-0"><?=$_["connections"]?></h4>
+										<h4 class="header-title mb-0">Connections</h4>
 										<div id="statistics-collapse" class="collapse pt-3 show" dir="ltr">
 											<div id="statistics" class="apex-charts"></div>
 										</div> <!-- collapsed end -->
@@ -251,36 +189,29 @@ if ($rSettings["sidebar"]) {
 							<?php }
 							$i = 0; foreach ($rServers as $rServer) { $i ++; if ($i == 5) { $i = 1; } ?>
 							<div class="col-xl-3 col-md-6">
-								<div class="card-header bg-dark text-white">
+								<div class="card-header bg-<?=$rColours[$i][0]?> py-3 text-white">
 									<?php if (hasPermissions("adv", "live_connections")) { ?>
 									<div class="float-right">
 										<a href="./live_connections.php?server_id=<?=$rServer["id"]?>" class="arrow-none card-drop">
-										<i class="fe-play"></i>
-											
-										<a data-toggle="collapse" href="#cardCollpase1" class="arrow-none card-drop" data-parent="#cardCollpase1" role="tablist" aria-expanded="true" aria-controls="cardCollpase1">
-										<i class="fe-zoom-in"></i></a>
-										
-                                        <a href="javascript: void(0);" data-toggle="collapse">
-										<a data-toggle="collapse" href="#cardCollpase2" class="arrow-none card-drop" data-parent="#cardCollpase1" role="tablist" aria-expanded="true" aria-controls="cardCollpase2">
-										<i class="fe-zoom-out"></i>
+											<i class="mdi mdi-play"></i>
 										</a>
 									</div>
 									<?php } ?>
 									<h5 class="card-title mb-0 text-white"><?=$rServer["server_name"]?></h5>
 								</div>
-								<div id="cardCollpase1" class="collapse pt-3 show bg-white card-header py-3 text-white<?php if (!$rAdminSettings["dark_mode"]) { echo " bg-white"; } ?>">
+								<div class="card-header py-3 text-white<?php if (!$rAdminSettings["dark_mode"]) { echo " bg-white"; } ?>">
 									<div class="row">
-										<div class="col-md-4" align="center">
-										    <h4 class="header-title"><?=$_["conns1"]?></h4>
-										    <p class="sub-header" id="s_<?=$rServer["id"]?>_total_users">0</p>
-										</div>
 										<div class="col-md-4" align="center">
 											<h4 class="header-title"><?=$_["conns"]?></h4>
 											<p class="sub-header" id="s_<?=$rServer["id"]?>_conns">0</p>
 										</div>
 										<div class="col-md-4" align="center">
-										    <h4 class="header-title"><?=$_["users"]?></h4>
+											<h4 class="header-title"><?=$_["users"]?></h4>
 											<p class="sub-header" id="s_<?=$rServer["id"]?>_users">0</p>
+										</div>
+										<div class="col-md-4" align="center">
+											<h4 class="header-title"><?=$_["online"]?></h4>
+											<p class="sub-header" id="s_<?=$rServer["id"]?>_online">0</p>
 										</div>
 									</div>
 									<div class="row" style="margin-bottom:-20px;">
@@ -297,47 +228,22 @@ if ($rSettings["sidebar"]) {
 											<p class="sub-header" id="s_<?=$rServer["id"]?>_uptime">0d 0h</p>
 										</div>
 									</div>
-									<!--<div class="card-box">--><p>
-									<div id="cardCollpase2" class="collapse pt-3 show bg-white card-box" style="margin-bottom:-8px;">
-									<div class="row" style="margin-bottom:-12px;">
-									    <div class="col-md-4" align="center">
-											<a href="./streams.php?filter=1">
-											<h4 class="header-title"><?=$_["online_streams"]?></h4>
-											<p class="sub-header" id="s_<?=$rServer["id"]?>_online">0</p>
-											<a href="./streams.php?filter=2">
-											<h4 class="header-title"><?=$_["offline_streams"]?></h4>
-										    <p class="sub-header" id="s_<?=$rServer["id"]?>_down">0</p>
-										</div>
-                                        <div class="col-md-4" align="center">
+								</div>
+								<div class="card-box">
+									<div class="row">
+                                        <div class="col-md-6" align="center">
                                             <a href="./process_monitor.php?server=<?=$rServer["id"]?>">
                                                 <h4 class="header-title"><?=$_["cpu_usage"]?></h4>
-                                                <input id="s_<?=$rServer["id"]?>_cpu" data-plugin="knob" data-width="60" data-height="60" data-fgColor="#414d5f" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="-125" data-anglearc="250" data-readOnly=true data-thickness=".03"/>
+                                                <input id="s_<?=$rServer["id"]?>_cpu" data-plugin="knob" data-width="64" data-height="64" data-fgColor="<?=$rColours[$i][1]?>" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15"/>
                                             </a>
                                         </div>
-                                        <div class="col-md-4" align="center">
+                                        <div class="col-md-6" align="center">
                                             <a href="./process_monitor.php?server=<?=$rServer["id"]?>&mem">
                                                 <h4 class="header-title"><?=$_["mem_usage"]?></h4>
-                                                <input id="s_<?=$rServer["id"]?>_mem" data-plugin="knob" data-width="60" data-height="60" data-fgColor="#414d5f" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="-125" data-anglearc="250" data-readOnly=true data-thickness=".03"/>
+                                                <input id="s_<?=$rServer["id"]?>_mem" data-plugin="knob" data-width="64" data-height="64" data-fgColor="<?=$rColours[$i][1]?>" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15"/>
                                             </a>
                                         </div>
 									</div>
-								</div>
-								</div>
-								<div class="card-box1">
-									<!--<div class="row">
-                                        <div class="col-md-6" align="center">
-                                            <a href="./process_monitor.php?server=<?=$rServer["id"]?>">
-                                                <h4 class="header-title"><?=$_["cpu_usage"]?></h4>
-                                                <input id="s_<?=$rServer["id"]?>_cpu" data-plugin="knob" data-width="64" data-height="64" data-fgColor="#414d5f" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15"/>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6" align="center">
-                                            <a href="./process_monitor.php?server=<?=$rServer["id"]?>&mem">
-                                                <h4 class="header-title"><?=$_["mem_usage"]?></h4>
-                                                <input id="s_<?=$rServer["id"]?>_mem" data-plugin="knob" data-width="64" data-height="64" data-fgColor="#414d5f" data-bgColor="#e8e7f4" value="0" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15"/>
-                                            </a>
-                                        </div>
-									</div>-->
 								</div>
 							</div>
 							<?php } ?>
@@ -373,7 +279,7 @@ if ($rSettings["sidebar"]) {
 											<?php if ($rAdminSettings["dark_mode"]) { ?>
                                             <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 											<?php } else { ?>
-											<div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+											<div class="progress-bar bg-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 											<?php } ?>
                                                 <span class="sr-only">0%</span>
                                             </div>
@@ -520,7 +426,7 @@ if ($rSettings["sidebar"]) {
 											<?php if ($rAdminSettings["dark_mode"]) { ?>
                                             <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 											<?php } else { ?>
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                            <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 											<?php } ?>
                                                 <span class="sr-only">0%</span>
                                             </div>
@@ -632,80 +538,7 @@ if ($rSettings["sidebar"]) {
 
                         </div>
                     </div>
-                </div>	
-<?php if ($rAdminSettings["dashboard_world_map_live"]) { ?>
-<style>
-.infoServ td {
-padding:0px 4px 0px 4px;
-}
-#WorldMapLive {
-  color: #ffffff;
-  width: 100%;
-  height: 400px;
-  font-size: 11px;
-
-}
-.row2 {
-    display: flex;
-    overflow: hidden;
-
-}
-.col2 {
-}
-</style>
-		<div class="row">
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-						<div id="WorldMapLive">	
-                            <div class="slimscroll" style="height:350px;">
-                                <div class="timeline-alt">
-
-							
-							</div>
-						</div>
-										  
-					</div>
-				</div>
-			</div>
-		</div>
-
-<?php } ?>
-
-<?php if ($rAdminSettings["dashboard_world_map_activity"]) { ?>
-<style>
-.infoServ td {
-padding:0px 4px 0px 4px;
-}
-#WorldMapActivity {
-  color: #ffffff;
-  width: 100%;
-  height: 400px;
-  font-size: 11px;
-
-}
-.row2 {
-    display: flex;
-    overflow: hidden;
-
-}
-.col2 {
-}
-</style>
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-							<div id="WorldMapActivity">
-							    <div class="slimscroll" style="height:350px;">
-                                <div class="timeline-alt">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </div>
-<?php } ?>
+                </div>
                 <!-- end row -->
 				<?php } else { ?>
 				<div class="alert alert-danger show text-center" role="alert" style="margin-top:20px;">
@@ -722,7 +555,7 @@ padding:0px 4px 0px 4px;
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -737,12 +570,7 @@ padding:0px 4px 0px 4px;
         <script src="assets/libs/datatables/dataTables.bootstrap4.js"></script>
         <script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
         <script src="assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-		<script src="assets/js/pages/dashboard.init.js"></script>
         <script src="assets/js/app.min.js"></script>
-		<script src="assets/js/amcharts4/ammap.js"></script>
-        <script src="assets/js/amcharts4/writemap.js?5"></script>
-        <script src="assets/js/amcharts4/worldLow3.js"></script>
-        <script src="assets/js/amcharts4/light.js"></script>
         
         <script>
         rServerID = "home";
@@ -830,8 +658,6 @@ padding:0px 4px 0px 4px;
 					$("#s_" + data.servers[i].server_id + "_online").html($.number(data.servers[i].total_running_streams, 0));
 					$("#s_" + data.servers[i].server_id + "_input").html($.number(Math.ceil(data.servers[i].bytes_received), 0) + " Mbps");
 					$("#s_" + data.servers[i].server_id + "_output").html($.number(Math.ceil(data.servers[i].bytes_sent), 0) + " Mbps");
-					$("#s_" + data.servers[i].server_id + "_down").html($.number(data.servers[i].offline_streams, 0));
-					$("#s_" + data.servers[i].server_id + "_total_users").html($.number(data.servers[i].total_connections, 0));
 					$("#s_" + data.servers[i].server_id + "_cpu").val(data.servers[i].cpu).trigger('change');
 					$("#s_" + data.servers[i].server_id + "_mem").val(data.servers[i].mem).trigger('change');
 					if (data.servers[i].uptime) {
@@ -945,20 +771,6 @@ padding:0px 4px 0px 4px;
 			getChart();
 			<?php } ?>
         });
-        </script>
-		
-		<script src="assets/js/amcharts4/writemaplive.js"></script>
-		<script>
-		<?php if ($rAdminSettings["dashboard_world_map_live"]) { ?>
-				var mapData = showMap("WorldMapLive", [<?php getWorldMapLive(); ?>], "Live by Country");
-		<?php } ?>
-        </script>
-
-        <script src="assets/js/amcharts4/writemapactivity.js"></script>
-		<script>
-		<?php if ($rAdminSettings["dashboard_world_map_activity"]) { ?>
-				var mapData = showMap("WorldMapActivity", [<?php getWorldMapActivity(); ?>], "Activity by Country");
-		<?php } ?>
         </script>
     </body>
 </html>

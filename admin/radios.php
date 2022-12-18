@@ -35,27 +35,27 @@ if ($rSettings["sidebar"]) {
                                         <?php if (!$detect->isMobile()) { ?>
                                         <a href="#" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <span class="auto-text"><?=$_["auto_refresh"]?></span>
+                                                <span class="auto-text">Auto-Refresh</span>
                                             </button>
                                         </a>
                                         <?php } else { ?>
                                         <a href="javascript:location.reload();" onClick="toggleAuto();">
                                             <button type="button" class="btn btn-dark waves-effect waves-light btn-sm">
-                                                <?=$_["refresh"]?>
+                                                Refresh
                                             </button>
                                         </a>
                                         <?php }
                                         if (($rPermissions["is_admin"]) && (hasPermissions("adv", "add_radio"))) { ?>
                                         <a href="radio.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <?=$_["add_station"]?>
+                                                Add Station
                                             </button>
                                         </a>
                                         <?php } ?>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["radio_stations"]?></h4>
+                            <h4 class="page-title">Radio Stations</h4>
                         </div>
                     </div>
                 </div>
@@ -69,11 +69,11 @@ if ($rSettings["sidebar"]) {
                                     <div class="form-group row mb-4">
                                         <?php if ($rPermissions["is_reseller"]) { ?>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="station_search" value="" placeholder="<?=$_["search_stations"]?>...">
+                                            <input type="text" class="form-control" id="station_search" value="" placeholder="Search Stations...">
                                         </div>
                                         <div class="col-md-3">
                                             <select id="station_category_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_categories"]?></option>
+                                                <option value="" selected>All Categories</option>
                                                 <?php foreach ($rCategories as $rCategory) { ?>
                                                 <option value="<?=$rCategory["id"]?>"<?php if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo " selected"; } ?>><?=$rCategory["category_name"]?></option>
                                                 <?php } ?>
@@ -81,13 +81,13 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="station_server_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"<?php if ((isset($_GET["server"])) && ($_GET["server"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="station_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="station_show_entries">Show</label>
                                         <div class="col-md-2">
                                             <select id="station_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -97,11 +97,11 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <?php } else { ?>
                                         <div class="col-md-2">
-                                            <input type="text" class="form-control" id="station_search" value="" placeholder="<?=$_["search_streams"]?>...">
+                                            <input type="text" class="form-control" id="station_search" value="" placeholder="Search Streams...">
                                         </div>
                                         <div class="col-md-3">
                                             <select id="station_server_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_servers"]?></option>
+                                                <option value="" selected>All Servers</option>
                                                 <?php foreach (getStreamingServers() as $rServer) { ?>
                                                 <option value="<?=$rServer["id"]?>"<?php if ((isset($_GET["server"])) && ($_GET["server"] == $rServer["id"])) { echo " selected"; } ?>><?=$rServer["server_name"]?></option>
                                                 <?php } ?>
@@ -109,7 +109,7 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-3">
                                             <select id="station_category_id" class="form-control" data-toggle="select2">
-                                                <option value="" selected><?=$_["all_categories"]?></option>
+                                                <option value="" selected>All Categories</option>
                                                 <?php foreach ($rCategories as $rCategory) { ?>
                                                 <option value="<?=$rCategory["id"]?>"<?php if ((isset($_GET["category"])) && ($_GET["category"] == $rCategory["id"])) { echo " selected"; } ?>><?=$rCategory["category_name"]?></option>
                                                 <?php } ?>
@@ -117,16 +117,16 @@ if ($rSettings["sidebar"]) {
                                         </div>
                                         <div class="col-md-2">
                                             <select id="station_filter" class="form-control" data-toggle="select2">
-                                                <option value=""<?php if (!isset($_GET["filter"])) { echo " selected"; } ?>><?=$_["no_filter"]?></option>
-                                                <option value="1"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 1)) { echo " selected"; } ?>><?=$_["online"]?></option>
-                                                <option value="2"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 2)) { echo " selected"; } ?>><?=$_["down"]?></option>
-                                                <option value="3"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 3)) { echo " selected"; } ?>><?=$_["stopped"]?></option>
-                                                <option value="4"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 4)) { echo " selected"; } ?>><?=$_["starting"]?></option>
-                                                <option value="5"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 5)) { echo " selected"; } ?>><?=$_["on_demand"]?></option>
-                                                <option value="6"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 6)) { echo " selected"; } ?>><?=$_["direct"]?></option>
+                                                <option value=""<?php if (!isset($_GET["filter"])) { echo " selected"; } ?>>No Filter</option>
+                                                <option value="1"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 1)) { echo " selected"; } ?>>Online</option>
+                                                <option value="2"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 2)) { echo " selected"; } ?>>Down</option>
+                                                <option value="3"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 3)) { echo " selected"; } ?>>Stopped</option>
+                                                <option value="4"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 4)) { echo " selected"; } ?>>Starting</option>
+                                                <option value="5"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 5)) { echo " selected"; } ?>>On Demand</option>
+                                                <option value="6"<?php if ((isset($_GET["filter"])) && ($_GET["filter"] == 6)) { echo " selected"; } ?>>Direct</option>
                                             </select>
                                         </div>
-                                        <label class="col-md-1 col-form-label text-center" for="station_show_entries"><?=$_["show"]?></label>
+                                        <label class="col-md-1 col-form-label text-center" for="station_show_entries">Show</label>
                                         <div class="col-md-1">
                                             <select id="station_show_entries" class="form-control" data-toggle="select2">
                                                 <?php foreach (Array(10, 25, 50, 250, 500, 1000) as $rShow) { ?>
@@ -137,18 +137,18 @@ if ($rSettings["sidebar"]) {
                                         <?php } ?>
                                     </div>
                                 </form>
-                                <table id="datatable-streampage" class="table table-hover dt-responsive nowrap font-normal">
+                                <table id="datatable-streampage" class="table dt-responsive nowrap font-normal">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["name"]?></th>
-                                            <th><?=$_["source"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>Name</th>
+                                            <th>Source</th>
                                             <?php if ($rPermissions["is_admin"]) { ?>
-                                            <th class="text-center"><?=$_["clients"]?></th>
-                                            <th class="text-center"><?=$_["uptime"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">Clients</th>
+                                            <th class="text-center">Uptime</th>
+                                            <th class="text-center">Actions</th>
                                             <?php } ?>
-                                            <th class="text-center"><?=$_["stream_info"]?></th>
+                                            <th class="text-center">Stream Info</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -166,7 +166,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

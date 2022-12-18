@@ -21,13 +21,13 @@ if ($rSettings["sidebar"]) {
                                     <li>
                                         <a href="isp.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i> <?=$_["block_isp"]?>
+                                                <i class="mdi mdi-plus"></i> Block ISP
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title"><?=$_["blocked_isps"]?></h4>
+                            <h4 class="page-title">Blocked ISP's</h4>
                         </div>
                     </div>
                 </div>     
@@ -37,13 +37,13 @@ if ($rSettings["sidebar"]) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body" style="overflow-x:auto;">
-                                <table id="datatable" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th><?=$_["isp_name"]?></th>
-                                            <th class="text-center"><?=$_["blocked"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th>ISP Name</th>
+                                            <th class="text-center">Blocked</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,7 +82,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -106,7 +106,7 @@ if ($rSettings["sidebar"]) {
         <script>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_isp"]?>') == false) {
+                if (confirm('Are you sure you want to delete this ISP? This cannot be undone!') == false) {
                     return;
                 }
             }
@@ -114,14 +114,14 @@ if ($rSettings["sidebar"]) {
                 if (data.result === true) {
                     if (rType == "delete") {
                         $("#isp-" + rID).remove();
-                        $.toast("<?=$_["isp_successfully_deleted"]?>");
+                        $.toast("ISP successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
                     });
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
-                    $.toast("<?=$_["an_error_occured"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }

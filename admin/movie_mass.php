@@ -209,7 +209,7 @@ if ($rSettings["sidebar"]) {
                                             <div class="tab-pane" id="stream-selection">
                                                 <div class="row">
                                                     <div class="col-md-3 col-6">
-                                                        <input type="text" class="form-control" id="stream_search" value="" placeholder="<?=$_["search_movies"]?>...">
+                                                        <input type="text" class="form-control" id="stream_search" value="" placeholder="Search Movies...">
                                                     </div>
                                                     <div class="col-md-3 col-6">
                                                         <select id="category_search" class="form-control" data-toggle="select2">
@@ -242,7 +242,7 @@ if ($rSettings["sidebar"]) {
                                                             <i class="mdi mdi-selection"></i>
                                                         </button>
                                                     </div>
-                                                    <table id="datatable-mass" class="table table-hover table-borderless mb-0">
+                                                    <table id="datatable-mass" class="table table-borderless mb-0">
                                                         <thead class="bg-light">
                                                             <tr>
                                                                 <th class="text-center"><?=$_["id"]?></th>
@@ -282,7 +282,7 @@ if ($rSettings["sidebar"]) {
                                                             </div>
                                                             <label class="col-md-3 col-form-label" for="bouquets"><?=$_["select_bouquets"]?></label>
                                                             <div class="col-md-8">
-                                                                <select disabled name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="<?=$_["choose"]?>...">
+                                                                <select disabled name="bouquets[]" id="bouquets" class="form-control select2-multiple" data-toggle="select2" multiple="multiple" data-placeholder="Choose...">
                                                                     <?php foreach (getBouquets() as $rBouquet) { ?>
                                                                     <option value="<?=$rBouquet["id"]?>"><?=$rBouquet["bouquet_name"]?></option>
                                                                     <?php } ?>
@@ -426,7 +426,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>

@@ -23,14 +23,14 @@ if ($rSettings["sidebar"]) {
                                     <li>
                                         <a href="rtmp_ip.php">
                                             <button type="button" class="btn btn-success waves-effect waves-light btn-sm">
-                                                <i class="mdi mdi-plus"></i> <?=$_["add_ip_address"]?>
+                                                <i class="mdi mdi-plus"></i> Add IP Address
                                             </button>
                                         </a>
                                     </li>
                                 </ol>
                             </div>
 							<?php } ?>
-                            <h4 class="page-title"><?=$_["rtmp_ip_addresses"]?></h4>
+                            <h4 class="page-title">RTMP IP Addresses</h4>
                         </div>
                     </div>
                 </div>     
@@ -39,13 +39,13 @@ if ($rSettings["sidebar"]) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body" style="overflow-x:auto;">
-                                <table id="datatable" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="text-center"><?=$_["id"]?></th>
-                                            <th class="text-center"><?=$_["ip_address"]?></th>
-                                            <th><?=$_["notes"]?></th>
-                                            <th class="text-center"><?=$_["actions"]?></th>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">IP Address</th>
+                                            <th>Notes</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -80,7 +80,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -105,7 +105,7 @@ if ($rSettings["sidebar"]) {
         <script>
         function api(rID, rType) {
             if (rType == "delete") {
-                if (confirm('<?=$_["are_you_sure_you_want_to_delete_this_ip"]?>') == false) {
+                if (confirm('Are you sure you want to delete this IP? This cannot be undone!') == false) {
                     return;
                 }
             }
@@ -113,14 +113,14 @@ if ($rSettings["sidebar"]) {
                 if (data.result === true) {
                     if (rType == "delete") {
                         $("#ip-" + rID).remove();
-                        $.toast("<?=$_["ip_successfully_deleted"]?>");
+                        $.toast("IP successfully deleted.");
                     }
                     $.each($('.tooltip'), function (index, element) {
                         $(this).remove();
                     });
                     $('[data-toggle="tooltip"]').tooltip();
                 } else {
-                    $.toast("<?=$_["an_error_occured_while_processing_your_reques"]?>");
+                    $.toast("An error occured while processing your request.");
                 }
             });
         }

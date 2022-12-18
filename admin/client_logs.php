@@ -60,14 +60,14 @@ if ($rSettings["sidebar"]) {
                                         </select>
                                     </div>
                                 </div>
-                                <table id="datatable-activity" class="table table-hover dt-responsive nowrap">
+                                <table id="datatable-activity" class="table dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th class="text-center"><?=$_["id"]?></th>
                                             <th><?=$_["username"]?></th>
                                             <th><?=$_["stream"]?></th>
                                             <th><?=$_["reason"]?></th>
-                                            <th><?=$_["type"]?></th>
+                                            <th><?=$_["user_agent"]?></th>
                                             <th class="text-center"><?=$_["ip"]?></th>
                                             <th class="text-center"><?=$_["date"]?></th>
                                         </tr>
@@ -112,7 +112,7 @@ if ($rSettings["sidebar"]) {
         <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 copyright text-center">Copyright © 2020 <?=htmlspecialchars($rSettings["server_name"])?></div>
+                    <div class="col-md-12 copyright text-center"><?=getFooter()?></div>
                 </div>
             </div>
         </footer>
@@ -230,7 +230,7 @@ if ($rSettings["sidebar"]) {
                     }
                 },
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,1,2,3,4,5,6]}
+                    {"className": "dt-center", "targets": [0,5,6]}
                 ],
                 "order": [[ 0, "desc" ]],
                 pageLength: <?=$rAdminSettings["default_entries"] ?: 10?>
