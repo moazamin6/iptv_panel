@@ -1894,7 +1894,7 @@ if (isset($_SESSION['hash'])) {
         unset($rPermissions);
         session_unset();
         session_destroy();
-        header("Location: ./index.php");
+        header("Location: ./index_old.php");
     }
     $rCategories = getCategories();
     $rServers = getStreamingServers();
