@@ -6,5 +6,5 @@ return [
     'db_name' => 'iptv',
     'db_user' => 'root',
     'db_pass' => '',
-    'server_id' => '1',
+    'server_id' => '1', 
 ];
